@@ -129,6 +129,7 @@
             // projects
             "digem": { symbol: "music_note", color: "#FF6B6B" },
             "blackbox": { symbol: "videocam", color: "#4ECDC4" },
+            "blog": { symbol: "note_add", color: "#9B59B6" },
             // learning - technologies
             "redis": { symbol: "database", color: "#DC382D" },
             "prometheus": { symbol: "monitoring", color: "#E6522C" },
@@ -153,6 +154,7 @@
             if (cat === "projects") {
                 if (!subCats.includes("digem")) subCats.push("digem");
                 if (!subCats.includes("blackbox")) subCats.push("blackbox");
+                if (!subCats.includes("blog")) subCats.push("blog");
             }
             
             // [추가] LEARNING 섹션에는 TECHNICAL STACK의 모든 기술 추가
@@ -172,9 +174,12 @@
                 <div id="f-${cat}" class="folder-content ${cat === 'projects' ? 'folder-open' : ''}">
                     ${subCats.map(sub => {
                         const icon = getIconForSubCategory(sub, cat);
+                        let displayName = sub;
+                        if (sub === "blog") displayName = "BLOG";
+                        else displayName = displayName.toUpperCase();
                         return `
                         <div onclick="showArchive('${sub}')" class="explorer-item pl-4">
-                            <span class="material-symbols-outlined text-sm" style="color:${icon.color}">${icon.symbol}</span> ${sub}
+                            <span class="material-symbols-outlined text-sm" style="color:${icon.color}">${icon.symbol}</span> ${displayName}
                         </div>
                     `;
                     }).join('')}
