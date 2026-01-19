@@ -124,6 +124,28 @@
             </div>
         `;
 
+    function getIconForSubCategory(subCat, category) {
+        const icons = {
+            // projects
+            "digem": { symbol: "music_note", color: "#FF6B6B" },
+            "blackbox": { symbol: "videocam", color: "#4ECDC4" },
+            // learning - technologies
+            "redis": { symbol: "database", color: "#DC382D" },
+            "prometheus": { symbol: "monitoring", color: "#E6522C" },
+            "grafana": { symbol: "dashboard", color: "#F05A28" },
+            "aws": { symbol: "cloud", color: "#FF9900" },
+            "linux": { symbol: "terminal", color: "#E8B000" },
+            "mongodb": { symbol: "storage", color: "#13AA52" },
+            "docker": { symbol: "package", color: "#2496ED" },
+            "kubernetes": { symbol: "grid_4x4", color: "#326CE5" },
+            "postgresql": { symbol: "data_object", color: "#336791" },
+            "terraform": { symbol: "tune", color: "#844FBA" },
+            // algorithm
+            "default": { symbol: "folder", color: "#FFFFFF" }
+        };
+        return icons[subCat] || icons["default"];
+    }
+
         categories.forEach(cat => {
             let subCats = [...new Set(allPosts.filter(p => p.category === cat).map(p => p.subCategory))];
             
@@ -132,6 +154,15 @@
                 if (!subCats.includes("digem")) subCats.push("digem");
                 if (!subCats.includes("blackbox")) subCats.push("blackbox");
             }
+            
+            // [추가] LEARNING 섹션에는 TECHNICAL STACK의 모든 기술 추가
+            if (cat === "learning") {
+                techStack.forEach(tech => {
+                    if (!subCats.includes(tech.name.toLowerCase())) {
+                        subCats.push(tech.name.toLowerCase());
+                    }
+                });
+            }
 
             html += `
                 <div onclick="toggleFolder('f-${cat}', 'i-${cat}')" class="explorer-folder">
@@ -139,11 +170,14 @@
                     <span id="i-${cat}" class="material-symbols-outlined rotate-icon ${cat === 'projects' ? 'rotated' : ''}">chevron_right</span>
                 </div>
                 <div id="f-${cat}" class="folder-content ${cat === 'projects' ? 'folder-open' : ''}">
-                    ${subCats.map(sub => `
+                    ${subCats.map(sub => {
+                        const icon = getIconForSubCategory(sub, cat);
+                        return `
                         <div onclick="showArchive('${sub}')" class="explorer-item pl-4">
-                            <span class="material-symbols-outlined text-sm text-zinc-600">folder</span> ${sub}
+                            <span class="material-symbols-outlined text-sm" style="color:${icon.color}">${icon.symbol}</span> ${sub}
                         </div>
-                    `).join('')}
+                    `;
+                    }).join('')}
                 </div>
             `;
         });
@@ -245,20 +279,30 @@
                 <section>
                     <h3 class="section-title">// Technical Stack</h3>
                     <div class="flex flex-wrap gap-2 max-w-2xl">
-                        ${techStack.map(s => `<span class="stack-badge" style="background-color:${s.color};">${s.name}</span>`).join('')}
+                        ${techStack.map(s => `<span class="stack-badge cursor-pointer hover:shadow-lg" style="background-color:${s.color};" onclick="showArchive('${s.name.toLowerCase()}')">${s.name}</span>`).join('')}
                     </div>
                 </section>
 
                 <section>
                     <h3 class="section-title">// Project Briefs</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 gap-4 max-w-2xl">
                         <div class="interactive-card" onclick="showArchive('digem')">
-                            <h4 class="text-white font-bold mb-2 font-mono tracking-tight">Digem_</h4>
-                            <p class="text-xs text-zinc-500 leading-relaxed">음악 아티클 분산 수집 엔진</p>
+                            <div class="flex items-start gap-4">
+                                <span class="text-5xl">🎵</span>
+                                <div>
+                                    <h4 class="text-white font-bold mb-2 font-mono tracking-tight">Digem_</h4>
+                                    <p class="text-xs text-zinc-500 leading-relaxed">음악 아티클 분산 수집 엔진</p>
+                                </div>
+                            </div>
                         </div>
                         <div class="interactive-card" onclick="showArchive('blackbox')">
-                            <h4 class="text-white font-bold mb-2 font-mono tracking-tight">Cloud_Blackbox_</h4>
-                            <p class="text-xs text-zinc-500 leading-relaxed">클라우드 기반 영상 관제 시스템</p>
+                            <div class="flex items-start gap-4">
+                                <span class="text-5xl">📹</span>
+                                <div>
+                                    <h4 class="text-white font-bold mb-2 font-mono tracking-tight">Cloud_Blackbox_</h4>
+                                    <p class="text-xs text-zinc-500 leading-relaxed">클라우드 기반 영상 관제 시스템</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
