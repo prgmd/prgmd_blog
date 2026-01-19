@@ -1,0 +1,9 @@
+{
+  "builds": [
+    { "src": "index.html", "use": "@vercel/static" },
+    { "src": "generate_posts.py", "use": "@vercel/python" }
+  ],
+  "scripts": {
+    "build": "python3 generate_posts.py"
+  }
+}

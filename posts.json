@@ -1,0 +1,12 @@
+[
+    {
+        "title": "[DevLog] Digem: 분산 스크래퍼 엔진 설계기",
+        "date": "2026-01-19",
+        "category": "projects",
+        "subCategory": "digem",
+        "excerpt": "Redis 기반의 작업 큐와 분산 워커 시스템을 도입하여 수집 속도를 개선한 기록입니다.",
+        "tags": "Python, DevOps, Redis",
+        "file": "post-digem-01.md",
+        "id": "post-digem-01"
+    }
+]
