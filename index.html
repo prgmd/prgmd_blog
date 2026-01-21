@@ -169,9 +169,9 @@
             html += `
                 <div onclick="toggleFolder('f-${cat}', 'i-${cat}')" class="explorer-folder">
                     <span>// ${cat.toUpperCase()}</span>
-                    <span id="i-${cat}" class="material-symbols-outlined rotate-icon ${cat === 'projects' ? 'rotated' : ''}">chevron_right</span>
+                    <span id="i-${cat}" class="material-symbols-outlined rotate-icon rotated">chevron_right</span>
                 </div>
-                <div id="f-${cat}" class="folder-content ${cat === 'projects' ? 'folder-open' : ''}">
+                <div id="f-${cat}" class="folder-content folder-open">
                     ${subCats.map(sub => {
                         const icon = getIconForSubCategory(sub, cat);
                         let displayName = sub;
