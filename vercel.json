@@ -1,6 +1,11 @@
 {
   "version": 2,
-  "public": true,
+  "builds": [
+    {
+      "src": "generate_posts.py",
+      "use": "@vercel/python"
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/$1" }
   ]

@@ -59,6 +59,13 @@
         .rotated { transform: rotate(90deg); }
 
         .prose { @apply text-zinc-300 text-[16px] leading-[1.8]; }
+        .prose p { @apply mb-6; }
+        .prose strong { @apply font-bold text-white; }
+        .prose em { @apply italic text-zinc-400; }
+        .prose a { @apply text-primary hover:underline; }
+        .prose blockquote { @apply border-l-4 border-zinc-700 pl-6 py-2 my-6 italic text-zinc-400; }
+        .prose code { @apply bg-zinc-800/80 text-primary font-mono px-1.5 py-1 rounded-md text-[13px]; }
+        .prose img { @apply block mx-auto my-8 rounded-lg shadow-lg max-w-full; }
         .prose h2 { @apply text-2xl font-bold mb-6 mt-12 text-white flex items-center gap-2 font-mono; }
         .prose h2::before { content: ''; @apply w-1.5 h-6 bg-primary inline-block rounded-full; }
         .prose h3 { @apply text-xl font-bold mb-4 mt-8 text-white border-l-2 border-primary pl-4; }
@@ -67,6 +74,8 @@
         .prose ol { @apply list-decimal list-inside ml-4 mb-6 space-y-2; }
         .prose li { @apply text-zinc-300; }
         .prose pre { @apply bg-[#121212] p-6 rounded-xl border border-white/10 my-10 overflow-x-auto shadow-2xl; }
+        /* pre 안의 code는 별도 스타일링 */
+        .prose pre code { @apply bg-transparent p-0; }
     </style>
 </head>
 <body class="overflow-hidden h-screen flex flex-col">
@@ -89,244 +98,242 @@
     </aside>
 
     <main class="flex-1 flex flex-col bg-background-dark overflow-hidden w-full relative">
-        <div class="h-9 border-b border-white/10 flex items-center px-4 bg-zinc-900/20 text-[10px] font-mono text-zinc-500 select-none">
-            <button id="back-btn" onclick="showSection('about')" class="hidden items-center justify-center w-6 h-6 mr-2 hover:bg-white/10 rounded transition-colors text-white">
-                <span class="material-symbols-outlined text-sm">chevron_left</span>
-            </button>
-            <span id="current-tab">소개.md</span>
+                <div class="h-9 border-b border-white/10 flex items-center px-4 bg-zinc-900/20 text-[10px] font-mono text-zinc-500 select-none">
+                    <button id="back-btn" onclick="window.history.back()" class="flex items-center justify-center w-6 h-6 mr-2 hover:bg-white/10 rounded transition-colors text-white">
+                        <span class="material-symbols-outlined text-sm">chevron_left</span>
+                    </button>
+                    <span id="breadcrumb"></span>
+                </div>
+                <div class="flex-1 overflow-y-auto p-6 md:p-12 custom-scrollbar space-y-20" id="content-area"></div>
+            </main>
         </div>
-        <div class="flex-1 overflow-y-auto p-6 md:p-12 custom-scrollbar space-y-20" id="content-area"></div>
-    </main>
-</div>
-
-<script>
-    let allPosts = [];
-    // [수정] 기술 스택 색상 데이터
-    const techStack = [
-        { name: "Redis", color: "#DC382D" }, { name: "Prometheus", color: "#E6522C" },
-        { name: "Grafana", color: "#F05A28" }, { name: "AWS", color: "#FF9900" },
-        { name: "Linux", color: "#E8B000" }, { name: "MongoDB", color: "#13AA52" },
-        { name: "Docker", color: "#2496ED" }, { name: "Kubernetes", color: "#326CE5" },
-        { name: "PostgreSQL", color: "#336791" }, { name: "Terraform", color: "#844FBA" }
-    ];
-
-    async function initBlog() {
-        try {
-            const res = await fetch('./posts.json');
-            allPosts = res.ok ? await res.json() : [];
-        } catch (e) { allPosts = []; }
-        renderExplorer();
-        showSection('about');
-    }
-
-    function renderExplorer() {
-        const explorer = document.getElementById('explorer-content');
-        const categories = ["projects", "learning", "algorithm"];
         
-        let html = `
-            <div onclick="showSection('about')" class="explorer-item text-primary bg-primary/5 border-l-2 border-primary mb-2">
-                <span class="material-symbols-outlined text-sm">info</span> 소개.md
-            </div>
-        `;
-
-    function getIconForSubCategory(subCat, category) {
-        const icons = {
-            // projects
-            "digem": { symbol: "music_note", color: "#FF6B6B" },
-            "blackbox": { symbol: "videocam", color: "#4ECDC4" },
-            "blog": { symbol: "note_add", color: "#9B59B6" },
-            // learning - technologies
-            "redis": { symbol: "database", color: "#DC382D" },
-            "prometheus": { symbol: "monitoring", color: "#E6522C" },
-            "grafana": { symbol: "dashboard", color: "#F05A28" },
-            "aws": { symbol: "cloud", color: "#FF9900" },
-            "linux": { symbol: "terminal", color: "#E8B000" },
-            "mongodb": { symbol: "storage", color: "#13AA52" },
-            "docker": { symbol: "package", color: "#2496ED" },
-            "kubernetes": { symbol: "grid_4x4", color: "#326CE5" },
-            "postgresql": { symbol: "data_object", color: "#336791" },
-            "terraform": { symbol: "tune", color: "#844FBA" },
-            // algorithm
-            "default": { symbol: "folder", color: "#FFFFFF" }
-        };
-        return icons[subCat] || icons["default"];
-    }
-
-        categories.forEach(cat => {
-            let subCats = [...new Set(allPosts.filter(p => p.category === cat).map(p => p.subCategory))];
-            
-            // [추가] 프로젝트 섹션에는 폴더를 명시적으로 추가
-            if (cat === "projects") {
-                if (!subCats.includes("digem")) subCats.push("digem");
-                if (!subCats.includes("blackbox")) subCats.push("blackbox");
-                if (!subCats.includes("blog")) subCats.push("blog");
+        <script>
+            let allPosts = [];
+            const techStack = [
+                { name: "Redis", color: "#DC382D" }, { name: "Prometheus", color: "#E6522C" },
+                { name: "Grafana", color: "#F05A28" }, { name: "AWS", color: "#FF9900" },
+                { name: "Linux", color: "#E8B000" }, { name: "MongoDB", color: "#13AA52" },
+                { name: "Docker", color: "#2496ED" }, { name: "Kubernetes", color: "#326CE5" },
+                { name: "PostgreSQL", color: "#336791" }, { name: "Terraform", color: "#844FBA" }
+            ];
+        
+            // --- 라우팅 및 렌더링 ---
+            async function initBlog() {
+                try {
+                    const res = await fetch('./posts.json');
+                    allPosts = res.ok ? await res.json() : [];
+                } catch (e) { allPosts = []; }
+                
+                renderExplorer();
+                
+                window.addEventListener('hashchange', handleRouteChange);
+                handleRouteChange(); // 초기 로딩 시 라우팅 처리
             }
-            
-            // [추가] LEARNING 섹션에는 TECHNICAL STACK의 모든 기술 추가
-            if (cat === "learning") {
-                techStack.forEach(tech => {
-                    if (!subCats.includes(tech.name.toLowerCase())) {
-                        subCats.push(tech.name.toLowerCase());
+        
+            function handleRouteChange() {
+                const hash = window.location.hash.substring(1);
+                const contentArea = document.getElementById('content-area');
+                contentArea.style.opacity = '0';
+        
+                setTimeout(() => {
+                    if (hash.startsWith('post/')) {
+                        const postId = hash.replace('post/', '');
+                        loadPost(postId);
+                    } else if (hash.startsWith('archive/')) {
+                        const subCat = hash.replace('archive/', '');
+                        showArchive(subCat);
+                    } else {
+                        showAbout();
+                    }
+                    contentArea.scrollTo(0, 0);
+                    contentArea.style.opacity = '1';
+                }, 100);
+            }
+        
+            // --- UI 업데이트 ---
+            function updateBreadcrumb(pathSegments) {
+                const breadcrumbEl = document.getElementById('breadcrumb');
+                if (!pathSegments || pathSegments.length === 0) {
+                    breadcrumbEl.innerHTML = `<a href="#" class="hover:text-white transition-colors">소개.md</a>`;
+                    return;
+                }
+        
+                let html = `<a href="#" class="hover:text-white transition-colors">Home</a>`;
+                let currentPath = '#';
+        
+                pathSegments.forEach((segment, index) => {
+                    const isLast = index === pathSegments.length - 1;
+                    if (isLast) {
+                        html += ` <span class="text-zinc-600">/</span> <span class="text-white">${segment}</span>`;
+                    } else {
+                        currentPath += `archive/${segment}`;
+                        html += ` <span class="text-zinc-600">/</span> <a href="${currentPath}" class="hover:text-white transition-colors">${segment}</a>`;
                     }
                 });
+                breadcrumbEl.innerHTML = html;
             }
-
-            html += `
-                <div onclick="toggleFolder('f-${cat}', 'i-${cat}')" class="explorer-folder">
-                    <span>// ${cat.toUpperCase()}</span>
-                    <span id="i-${cat}" class="material-symbols-outlined rotate-icon rotated">chevron_right</span>
-                </div>
-                <div id="f-${cat}" class="folder-content folder-open">
-                    ${subCats.map(sub => {
-                        const icon = getIconForSubCategory(sub, cat);
-                        let displayName = sub;
-                        if (sub === "blog") displayName = "BLOG";
-                        else displayName = displayName.toUpperCase();
-                        return `
-                        <div onclick="showArchive('${sub}')" class="explorer-item pl-4">
-                            <span class="material-symbols-outlined text-sm" style="color:${icon.color}">${icon.symbol}</span> ${displayName}
+        
+            function renderExplorer() {
+                const explorer = document.getElementById('explorer-content');
+                const categories = ["projects", "learning", "algorithm"];
+                
+                let html = `
+                    <a href="#" class="explorer-item text-primary bg-primary/5 border-l-2 border-primary mb-2">
+                        <span class="material-symbols-outlined text-sm">info</span> 소개.md
+                    </a>
+                `;
+        
+                function getIconForSubCategory(subCat) {
+                    const icons = {
+                        "digem": { symbol: "music_note", color: "#FF6B6B" }, "blackbox": { symbol: "videocam", color: "#4ECDC4" },
+                        "blog": { symbol: "note_add", color: "#9B59B6" }, "redis": { symbol: "database", color: "#DC382D" },
+                        "prometheus": { symbol: "monitoring", color: "#E6522C" }, "grafana": { symbol: "dashboard", color: "#F05A28" },
+                        "aws": { symbol: "cloud", color: "#FF9900" }, "linux": { symbol: "terminal", color: "#E8B000" },
+                        "mongodb": { symbol: "storage", color: "#13AA52" }, "docker": { symbol: "package", color: "#2496ED" },
+                        "kubernetes": { symbol: "grid_4x4", color: "#326CE5" }, "postgresql": { symbol: "data_object", color: "#336791" },
+                        "terraform": { symbol: "tune", color: "#844FBA" }, "default": { symbol: "folder", color: "#FFFFFF" }
+                    };
+                    return icons[subCat] || icons["default"];
+                }
+        
+                categories.forEach(cat => {
+                    let subCats = [...new Set(allPosts.filter(p => p.category === cat).map(p => p.subCategory))];
+                    if (cat === "projects") { ["digem", "blackbox", "blog"].forEach(s => !subCats.includes(s) && subCats.push(s)); }
+                    if (cat === "learning") { techStack.forEach(t => !subCats.includes(t.name.toLowerCase()) && subCats.push(t.name.toLowerCase())); }
+        
+                    html += `
+                        <div onclick="toggleFolder('f-${cat}', 'i-${cat}')" class="explorer-folder">
+                            <span>// ${cat.toUpperCase()}</span>
+                            <span id="i-${cat}" class="material-symbols-outlined rotate-icon rotated">chevron_right</span>
+                        </div>
+                        <div id="f-${cat}" class="folder-content folder-open">
+                            ${subCats.map(sub => {
+                                const icon = getIconForSubCategory(sub);
+                                const displayName = (sub === "blog") ? "BLOG" : sub.toUpperCase();
+                                return `
+                                <a href="#archive/${sub}" class="explorer-item pl-4">
+                                    <span class="material-symbols-outlined text-sm" style="color:${icon.color}">${icon.symbol}</span> ${displayName}
+                                </a>`;
+                            }).join('')}
                         </div>
                     `;
-                    }).join('')}
-                </div>
-            `;
-        });
-        explorer.innerHTML = html;
-    }
-
-    function toggleExplorer() { document.getElementById('explorer-panel').classList.toggle('explorer-collapsed'); }
-    function toggleFolder(fId, iId) {
-        document.getElementById(fId).classList.toggle('folder-open');
-        document.getElementById(iId).classList.toggle('rotated');
-    }
-
-    async function showArchive(subCat) {
-        const contentArea = document.getElementById('content-area');
-        const backBtn = document.getElementById('back-btn');
-        document.getElementById('current-tab').innerText = `archive/${subCat}/`;
-        backBtn.classList.remove('hidden');
-        contentArea.style.opacity = '0';
-
-        const filtered = allPosts.filter(p => p.subCategory === subCat);
-
-        setTimeout(() => {
-            contentArea.innerHTML = `
-                <div class="max-w-4xl animate-fadeIn">
-                    <h2 class="text-3xl font-black mb-10 tracking-tighter uppercase font-mono">${subCat} Archive</h2>
-                    ${filtered.length > 0 ? `
-                        <div class="grid grid-cols-1 gap-4">
-                            ${filtered.map(p => `
-                                <div class="interactive-card" onclick="loadPost('${p.id}')">
-                                    <p class="text-[10px] font-mono text-primary mb-2">${p.date}</p>
-                                    <h3 class="text-lg font-bold text-white mb-2">${p.title}</h3>
-                                    <p class="text-sm text-zinc-500">${p.excerpt}</p>
-                                </div>
-                            `).join('')}
-                        </div>
-                    ` : `<p class="text-zinc-500 italic">아직 작성된 글이 없습니다.</p>`}
-                </div>
-            `;
-            contentArea.style.opacity = '1';
-        }, 100);
-    }
-
-    async function loadPost(postId) {
-        const post = allPosts.find(p => p.id === postId);
-        if (!post) return;
-        const contentArea = document.getElementById('content-area');
-        document.getElementById('current-tab').innerText = post.file;
-        contentArea.style.opacity = '0';
-
-        try {
-            const res = await fetch(`./files/${post.file}`);
-            const text = await res.text();
-            const cleanText = text.replace(/^---[\s\S]*?---/, '').trim();
-            setTimeout(() => {
-                contentArea.innerHTML = `
-                    <article class="max-w-4xl animate-fadeIn">
-                        <header class="mb-12 border-b border-white/10 pb-8">
-                            <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter mb-4">${post.title}</h1>
-                            <div class="text-[13px] font-mono text-zinc-500">${post.date} • ${post.subCategory.toUpperCase()}</div>
-                        </header>
-                        <div class="prose">${marked.parse(cleanText)}</div>
-                    </article>
-                `;
-                Prism.highlightAll();
-                contentArea.style.opacity = '1';
-                contentArea.scrollTo(0, 0);
-            }, 100);
-        } catch (e) { contentArea.innerHTML = "파일 로드 실패"; }
-    }
-
-    function showSection(category) {
-        const contentArea = document.getElementById('content-area');
-        if (category === 'about') {
-            document.getElementById('current-tab').innerText = "소개.md";
-            document.getElementById('back-btn').classList.add('hidden');
-            contentArea.innerHTML = `
-                <section>
-                    <div class="flex flex-wrap items-center gap-4 mb-4">
-                        <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter">JANG JUN HWAN</h1>
-                        <div class="px-2 py-0.5 bg-green-500/10 text-[9px] text-green-400 font-mono border border-green-500/20 rounded">Active</div>
-                    </div>
-                    <p class="text-zinc-400 max-w-2xl text-lg italic mb-8"><span class="typing-container">클라우드 인프라와 데이터 엔지니어링을 공부하는 장준환입니다.</span></p>
-                    <div class="flex gap-4">
-                        <a href="https://github.com/prgmd" target="_blank" class="social-badge"><span class="material-symbols-outlined text-sm">code</span> GitHub</a>
-                        <a href="https://solved.ac/profile/trackcamp" target="_blank" class="social-badge"><span class="material-symbols-outlined text-sm">verified</span> Solved.ac</a>
-                    </div>
-                </section>
-
-                <section>
-                    <h3 class="section-title">// Timeline</h3>
-                    <div class="max-w-xl">
-                        <div class="history-item"><div><h4 class="text-sm font-bold italic">건국대학교 스마트운행체공학과 졸업</h4><p class="text-[11px] text-zinc-500 mt-1 font-mono">2017.03.02 ~ 2024.02.22</p></div></div>
-                        <div class="history-item"><div><h4 class="text-sm font-bold italic">CJ ENM 아티스트 사업부 데이터 분석 계약직 근무</h4><p class="text-[11px] text-zinc-500 mt-1 font-mono">2024.03.15 ~ 2024.11.14</p></div></div>
-                        <div class="history-item"><div><h4 class="text-sm font-bold italic">현대오토에버 모빌리티 SW 스쿨 2기 과정</h4><p class="text-[11px] text-zinc-500 mt-1 font-mono">2025.04.28 ~ 2025.11.12</p></div></div>
-                        <div class="history-item"><div><h4 class="text-sm font-bold italic">SSAFY(삼성청년SW아카데미) 15기 교육생</h4><p class="text-[11px] text-zinc-500 mt-1 font-mono">2026.01.07 ~ 현재</p></div></div>
-                    </div>
-                </section>
-
-                <section>
-                    <h3 class="section-title">// Technical Stack</h3>
-                    <div class="flex flex-wrap gap-2 max-w-2xl">
-                        ${techStack.map(s => `<span class="stack-badge cursor-pointer hover:shadow-lg" style="background-color:${s.color};" onclick="showArchive('${s.name.toLowerCase()}')">${s.name}</span>`).join('')}
-                    </div>
-                </section>
-
-                <section>
-                    <h3 class="section-title">// Project Briefs</h3>
-                    <div class="grid grid-cols-1 gap-4 max-w-2xl">
-                        <div class="interactive-card" onclick="showArchive('digem')">
-                            <div class="flex items-start gap-4">
-                                <span class="text-5xl">🎵</span>
-                                <div>
-                                    <h4 class="text-white font-bold mb-2 font-mono tracking-tight">Digem_</h4>
-                                    <p class="text-xs text-zinc-500 leading-relaxed">음악 아티클 분산 수집 엔진</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="interactive-card" onclick="showArchive('blackbox')">
-                            <div class="flex items-start gap-4">
-                                <span class="text-5xl">📹</span>
-                                <div>
-                                    <h4 class="text-white font-bold mb-2 font-mono tracking-tight">Cloud_Blackbox_</h4>
-                                    <p class="text-xs text-zinc-500 leading-relaxed">클라우드 기반 영상 관제 시스템</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                });
+                explorer.innerHTML = html;
+            }
+        
+            // --- 페이지 렌더링 함수 ---
+            async function loadPost(postId) {
+                const post = allPosts.find(p => p.id === postId);
+                if (!post) {
+                    document.getElementById('content-area').innerHTML = "게시글을 찾을 수 없습니다.";
+                    updateBreadcrumb(["404"]);
+                    return;
+                }
+        
+                const breadcrumbSegments = post.file.split('/');
+                updateBreadcrumb(breadcrumbSegments);
+        
+                try {
+                    const res = await fetch(`./files/${post.file}`);
+                    const text = await res.text();
+                    const cleanText = text.replace(/^---[\s\S]*?---/, '').trim();
+                    
+                    document.getElementById('content-area').innerHTML = `
+                        <article class="max-w-4xl animate-fadeIn">
+                            <header class="mb-12 border-b border-white/10 pb-8">
+                                <h1 class="text-4xl md:text-5xl font-black text-white tracking-tighter mb-4">${post.title}</h1>
+                                <div class="text-[13px] font-mono text-zinc-500">${post.date} • ${post.subCategory.toUpperCase()}</div>
+                            </header>
+                            <div class="prose">${marked.parse(cleanText)}</div>
+                        </article>
+                    `;
+                    Prism.highlightAll();
+                } catch (e) {
+                    document.getElementById('content-area').innerHTML = "파일 로드 실패";
+                }
+            }
+        
+            function showArchive(subCat) {
+                updateBreadcrumb([subCat]);
+                const filtered = allPosts.filter(p => p.subCategory === subCat);
                 
-                <section>
-                    <h3 class="section-title">// Algorithm Streak</h3>
-                    <div class="max-w-md p-6 border border-white/10 bg-zinc-900/10 rounded-lg">
-                        <img src="http://mazandi.herokuapp.com/api?handle=trackcamp&theme=dark" class="w-full opacity-80">
+                document.getElementById('content-area').innerHTML = `
+                    <div class="max-w-4xl animate-fadeIn">
+                        <h2 class="text-3xl font-black mb-10 tracking-tighter uppercase font-mono">${subCat} Archive</h2>
+                        ${filtered.length > 0 ? `
+                            <div class="grid grid-cols-1 gap-4">
+                                ${filtered.map(p => `
+                                    <a href="#post/${p.id}" class="interactive-card">
+                                        <p class="text-[10px] font-mono text-primary mb-2">${p.date}</p>
+                                        <h3 class="text-lg font-bold text-white mb-2">${p.title}</h3>
+                                        <p class="text-sm text-zinc-500">${p.excerpt}</p>
+                                    </a>
+                                `).join('')}
+                            </div>
+                        ` : `<p class="text-zinc-500 italic">아직 작성된 글이 없습니다.</p>`}
                     </div>
-                </section>
-            `;
-        }
-    }
-    initBlog();
-</script>
-</body>
-</html>
+                `;
+            }
+        
+            function showAbout() {
+                updateBreadcrumb(null);
+                document.getElementById('content-area').innerHTML = `
+                    <section>
+                        <div class="flex flex-wrap items-center gap-4 mb-4">
+                            <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tighter">JANG JUN HWAN</h1>
+                            <div class="px-2 py-0.5 bg-green-500/10 text-[9px] text-green-400 font-mono border border-green-500/20 rounded">Active</div>
+                        </div>
+                        <p class="text-zinc-400 max-w-2xl text-lg italic mb-8"><span class="typing-container">클라우드 인프라와 데이터 엔지니어링을 공부하는 장준환입니다.</span></p>
+                        <div class="flex gap-4">
+                            <a href="https://github.com/prgmd" target="_blank" class="social-badge"><span class="material-symbols-outlined text-sm">code</span> GitHub</a>
+                            <a href="https://solved.ac/profile/trackcamp" target="_blank" class="social-badge"><span class="material-symbols-outlined text-sm">verified</span> Solved.ac</a>
+                        </div>
+                    </section>
+                    <section>
+                        <h3 class="section-title">// Timeline</h3>
+                        <div class="max-w-xl">
+                            <div class="history-item"><div><h4 class="text-sm font-bold italic">건국대학교 스마트운행체공학과 졸업</h4><p class="text-[11px] text-zinc-500 mt-1 font-mono">2017.03.02 ~ 2024.02.22</p></div></div>
+                            <div class="history-item"><div><h4 class="text-sm font-bold italic">CJ ENM 아티스트 사업부 데이터 분석 계약직 근무</h4><p class="text-[11px] text-zinc-500 mt-1 font-mono">2024.03.15 ~ 2024.11.14</p></div></div>
+                            <div class="history-item"><div><h4 class="text-sm font-bold italic">현대오토에버 모빌리티 SW 스쿨 2기 과정</h4><p class="text-[11px] text-zinc-500 mt-1 font-mono">2025.04.28 ~ 2025.11.12</p></div></div>
+                            <div class="history-item"><div><h4 class="text-sm font-bold italic">SSAFY(삼성청년SW아카데미) 15기 교육생</h4><p class="text-[11px] text-zinc-500 mt-1 font-mono">2026.01.07 ~ 현재</p></div></div>
+                        </div>
+                    </section>
+                    <section>
+                        <h3 class="section-title">// Technical Stack</h3>
+                        <div class="flex flex-wrap gap-2 max-w-2xl">
+                            ${techStack.map(s => `<a href="#archive/${s.name.toLowerCase()}" class="stack-badge cursor-pointer hover:shadow-lg" style="background-color:${s.color};">${s.name}</a>`).join('')}
+                        </div>
+                    </section>
+                    <section>
+                        <h3 class="section-title">// Project Briefs</h3>
+                        <div class="grid grid-cols-1 gap-4 max-w-2xl">
+                            <a href="#archive/digem" class="interactive-card">
+                                <div class="flex items-start gap-4"><span class="text-5xl">🎵</span><div><h4 class="text-white font-bold mb-2 font-mono tracking-tight">Digem_</h4><p class="text-xs text-zinc-500 leading-relaxed">음악 아티클 분산 수집 엔진</p></div></div>
+                            </a>
+                            <a href="#archive/blackbox" class="interactive-card">
+                                <div class="flex items-start gap-4"><span class="text-5xl">📹</span><div><h4 class="text-white font-bold mb-2 font-mono tracking-tight">Cloud_Blackbox_</h4><p class="text-xs text-zinc-500 leading-relaxed">클라우드 기반 영상 관제 시스템</p></div></div>
+                            </a>
+                        </div>
+                    </section>
+                    <section>
+                        <h3 class="section-title">// Algorithm Streak</h3>
+                        <div class="max-w-md p-6 border border-white/10 bg-zinc-900/10 rounded-lg">
+                            <img src="http://mazandi.herokuapp.com/api?handle=trackcamp&theme=dark" class="w-full opacity-80">
+                        </div>
+                    </section>
+                `;
+            }
+        
+            // --- 유틸리티 ---
+            function toggleExplorer() { document.getElementById('explorer-panel').classList.toggle('explorer-collapsed'); }
+            function toggleFolder(fId, iId) {
+                document.getElementById(fId).classList.toggle('folder-open');
+                document.getElementById(iId).classList.toggle('rotated');
+            }
+        
+            initBlog();
+        </script>
+        </body>
+        </html>
+        

@@ -1,12 +1,32 @@
 [
     {
-        "title": "[DevLog] Digem: 분산 스크래퍼 엔진 설계기",
+        "id": "blog-dev-002",
+        "title": "길고도 험난했던 Dev 블로그 제작기: (2) Vercel 이주와 프론트엔드 리빌딩",
+        "date": "2026-1-14",
+        "category": "projects",
+        "subCategory": "blog",
+        "excerpt": "Vercel 인프라 위에서 커스텀 프론트엔드 만들기",
+        "tags": "[\"Obsidian\", \"Cloudflare\", \"DevOps\", \"DigitalGarden\"]",
+        "file": "projects-blog-02.md"
+    },
+    {
+        "title": "[DevLog] Digem: 분산 스크래퍼 엔진 설계기 (수정 예정)",
         "date": "2026-01-19",
         "category": "projects",
         "subCategory": "digem",
-        "excerpt": "Redis 기반의 작업 큐와 분산 워커 시스템을 도입하여 수집 속도를 개선한 기록입니다.",
-        "tags": "Python, DevOps, Redis",
-        "file": "post-digem-01.md",
-        "id": "post-digem-01"
+        "excerpt": "나는 과연 나의 사이트를 만들 수 있을 것인가",
+        "tags": "[\"Python\", \"DevOps\", \"Redis\"]",
+        "file": "projects-digem-01.md",
+        "id": "projects-digem-01"
+    },
+    {
+        "id": "blog-dev-001",
+        "title": "길고도 험난했던 Dev 블로그 제작기: (1) 옵시디언과의 사투",
+        "date": "2025-12-07",
+        "category": "projects",
+        "subCategory": "blog",
+        "excerpt": "옵시디언에 쌓아둔 자료들을 세상 밖으로 꺼내기 위한 여정",
+        "tags": "[\"Obsidian\", \"Cloudflare\", \"DevOps\"]",
+        "file": "projects-blog-01.md"
     }
 ]

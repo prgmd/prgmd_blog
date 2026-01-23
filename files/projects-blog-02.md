@@ -1,5 +1,5 @@
 ---
-id: blog-dev-000
+id: blog-dev-002
 title: "길고도 험난했던 Dev 블로그 제작기: (2) Vercel 이주와 프론트엔드 리빌딩"
 date: "2026-1-14"
 category: "projects"
@@ -23,3 +23,10 @@ tags: ["Obsidian", "Cloudflare", "DevOps", "DigitalGarden"]
 초기 라우팅 설정을 도울 `vercel.json`, 보이는 화면을 담당하는 `index.html`, 
 
 또한 현재는 Vscode에서 직접 `git push`로 글을 수정해서 올리고 있지만, Obsidian 내에서 '파일명'을 지정하고 자동으로 업로드까지 가능할지 구상해볼 계획도 있다. 아마도 Obsidian 내 git 연동 가능성은 커뮤니티 플러그인으로 이미 확인을 마친 상태고, 로컬 저장으로만 사용이 가능한 Obsidian 특성상 폴더 안에 `git clone`만 해둬도 바로 운용이 가능할 것으로 보인다.
+
+## 3. 코드
+
+해당 블로그 코드는 Github에서 확인할 수 있다. Public으로 설정했으니 누구든 와서 볼 수 있고.
+
+- [prgmd-blog](https://github.com/prgmd/prgmd_blog)
+

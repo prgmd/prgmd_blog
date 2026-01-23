@@ -1,14 +1,14 @@
 ---
-title: "[DevLog] Digem: 분산 스크래퍼 엔진 설계기"
+title: "[DevLog] Digem: 분산 스크래퍼 엔진 설계기 (수정 예정)"
 date: "2026-01-19"
 category: "projects"
 subCategory: "digem"
-excerpt: "Redis 기반의 작업 큐 설계를 다룹니다."
+excerpt: "나는 과연 나의 사이트를 만들 수 있을 것인가"
 tags: ["Python", "DevOps", "Redis"]
 ---
 
 ## 1. 개요
-"Dig your uncut gems"라는 슬로건 아래, 흩어져 있는 음악 비평과 아티클을 한곳에 모아 요약·번역해주는 서비스 **Digem**의 핵심 엔진인 스크래퍼 개발 과정을 기록합니다.
+"Dig your uncut gems"라는 슬로건 아래, 흩어져 있는 음악 비평과 아티클을 한곳에 모아 요약·번역해주는 서비스 **Digem**의 핵심 엔진인 스크래퍼 개발 과정을 기록합니다.가
 
 ## 2. 해결하고자 했던 문제 (Problem)
 단일 스크래퍼로 여러 매체(Pitchfork, The Quietus 등)를 긁어올 때 다음과 같은 병목 현상이 발생했습니다.

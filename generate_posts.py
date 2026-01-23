@@ -25,18 +25,22 @@ def build_posts_json():
         print("오류: 'files' 폴더를 찾을 수 없습니다.")
         return
 
-    for filename in sorted(os.listdir(files_dir), reverse=True):
-        if filename.endswith('.md'):
-            file_path = os.path.join(files_dir, filename)
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-                metadata = parse_frontmatter(content)
-                if metadata:
-                    metadata['file'] = filename
-                    # ID가 없으면 파일명에서 확장자를 제외한 것을 사용
-                    if 'id' not in metadata:
-                        metadata['id'] = filename.replace('.md', '')
-                    posts.append(metadata)
+    for dirpath, _, filenames in os.walk(files_dir):
+        for filename in sorted(filenames, reverse=True):
+            if filename.endswith('.md'):
+                full_path = os.path.join(dirpath, filename)
+                with open(full_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    metadata = parse_frontmatter(content)
+                    if metadata:
+                        # 'files' 디렉토리를 기준으로 한 상대 경로를 저장
+                        relative_path = os.path.relpath(full_path, files_dir)
+                        metadata['file'] = relative_path.replace(os.path.sep, '/') # 일관성을 위해 경로 구분자를 /로 변경
+                        
+                        # ID가 없으면 파일 경로 기반으로 생성 (예: 'folder/file.md' -> 'folder-file')
+                        if 'id' not in metadata:
+                            metadata['id'] = relative_path.replace('.md', '').replace(os.path.sep, '-')
+                        posts.append(metadata)
     
     # 날짜 기준 최신순 정렬
     posts.sort(key=lambda x: x.get('date', ''), reverse=True)
