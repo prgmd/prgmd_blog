@@ -4,8 +4,8 @@
     {
       "use": "@vercel/static-build",
       "config": {
-        "distDir": ".",
-        "buildCommand": "python3 generate_posts.py"
+        "distDir": "public",
+        "buildCommand": "mkdir public; python3 generate_posts.py; cp index.html posts.json public/; cp -r assets files public/"
       }
     }
   ],
