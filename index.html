@@ -46,6 +46,9 @@
         @keyframes typing { from { width: 0 } to { width: 100% } }
         @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #0064fa; } }
 
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         .social-badge { @apply flex items-center gap-2 px-5 py-2 border border-white/10 hover:border-primary/50 hover:bg-primary/5 transition-all rounded-full text-[11px] font-bold uppercase tracking-widest; }
         
         /* 아카이브/브리프 카드 */
@@ -64,7 +67,7 @@
         .prose em { @apply italic text-zinc-400; }
         .prose a { @apply text-primary hover:underline; }
         .prose blockquote { @apply border-l-4 border-zinc-700 pl-6 py-2 my-6 italic text-zinc-400; }
-        .prose code { @apply bg-zinc-800/80 text-primary font-mono px-1.5 py-1 rounded-md text-[13px]; }
+        .prose code { @apply bg-zinc-800/80 text-amber-300 font-mono px-1.5 py-1 rounded-md text-[13px]; }
         .prose img { @apply block mx-auto my-8 rounded-lg shadow-lg max-w-full; }
         .prose h2 { @apply text-2xl font-bold mb-6 mt-12 text-white flex items-center gap-2 font-mono; }
         .prose h2::before { content: ''; @apply w-1.5 h-6 bg-primary inline-block rounded-full; }
@@ -160,15 +163,13 @@
                 }
         
                 let html = `<a href="#" class="hover:text-white transition-colors">Home</a>`;
-                let currentPath = '#';
-        
+
                 pathSegments.forEach((segment, index) => {
                     const isLast = index === pathSegments.length - 1;
                     if (isLast) {
                         html += ` <span class="text-zinc-600">/</span> <span class="text-white">${segment}</span>`;
                     } else {
-                        currentPath += `archive/${segment}`;
-                        html += ` <span class="text-zinc-600">/</span> <a href="${currentPath}" class="hover:text-white transition-colors">${segment}</a>`;
+                        html += ` <span class="text-zinc-600">/</span> <a href="#archive/${segment}" class="hover:text-white transition-colors">${segment}</a>`;
                     }
                 });
                 breadcrumbEl.innerHTML = html;
@@ -304,7 +305,7 @@
                     <section>
                         <h3 class="section-title">// Technical Stack</h3>
                         <div class="flex flex-wrap gap-2 max-w-2xl">
-                            ${techStack.map(s => `<a href="#archive/${s.name.toLowerCase()}" class="stack-badge cursor-pointer hover:shadow-lg" style="background-color:${s.color};">${s.name}</a>`).join('')}
+                            ${techStack.map(s => `<span class="stack-badge" style="background-color:${s.color};">${s.name}</span>`).join('')}
                         </div>
                     </section>
                     <section>
