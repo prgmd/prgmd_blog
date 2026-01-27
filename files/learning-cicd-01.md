@@ -3,7 +3,7 @@ id: learning-cicd-01
 title: "Git 기초 명령어 및 원격 저장소 연동"
 date: "2025-07-15"
 category: "learning"
-subCategory: "cicd"
+subCategory: "ci/cd"
 excerpt: "Git 초기 설정 방법부터 로컬 및 원격 저장소와의 상호작용을 위한 주요 명령어 정리"
 ---
 
