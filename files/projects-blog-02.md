@@ -5,7 +5,6 @@ date: "2026-1-14"
 category: "projects"
 subCategory: "blog"
 excerpt: "Vercel 인프라 위에서 커스텀 프론트엔드 만들기"
-tags: ["Obsidian", "Cloudflare", "DevOps", "DigitalGarden"]
 ---
 
 ## 0. 개요

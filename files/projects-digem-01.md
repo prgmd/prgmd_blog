@@ -4,7 +4,6 @@ date: "2026-01-19"
 category: "projects"
 subCategory: "digem"
 excerpt: "나는 과연 나의 사이트를 만들 수 있을 것인가"
-tags: ["Python", "DevOps", "Redis"]
 ---
 
 ## 1. 개요

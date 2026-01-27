@@ -114,11 +114,12 @@
         <script>
             let allPosts = [];
             const techStack = [
-                { name: "Redis", color: "#DC382D" }, { name: "Prometheus", color: "#E6522C" },
-                { name: "Grafana", color: "#F05A28" }, { name: "AWS", color: "#FF9900" },
-                { name: "Linux", color: "#E8B000" }, { name: "MongoDB", color: "#13AA52" },
-                { name: "Docker", color: "#2496ED" }, { name: "Kubernetes", color: "#326CE5" },
-                { name: "PostgreSQL", color: "#336791" }, { name: "Terraform", color: "#844FBA" }
+                { name: "Ansible", color: "#EE0000" }, { name: "AWS", color: "#FF9900" },
+                { name: "CI/CD", color: "#4CAF50" }, { name: "Cloud", color: "#2196F3" },
+                { name: "Database", color: "#336791" }, { name: "Docker", color: "#2496ED" },
+                { name: "Kubernetes", color: "#326CE5" }, { name: "Linux", color: "#E8B000" },
+                { name: "Monitoring", color: "#E6522C" }, { name: "Network", color: "#00BCD4" },
+                { name: "Python", color: "#3776AB" }
             ];
         
             // --- 라우팅 및 렌더링 ---
@@ -268,7 +269,7 @@
                             <div class="grid grid-cols-1 gap-4">
                                 ${filtered.map(p => `
                                     <a href="#post/${p.id}" class="interactive-card">
-                                        <p class="text-[10px] font-mono text-primary mb-2">${p.date}</p>
+                                        <p class="text-[10px] font-mono text-zinc-400 mb-2">${p.date}</p>
                                         <h3 class="text-lg font-bold text-white mb-2">${p.title}</h3>
                                         <p class="text-sm text-zinc-500">${p.excerpt}</p>
                                     </a>

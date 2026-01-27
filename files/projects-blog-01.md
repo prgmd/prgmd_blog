@@ -5,7 +5,6 @@ date: "2025-12-07"
 category: "projects"
 subCategory: "blog"
 excerpt: "옵시디언에 쌓아둔 자료들을 세상 밖으로 꺼내기 위한 여정"
-tags: ["Obsidian", "Cloudflare", "DevOps"]
 ---
 
 ## 0. 서막

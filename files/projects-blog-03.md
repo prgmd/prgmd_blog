@@ -5,7 +5,6 @@ date: "2026-1-23"
 category: "projects"
 subCategory: "blog"
 excerpt: "vercel.json 빌드 구조 바꾸기"
-tags: ["Obsidian", "Cloudflare", "DevOps", "DigitalGarden"]
 ---
 
 ## 1. 게시글 실행 오류
