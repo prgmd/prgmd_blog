@@ -1,7 +1,7 @@
 ---
 id: learning-aws-05
 title: "AWS (5) - 컨테이너 배포 자동화 및 ECS 서비스"
-date: "2026-07-25"
+date: "2025-07-25"
 category: "learning"
 subCategory: "aws"
 excerpt: "Django 앱의 도커 이미지 생성 및 EC2 자동 배포 실습과 AWS 관리형 컨테이너 서비스인 ECR, ECS의 개념 정리"

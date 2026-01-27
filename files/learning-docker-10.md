@@ -1,7 +1,7 @@
 ---
 id: learning-docker-10
 title: "Docker (10) - 도커 컴포즈와 Nginx 로드 밸런싱"
-date: "2026-06-24"
+date: "2025-06-24"
 category: "learning"
 subCategory: "docker"
 excerpt: "여러 컨테이너를 한 번에 관리하는 도커 컴포즈의 개념과 Nginx를 이용한 Flask 애플리케이션 부하 분산 실습"

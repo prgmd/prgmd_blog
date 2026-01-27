@@ -1,7 +1,7 @@
 ---
 id: learning-monitoring-01
 title: "관측 가능성(Observability)의 개념과 목표"
-date: "2026-08-12"
+date: "2025-08-12"
 category: "learning"
 subCategory: "monitoring"
 excerpt: "단순 모니터링을 넘어 시스템 내부 상태를 이해하고 예측하는 관측 가능성의 3요소와 기술적 지향점 정리"

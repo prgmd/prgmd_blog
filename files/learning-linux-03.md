@@ -1,7 +1,7 @@
 ---
 id: learning-linux-03
 title: "Linux (3) - 파일 시스템 관리 및 권한 체계"
-date: "2026-05-19"
+date: "2025-05-19"
 category: "learning"
 subCategory: "linux"
 excerpt: "리눅스 디렉토리와 파일 조작 명령어, 하드/심볼릭 링크의 차이 및 파일 접근 권한 설정 방법"

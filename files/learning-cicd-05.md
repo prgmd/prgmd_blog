@@ -1,7 +1,7 @@
 ---
 id: learning-cicd-05
 title: "CI/CD (5) - TDD 방법론과 Jenkins 기반 테스트 파이프라인 구축"
-date: "2026-08-20"
+date: "2025-08-20"
 category: "learning"
 subCategory: "cicd"
 excerpt: "TDD의 핵심 사이클과 Jenkins를 활용하여 Java/Gradle 프로젝트의 빌드 및 테스트를 자동화하는 과정 정리"

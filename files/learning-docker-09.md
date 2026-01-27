@@ -1,7 +1,7 @@
 ---
 id: learning-docker-09
 title: "Docker (9) - GitHub Actions를 이용한 도커 배포 자동화"
-date: "2026-06-23"
+date: "2025-06-23"
 category: "learning"
 subCategory: "docker"
 excerpt: "Go 애플리케이션 작성부터 GitHub Actions 워크플로우를 통한 도커 허브 자동 배포 프로세스 정리"

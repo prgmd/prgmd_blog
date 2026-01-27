@@ -1,7 +1,7 @@
 ---
 id: learning-k8s-07
 title: "Kubernetes (7) - 세션 고정과 인그레스"
-date: "2026-07-07"
+date: "2025-07-07"
 category: "learning"
 subCategory: "kubernetes"
 excerpt: "클라이언트 세션 유지를 위한 Session Affinity 설정과 L7 로드밸런싱을 담당하는 Ingress 리소스 정리"

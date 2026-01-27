@@ -1,7 +1,7 @@
 ---
 id: learning-aws-02
 title: "AWS (2) - EC2 앱 배포 및 Elastic Load Balancing"
-date: "2026-07-22"
+date: "2025-07-22"
 category: "learning"
 subCategory: "aws"
 excerpt: "Django 애플리케이션의 EC2 환경 배포 과정, Route53을 이용한 도메인 연결 및 ELB의 종류와 특징 정리"

@@ -1,7 +1,7 @@
 ---
 id: learning-docker-12
 title: "Docker (12) - 도커 스웜 클러스터 구축과 스택 배포"
-date: "2026-06-26"
+date: "2025-06-26"
 category: "learning"
 subCategory: "docker"
 excerpt: "도커 스웜 모드 활성화, 노드 추가 방법 및 YAML 파일을 이용한 멀티 서비스 스택 배포 실습"

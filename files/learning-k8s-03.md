@@ -1,7 +1,7 @@
 ---
 id: learning-k8s-03
 title: "Kubernetes (3) - 클러스터 설치 및 포드 디자인 패턴"
-date: "2026-07-01"
+date: "2025-07-01"
 category: "learning"
 subCategory: "kubernetes"
 excerpt: "kubeadm을 이용한 클러스터 설치 과정과 쿠버네티스 최소 배포 단위인 포드(Pod)의 특징 및 주요 디자인 패턴 정리"

@@ -1,7 +1,7 @@
 ---
 id: learning-aws-06
 title: "AWS (6) - ECS 배포 전략 및 CI/CD 파이프라인 구축"
-date: "2026-07-28"
+date: "2025-07-28"
 category: "learning"
 subCategory: "aws"
 excerpt: "Blue/Green 배포 전략과 ECS 오토 스케일링 설정, 그리고 GitHub Actions를 이용한 ECR/ECS 자동 배포 실습 정리"

@@ -1,7 +1,7 @@
 ---
 id: learning-cicd-09
 title: "Kafka - 주키퍼 및 브로커 실행 가이드"
-date: "2026-08-28"
+date: "2025-08-28"
 category: "learning"
 subCategory: "cicd"
 excerpt: "분산 메시징 시스템인 카프카 운영을 위한 주키퍼와 카프카 브로커의 실행 및 상태 확인 방법 정리"

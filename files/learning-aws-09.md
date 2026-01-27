@@ -1,7 +1,7 @@
 ---
 id: learning-aws-09
 title: "AWS (9) - EKS 백엔드 배포 및 리소스 관리"
-date: "2026-08-05"
+date: "2025-08-05"
 category: "learning"
 subCategory: "aws"
 excerpt: "EKS 클러스터 내 백엔드 애플리케이션 및 RDS 배포 과정과 서비스 운영 후 리소스 정리 절차 정리"

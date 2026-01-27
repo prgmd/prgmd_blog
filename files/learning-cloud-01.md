@@ -1,7 +1,7 @@
 ---
 id: learning-cloud-01
 title: "Cloud (1) - 클라우드 컴퓨팅 개념 및 서비스 모델"
-date: "2026-06-09"
+date: "2025-06-09"
 category: "learning"
 subCategory: "cloud"
 excerpt: "클라우드 컴퓨팅의 정의, 가상화 기술의 종류, 서비스 및 배포 모델에 대한 상세 이해"

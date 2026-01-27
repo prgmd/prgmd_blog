@@ -1,7 +1,7 @@
 ---
 id: learning-k8s-01
 title: "Kubernetes (1) - 컨테이너 런타임 및 통신 메커니즘"
-date: "2026-06-27"
+date: "2025-06-27"
 category: "learning"
 subCategory: "kubernetes"
 excerpt: "쿠버네티스의 기반이 되는 컨테이너 런타임의 종류와 서비스 IP를 통한 내부 통신 및 외부 노출 방식 정리"

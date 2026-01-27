@@ -1,7 +1,7 @@
 ---
 id: learning-k8s-05
 title: "Kubernetes (5) - 워크로드 리소스 업데이트 및 상태 관리"
-date: "2026-07-03"
+date: "2025-07-03"
 category: "learning"
 subCategory: "kubernetes"
 excerpt: "디플로이먼트의 다양한 업데이트 전략과 데몬셋, 스테이트풀셋의 특징 및 영속성 관리 방법 정리"

@@ -1,7 +1,7 @@
 ---
 id: learning-docker-07
 title: "Docker (7) - 도커파일(Dockerfile)과 카프카 기초"
-date: "2026-06-19"
+date: "2025-06-19"
 category: "learning"
 subCategory: "docker"
 excerpt: "코드형 인프라(IaC)의 개념, Dockerfile을 이용한 이미지 빌드 및 카프카(Kafka) 설치 환경 구성 정리"

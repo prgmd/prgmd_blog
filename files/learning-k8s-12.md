@@ -1,7 +1,7 @@
 ---
 id: learning-k8s-12
 title: "Kubernetes (12) 매니페스트 관리 도구: Kustomize와 Helm"
-date: "2026-08-12"
+date: "2025-08-12"
 category: "learning"
 subCategory: "k8s"
 excerpt: "효율적인 매니페스트 관리를 위한 Kustomize의 오버레이 방식과 Helm의 패키지 매니징 및 차트 구조 정리"

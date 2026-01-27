@@ -1,7 +1,7 @@
 ---
 id: learning-k8s-02
 title: "Kubernetes (2) - 클러스터 구축 및 리소스 제어 기초"
-date: "2026-06-30"
+date: "2025-06-30"
 category: "learning"
 subCategory: "kubernetes"
 excerpt: "쿠버네티스 클러스터 구축 도구 비교, 네임스페이스 활용 및 kubectl을 이용한 리소스 생성과 관리 방법 정리"

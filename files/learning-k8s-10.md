@@ -1,7 +1,7 @@
 ---
 id: learning-k8s-10
 title: "Kubernetes (10) - PVC와 리소스 제한"
-date: "2026-07-11"
+date: "2025-07-11"
 category: "learning"
 subCategory: "kubernetes"
 excerpt: "영구 볼륨 할당을 위한 PVC 설정 방법과 LimitRange를 이용한 네임스페이스 수준의 자원 제한 관리"

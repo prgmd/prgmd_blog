@@ -1,7 +1,7 @@
 ---
 id: learning-cicd-06
 title: "CI/CD (6) - GitOps의 원칙과 Argo CD 아키텍처"
-date: "2026-08-22"
+date: "2025-08-22"
 category: "learning"
 subCategory: "cicd"
 excerpt: "선언적 인프라 관리를 위한 GitOps의 핵심 원칙과 Argo CD의 성능 최적화 및 고가용성 구성 방안 정리"

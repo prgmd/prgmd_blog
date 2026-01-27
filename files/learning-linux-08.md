@@ -1,7 +1,7 @@
 ---
 id: learning-linux-08
 title: "Linux (8) - 네트워크 서비스 및 셸 프로그래밍 기초"
-date: "2026-05-27"
+date: "2025-05-27"
 category: "learning"
 subCategory: "linux"
 excerpt: "FTP, 메일, DB, 웹 서버 등 주요 네트워크 서비스 관리와 효율적인 시스템 관리를 위한 셸 스크립트 문법 정리"

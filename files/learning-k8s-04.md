@@ -1,7 +1,7 @@
 ---
 id: learning-k8s-04
 title: "Kubernetes (4) - 파드 생명주기와 디플로이먼트 관리"
-date: "2026-07-02"
+date: "2025-07-02"
 category: "learning"
 subCategory: "kubernetes"
 excerpt: "파드의 생성 및 실행 원리, Stateless와 Stateful의 차이, 그리고 디플로이먼트를 활용한 업데이트 및 롤백 전략 정리"

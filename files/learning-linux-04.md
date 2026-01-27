@@ -1,7 +1,7 @@
 ---
 id: learning-linux-04
 title: "Linux (4) - 특수 권한 및 프로세스 관리"
-date: "2026-05-20"
+date: "2025-05-20"
 category: "learning"
 subCategory: "linux"
 excerpt: "기본 권한 설정을 위한 umask, 특수 권한(SetUID 등), 그리고 시스템의 핵심인 프로세스 제어 방법 정리"

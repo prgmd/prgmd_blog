@@ -1,7 +1,7 @@
 ---
 id: learning-security-02
 title: "Security (2) - 리눅스 방화벽 및 보안 관리 도구"
-date: "2026-06-05"
+date: "2025-06-05"
 category: "learning"
 subCategory: "security"
 excerpt: "iptables와 UFW를 활용한 호스트 방화벽 설정 방법과 NMap, PAM 등 보안 관리 도구의 상세 이해"

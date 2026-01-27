@@ -1,7 +1,7 @@
 ---
 id: learning-aws-01
 title: "AWS (1) - 클라우드 기초 및 EC2 인스턴스 활용"
-date: "2026-07-21"
+date: "2025-07-21"
 category: "learning"
 subCategory: "aws"
 excerpt: "AWS 클라우드의 특징과 주요 서비스 구성, 그리고 EC2 인스턴스 생성부터 웹 서버 및 DB 설치까지의 과정 정리"

@@ -1,7 +1,7 @@
 ---
 id: learning-cicd-02
 title: "CI/CD (2) - 협업 및 브랜치 관리 전략"
-date: "2026-07-16"
+date: "2025-07-16"
 category: "learning"
 subCategory: "cicd"
 excerpt: "Git 저장소 복제, 충돌 해결 방법, 다양한 머지 전략 및 리베이스를 이용한 히스토리 관리 정리"

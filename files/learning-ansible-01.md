@@ -1,7 +1,7 @@
 ---
 id: learning-ansible-01
 title: "Ansible (1) - IT 자동화 도구의 기초와 실습"
-date: "2026-08-07"
+date: "2025-08-07"
 category: "learning"
 subCategory: "ansible"
 excerpt: "에이전트리스 방식의 자동화 도구인 앤서블의 특징, 멱등성 개념 및 Nginx 배포 플레이북 실습 정리"

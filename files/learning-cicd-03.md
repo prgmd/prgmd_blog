@@ -1,7 +1,7 @@
 ---
 id: learning-cicd-03
 title: "CI/CD (3) - GitHub Actions 심화 및 프로젝트 실습"
-date: "2026-07-17"
+date: "2025-07-17"
 category: "learning"
 subCategory: "cicd"
 excerpt: "CI/CD의 자동화 개념과 GitHub Actions의 핵심 용어 정리, Node.js 및 Python 프로젝트 배포 실습"

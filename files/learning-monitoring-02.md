@@ -1,9 +1,9 @@
 ---
-id: learning-iac-06
+id: learning-monitoring-02
 title: "관측 가능성(13) - 트래픽 관리 및 마이크로 서비스 아키텍처"
-date: "2026-08-13"
+date: "2025-08-13"
 category: "learning"
-subCategory: "iac"
+subCategory: "monitoring"
 excerpt: "클라우드 환경의 네트워크 장애 대응을 위한 트래픽 관리 기법과 데이터베이스 샤딩, MSA 배포 워크플로우 정리"
 ---
 

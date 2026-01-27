@@ -1,7 +1,7 @@
 ---
 id: learning-k8s-11
 title: "Kubernetes (11) - 로드 밸런서(MetalLB) 및 인그레스 실습"
-date: "2026-07-22"
+date: "2025-07-22"
 category: "learning"
 subCategory: "kubernetes"
 excerpt: "베어메탈 환경을 위한 MetalLB 설치 및 설정, Nginx 인그레스를 활용한 호스트 및 경로 기반 라우팅 실습 정리"

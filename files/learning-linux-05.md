@@ -1,7 +1,7 @@
 ---
 id: learning-linux-05
 title: "Linux (5) - 우분투 소프트웨어 관리 및 컴파일"
-date: "2026-05-21"
+date: "2025-05-21"
 category: "learning"
 subCategory: "linux"
 excerpt: "우분투 패키지 시스템(APT, snap)의 이해와 파일 아카이브, C 언어 빌드 과정 정리"

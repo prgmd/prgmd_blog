@@ -1,7 +1,7 @@
 ---
 id: learning-k8s-08
 title: "Kubernetes (8) - 설정 및 스토리지 API"
-date: "2026-07-08"
+date: "2025-07-08"
 category: "learning"
 subCategory: "kubernetes"
 excerpt: "컨테이너 설정과 기밀 정보를 관리하는 ConfigMap, Secret 리소스 및 환경 변수 설정 방법 정리"

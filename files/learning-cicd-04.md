@@ -1,7 +1,7 @@
 ---
 id: learning-cicd-04
 title: "CI/CD (4) - Jenkins 개요 및 파이프라인 실습"
-date: "2026-07-18"
+date: "2025-07-18"
 category: "learning"
 subCategory: "cicd"
 excerpt: "오픈소스 자동화 서버인 Jenkins의 특징과 설치 방법, 그리고 Declarative/Scripted 파이프라인 작성법"

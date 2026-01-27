@@ -1,7 +1,7 @@
 ---
 id: learning-cicd-07
 title: "CI/CD (7) - Argo CD 실습: 설치 및 애플리케이션 배포"
-date: "2026-08-22"
+date: "2025-08-22"
 category: "learning"
 subCategory: "cicd"
 excerpt: "Helm을 이용한 Argo CD 설치와 CLI 및 Manifest를 활용한 Nginx 애플리케이션 배포 실습 정리"

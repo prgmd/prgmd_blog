@@ -1,9 +1,9 @@
 ---
-id: learning-iac-02
+id: learning-ansible-02
 title: "Ansible (2) - 변수, 팩트(Facts) 및 제어문 활용"
-date: "2026-08-08"
+date: "2025-08-08"
 category: "learning"
-subCategory: "iac"
+subCategory: "ansible"
 excerpt: "앤서블의 다양한 변수 정의 방법과 시스템 정보를 수집하는 팩트, 그리고 플레이북의 유연성을 높여주는 조건문 및 반복문 정리"
 ---
 

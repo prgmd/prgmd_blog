@@ -1,7 +1,7 @@
 ---
 id: learning-docker-11
 title: "Docker (11) - 환경 변수 관리 및 도커 스웜 환경 구축"
-date: "2026-06-25"
+date: "2025-06-25"
 category: "learning"
 subCategory: "docker"
 excerpt: "도커 컴포즈에서 환경 변수를 다루는 4가지 방법과 멀티 노드 클러스터링을 위한 도커 스웜 초기 설정 정리"

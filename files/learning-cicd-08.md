@@ -1,9 +1,9 @@
 ---
-id: learning-deployment-strategies
+id: learning-cicd-08
 title: "쿠버네티스 배포 전략 및 Argo Rollouts"
-date: "2026-08-28"
+date: "2025-08-28"
 category: "learning"
-subCategory: "gitops"
+subCategory: "cicd"
 excerpt: "표준 블루-그린 배포 과정과 고급 배포 전략(블루-그린, 카나리)을 지원하는 Argo Rollouts 설치 및 설정 정리"
 ---
 

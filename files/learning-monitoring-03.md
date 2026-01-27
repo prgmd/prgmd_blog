@@ -1,9 +1,9 @@
 ---
-id: learning-iac-07
+id: learning-monitoring-03
 title: "프로메테우스 주요 기능 및 타노스(Thanos) 아키텍처"
-date: "2026-08-18"
+date: "2025-08-18"
 category: "learning"
-subCategory: "iac"
+subCategory: "monitoring"
 excerpt: "프로메테우스 오퍼레이터, 익스포터의 역할과 대규모 환경에서의 한계를 극복하기 위한 타노스 솔루션 정리"
 ---
 
