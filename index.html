@@ -186,14 +186,15 @@
         
                 function getIconForSubCategory(subCat) {
                     const icons = {
-                        "digem": { symbol: "music_note", color: "#FF6B6B" }, "blog": { symbol: "note_add", color: "#9B59B6" },
-                        "ansible": { symbol: "settings_suggest", color: "#EE0000" }, "aws": { symbol: "cloud", color: "#FF9900" },
-                        "cicd": { symbol: "sync", color: "#4CAF50" }, "cloud": { symbol: "cloud_queue", color: "#2196F3" },
-                        "database": { symbol: "database", color: "#336791" }, "docker": { symbol: "package", color: "#2496ED" },
-                        "kubernetes": { symbol: "grid_4x4", color: "#326CE5" }, "k8s": { symbol: "grid_4x4", color: "#326CE5" },
-                        "linux": { symbol: "terminal", color: "#E8B000" }, "monitoring": { symbol: "monitoring", color: "#E6522C" },
-                        "network": { symbol: "lan", color: "#00BCD4" }, "python": { symbol: "code", color: "#3776AB" },
-                        "security": { symbol: "shield", color: "#F44336" }, "default": { symbol: "folder", color: "#FFFFFF" }
+                        "digem": { symbol: "music_note", color: "#FF6B6B" }, "blackbox": { symbol: "videocam", color: "#4ECDC4" },
+                        "blog": { symbol: "note_add", color: "#9B59B6" }, "ansible": { symbol: "settings_suggest", color: "#EE0000" },
+                        "aws": { symbol: "cloud", color: "#FF9900" }, "cicd": { symbol: "sync", color: "#4CAF50" },
+                        "cloud": { symbol: "cloud_queue", color: "#2196F3" }, "database": { symbol: "database", color: "#336791" },
+                        "docker": { symbol: "package", color: "#2496ED" }, "kubernetes": { symbol: "grid_4x4", color: "#326CE5" },
+                        "k8s": { symbol: "grid_4x4", color: "#326CE5" }, "linux": { symbol: "terminal", color: "#E8B000" },
+                        "monitoring": { symbol: "monitoring", color: "#E6522C" }, "network": { symbol: "lan", color: "#00BCD4" },
+                        "python": { symbol: "code", color: "#3776AB" }, "security": { symbol: "shield", color: "#F44336" },
+                        "default": { symbol: "folder", color: "#FFFFFF" }
                     };
                     return icons[subCat] || icons["default"];
                 }
