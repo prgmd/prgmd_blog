@@ -1,0 +1,93 @@
+---
+id: learning-database-06
+title: "Database (6) - Python과 DB 연동 실무"
+date: "2025-05-14"
+category: "learning"
+subCategory: "database"
+excerpt: "Python 환경에서 PyMySQL과 PyMongo 패키지를 활용한 RDBMS 및 NoSQL 데이터 처리 실습"
+---
+
+## 1. 데이터베이스 연동 개요
+파이썬에서 데이터베이스를 연동하는 방식은 드라이버(패키지)를 직접 설치하여 제어하는 방식과 ORM(Django ORM, SQLAlchemy 등) 프레임워크를 사용하는 방식으로 나뉜다. 이번 실습에서는 패키지를 직접 설치하여 MariaDB와 MongoDB를 제어하는 방법을 다룬다.
+
+## 2. MongoDB 연동 실습 (NoSQL)
+MongoDB 연동을 위해 `pymongo` 패키지를 사용한다. 딕셔너리 구조를 그대로 저장할 수 있어 데이터 구조가 유연한 것이 특징이다.
+
+### 1) 연결 및 데이터 삽입
+```python
+from pymongo import MongoClient
+
+# 서버 접속 및 컬렉션 연결
+con = MongoClient('127.0.0.1', 27017)
+db = con.hyundai  # 데이터베이스 선택 (없으면 생성)
+cars = db.cars    # 컬렉션 선택 (없으면 생성)
+
+# 데이터 삽입 (하나 또는 여러 개)
+cars.insert_one({'name': '그랜저', 'price': 4000})
+cars.insert_many([
+    {'name': '소나타', 'price': 2500},
+    {'name': '제네시스', 'price': 6000}
+])
+```
+
+2) 데이터 조회 및 삭제
+
+``` Python
+
+# 가격이 3000 이상인 데이터 조회
+cursor = cars.find({'price': {'$gte': 3000}})
+for car in cursor:
+    print(car)
+
+# 조건에 맞는 데이터 삭제
+cars.delete_many({'price': {'$gte': 3000}})
+```
+
+3. MariaDB 연동 실습 (RDBMS)
+관계형 데이터베이스 연동을 위해 PyMySQL 패키지를 사용한다. SQL 문을 실행하기 위한 커서 객체 활용과 트랜잭션 처리가 핵심이다.
+
+1) 접속 및 데이터 조작(DML)
+``` Python
+
+import pymysql
+
+# 데이터베이스 접속
+con = pymysql.connect(
+    host='127.0.0.1', port=3306, user='root', 
+    passwd='password', db='autoever', charset='utf8mb4'
+)
+cursor = con.cursor()
+
+# Prepared Statement 방식을 이용한 안전한 삽입
+sql = "INSERT INTO usertbl VALUES(%s, %s, %s, %s, %s, %s)"
+cursor.execute(sql, ('sohye', '김소혜', 1999, '서울', '01012121212', '1999-07-19'))
+
+# 작업 반영 (필수)
+con.commit()
+```
+
+2) 데이터 조회 (Fetch)
+조회 결과는 튜플 형태로 리턴된다. fetchone()은 데이터 1개를, fetchall()은 모든 데이터를 가져온다.
+
+``` Python
+
+cursor.execute("SELECT * FROM usertbl")
+
+# 전체 데이터 순회 출력
+datas = cursor.fetchall()
+for data in datas:
+    print(data)
+```
+
+3) 프로시저 및 BLOB 처리
+- 프로시저: DB 내부에 저장된 로직을 callproc() 함수로 호출한다. 보안과 속도 면에서 유리하다.
+- BLOB: 이미지나 오디오 같은 이진 데이터를 저장한다. 파일을 바이너리 모드(rb, wb)로 열어 처리하는 것이 핵심이다.
+
+``` Python
+
+# 이미지 파일을 읽어서 DB에 저장하기
+with open('dangun.jpg', 'rb') as f:
+    photo = f.read()
+    cursor.execute("INSERT INTO member VALUES(%s, %s, %s)", ('당근', 'dangun.jpg', photo))
+con.commit()
+```
