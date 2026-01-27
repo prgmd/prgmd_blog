@@ -1,6 +1,6 @@
 ---
 id: learning-k8s-06
-title: "Kubernetes (6) - 잡, 크론잡 및 서비스 리소스"
+title: "잡, 크론잡 및 서비스 리소스"
 date: "2025-07-04"
 category: "learning"
 subCategory: "kubernetes"

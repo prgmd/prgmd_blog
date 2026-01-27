@@ -1,6 +1,6 @@
 ---
 id: learning-docker-05
-title: "Docker (5) - 컨테이너 제어 및 데이터 영속성"
+title: "컨테이너 제어 및 데이터 영속성"
 date: "2025-06-17"
 category: "learning"
 subCategory: "docker"

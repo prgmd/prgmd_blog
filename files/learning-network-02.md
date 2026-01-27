@@ -1,6 +1,6 @@
 ---
 id: learning-network-02
-title: "Network (2) - 통신 메커니즘과 주소 체계 심화"
+title: "통신 메커니즘과 주소 체계 심화"
 date: "2025-05-29"
 category: "learning"
 subCategory: "network"

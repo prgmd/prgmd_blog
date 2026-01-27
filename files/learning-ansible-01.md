@@ -1,6 +1,6 @@
 ---
 id: learning-ansible-01
-title: "Ansible (1) - IT 자동화 도구의 기초와 실습"
+title: "IT 자동화 도구의 기초와 실습"
 date: "2025-08-07"
 category: "learning"
 subCategory: "ansible"

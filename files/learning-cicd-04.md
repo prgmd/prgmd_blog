@@ -1,6 +1,6 @@
 ---
 id: learning-cicd-04
-title: "CI/CD (4) - Jenkins 개요 및 파이프라인 실습"
+title: "Jenkins 개요 및 파이프라인 실습"
 date: "2025-07-18"
 category: "learning"
 subCategory: "cicd"

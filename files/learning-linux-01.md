@@ -1,6 +1,6 @@
 ---
 id: learning-linux-01
-title: "Linux (1) - 리눅스 기초와 Vim 편집기"
+title: "리눅스 기초와 Vim 편집기"
 date: "2025-05-15"
 category: "learning"
 subCategory: "linux"

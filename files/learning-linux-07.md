@@ -1,6 +1,6 @@
 ---
 id: learning-linux-07
-title: "Linux (7) - 사용자 계정 관리와 네트워크 기초"
+title: "Linux 사용자 계정 관리와 네트워크 기초"
 date: "2025-05-23"
 category: "learning"
 subCategory: "linux"

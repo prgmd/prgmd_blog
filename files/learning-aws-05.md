@@ -1,6 +1,6 @@
 ---
 id: learning-aws-05
-title: "AWS (5) - 컨테이너 배포 자동화 및 ECS 서비스"
+title: "컨테이너 배포 자동화 및 ECS 서비스"
 date: "2025-07-25"
 category: "learning"
 subCategory: "aws"

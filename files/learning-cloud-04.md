@@ -1,6 +1,6 @@
 ---
 id: learning-cloud-04
-title: "Cloud (4) - 클라우드 보안 체계와 설계 원칙"
+title: "클라우드 보안 체계와 설계 원칙"
 date: "2025-06-12"
 category: "learning"
 subCategory: "cloud"

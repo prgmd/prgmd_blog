@@ -1,6 +1,6 @@
 ---
 id: learning-database-01
-title: "Database (1) - RDBMS 개념과 SQL 조회 기초"
+title: "RDBMS 개념과 SQL 조회 기초"
 date: "2025-05-07"
 category: "learning"
 subCategory: "database"

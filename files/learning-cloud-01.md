@@ -1,6 +1,6 @@
 ---
 id: learning-cloud-01
-title: "Cloud (1) - 클라우드 컴퓨팅 개념 및 서비스 모델"
+title: "클라우드 컴퓨팅 개념 및 서비스 모델"
 date: "2025-06-09"
 category: "learning"
 subCategory: "cloud"

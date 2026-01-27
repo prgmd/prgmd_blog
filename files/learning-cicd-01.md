@@ -1,6 +1,6 @@
 ---
 id: learning-cicd-01
-title: "CI/CD (1) - Git 기초 명령어 및 원격 저장소 연동"
+title: "Git 기초 명령어 및 원격 저장소 연동"
 date: "2025-07-15"
 category: "learning"
 subCategory: "cicd"

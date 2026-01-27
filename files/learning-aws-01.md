@@ -1,6 +1,6 @@
 ---
 id: learning-aws-01
-title: "AWS (1) - 클라우드 기초 및 EC2 인스턴스 활용"
+title: "클라우드 기초 및 EC2 인스턴스 활용"
 date: "2025-07-21"
 category: "learning"
 subCategory: "aws"

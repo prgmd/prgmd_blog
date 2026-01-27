@@ -1,6 +1,6 @@
 ---
 id: learning-k8s-05
-title: "Kubernetes (5) - 워크로드 리소스 업데이트 및 상태 관리"
+title: "워크로드 리소스 업데이트 및 상태 관리"
 date: "2025-07-03"
 category: "learning"
 subCategory: "kubernetes"

@@ -1,6 +1,6 @@
 ---
 id: learning-docker-01
-title: "Docker (1) - 가상화 기술과 도커 컨테이너 기초"
+title: "가상화 기술과 도커 컨테이너 기초"
 date: "2025-06-13"
 category: "learning"
 subCategory: "docker"

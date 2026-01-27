@@ -1,6 +1,6 @@
 ---
 id: learning-k8s-04
-title: "Kubernetes (4) - 파드 생명주기와 디플로이먼트 관리"
+title: "파드 생명주기와 디플로이먼트 관리"
 date: "2025-07-02"
 category: "learning"
 subCategory: "kubernetes"

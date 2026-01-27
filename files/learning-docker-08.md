@@ -1,6 +1,6 @@
 ---
 id: learning-docker-08
-title: "Docker (8) - Dockerfile 최적화 및 프라이빗 레지스트리"
+title: "Dockerfile 최적화 및 프라이빗 레지스트리"
 date: "2025-06-20"
 category: "learning"
 subCategory: "docker"

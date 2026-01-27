@@ -1,6 +1,6 @@
 ---
 id: learning-aws-06
-title: "AWS (6) - ECS 배포 전략 및 CI/CD 파이프라인 구축"
+title: "ECS 배포 전략 및 CI/CD 파이프라인 구축"
 date: "2025-07-28"
 category: "learning"
 subCategory: "aws"

@@ -1,6 +1,6 @@
 ---
 id: learning-network-03
-title: "Network (3) - 네트워크 핵심 장비와 주요 기술"
+title: "네트워크 핵심 장비와 주요 기술"
 date: "2025-05-30"
 category: "learning"
 subCategory: "network"

@@ -1,6 +1,6 @@
 ---
 id: learning-docker-03
-title: "Docker (3) - 도커 컨테이너 제어 및 데이터 영속성 관리"
+title: "도커 컨테이너 제어 및 데이터 영속성 관리"
 date: "2025-06-17"
 category: "learning"
 subCategory: "docker"

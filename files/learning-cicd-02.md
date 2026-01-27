@@ -1,6 +1,6 @@
 ---
 id: learning-cicd-02
-title: "CI/CD (2) - 협업 및 브랜치 관리 전략"
+title: "협업 및 브랜치 관리 전략"
 date: "2025-07-16"
 category: "learning"
 subCategory: "cicd"

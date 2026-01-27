@@ -1,6 +1,6 @@
 ---
 id: learning-linux-05
-title: "Linux (5) - 우분투 소프트웨어 관리 및 컴파일"
+title: "우분투 소프트웨어 관리 및 컴파일"
 date: "2025-05-21"
 category: "learning"
 subCategory: "linux"

@@ -1,6 +1,6 @@
 ---
 id: learning-network-04
-title: "Network (4) - 리눅스 네트워크 진단 및 확인 명령어"
+title: "리눅스 네트워크 진단 및 확인 명령어"
 date: "2025-06-02"
 category: "learning"
 subCategory: "network"

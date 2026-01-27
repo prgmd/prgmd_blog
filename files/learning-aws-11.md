@@ -1,6 +1,6 @@
 ---
 id: learning-aws-11
-title: "AWS (11) - EKS 로그 관리, 오토스케일링 및 클러스터 보안"
+title: "EKS 로그 관리, 오토스케일링 및 클러스터 보안 (2)"
 date: "2025-08-06"
 category: "learning"
 subCategory: "aws"

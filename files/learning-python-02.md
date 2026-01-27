@@ -1,6 +1,6 @@
 ---
 id: learning-python-02
-title: "Python (2) - 데이터 구조 심화와 예외 처리 및 내장 모듈"
+title: "데이터 구조 심화와 예외 처리 및 내장 모듈"
 date: "2025-05-02"
 category: "learning"
 subCategory: "python"

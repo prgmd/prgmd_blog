@@ -1,6 +1,6 @@
 ---
 id: learning-ansible-02
-title: "Ansible (2) - 변수, 팩트(Facts) 및 제어문 활용"
+title: "변수, 팩트(Facts) 및 제어문 활용"
 date: "2025-08-08"
 category: "learning"
 subCategory: "ansible"

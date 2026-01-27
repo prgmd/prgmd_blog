@@ -1,6 +1,6 @@
 ---
 id: learning-docker-06
-title: "Docker (6) - 데이터 영속성 실습 및 컨테이너 네트워크"
+title: "데이터 영속성 실습 및 컨테이너 네트워크"
 date: "2025-06-18"
 category: "learning"
 subCategory: "docker"

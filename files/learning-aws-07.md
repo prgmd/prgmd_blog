@@ -1,6 +1,6 @@
 ---
 id: learning-aws-07
-title: "AWS (7) - EKS 클러스터 구축 및 백엔드 개발 환경 설정"
+title: "EKS 클러스터 구축 및 백엔드 개발 환경 설정"
 date: "2025-07-29"
 category: "learning"
 subCategory: "aws"

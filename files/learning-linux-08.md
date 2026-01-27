@@ -1,6 +1,6 @@
 ---
 id: learning-linux-08
-title: "Linux (8) - 네트워크 서비스 및 셸 프로그래밍 기초"
+title: "네트워크 서비스 및 셸 프로그래밍 기초"
 date: "2025-05-27"
 category: "learning"
 subCategory: "linux"

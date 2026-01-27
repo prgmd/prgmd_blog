@@ -1,6 +1,6 @@
 ---
 id: learning-k8s-10
-title: "Kubernetes (10) - PVC와 리소스 제한"
+title: "PVC와 리소스 제한"
 date: "2025-07-11"
 category: "learning"
 subCategory: "kubernetes"

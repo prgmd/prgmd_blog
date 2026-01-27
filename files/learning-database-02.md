@@ -1,6 +1,6 @@
 ---
 id: learning-database-02
-title: "Database (2) - SQL 함수와 서브쿼리 활용"
+title: "SQL 함수와 서브쿼리 활용"
 date: "2025-05-08"
 category: "learning"
 subCategory: "database"

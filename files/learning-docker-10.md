@@ -1,6 +1,6 @@
 ---
 id: learning-docker-10
-title: "Docker (10) - 도커 컴포즈와 Nginx 로드 밸런싱"
+title: "도커 컴포즈와 Nginx 로드 밸런싱"
 date: "2025-06-24"
 category: "learning"
 subCategory: "docker"

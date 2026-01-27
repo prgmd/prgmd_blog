@@ -1,6 +1,6 @@
 ---
 id: learning-aws-09
-title: "AWS (9) - EKS 백엔드 배포 및 리소스 관리"
+title: "EKS 백엔드 배포 및 리소스 관리"
 date: "2025-08-05"
 category: "learning"
 subCategory: "aws"

@@ -1,6 +1,6 @@
 ---
 id: learning-aws-02
-title: "AWS (2) - EC2 앱 배포 및 Elastic Load Balancing"
+title: "EC2 앱 배포 및 Elastic Load Balancing"
 date: "2025-07-22"
 category: "learning"
 subCategory: "aws"

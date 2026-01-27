@@ -1,6 +1,6 @@
 ---
 id: learning-k8s-09
-title: "Kubernetes (9) - Volume API와 영구 저장소"
+title: "Volume API와 영구 저장소"
 date: "2025-07-10"
 category: "learning"
 subCategory: "kubernetes"

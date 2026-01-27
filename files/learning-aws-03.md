@@ -1,6 +1,6 @@
 ---
 id: learning-aws-03
-title: "AWS (3) - 데이터베이스 서비스 및 S3 활용"
+title: "데이터베이스 서비스 및 S3 활용"
 date: "2025-07-23"
 category: "learning"
 subCategory: "aws"

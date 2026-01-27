@@ -1,6 +1,6 @@
 ---
 id: learning-cloud-03
-title: "Cloud (3) - 클라우드 네이티브의 핵심 요소와 아키텍처"
+title: "클라우드 네이티브의 핵심 요소와 아키텍처"
 date: "2025-06-11"
 category: "learning"
 subCategory: "cloud"

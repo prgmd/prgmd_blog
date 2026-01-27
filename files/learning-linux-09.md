@@ -1,6 +1,6 @@
 ---
 id: learning-linux-09
-title: "Linux (9) - 셸 스크립트 활용 및 정규 표현식"
+title: "셸 스크립트 활용 및 정규 표현식"
 date: "2025-05-28"
 category: "learning"
 subCategory: "linux"

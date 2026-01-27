@@ -1,6 +1,6 @@
 ---
 id: learning-docker-04
-title: "Docker (4) - 이미지 관리 및 레지스트리 활용"
+title: "이미지 관리 및 레지스트리 활용"
 date: "2025-06-16"
 category: "learning"
 subCategory: "docker"

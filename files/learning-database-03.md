@@ -1,6 +1,6 @@
 ---
 id: learning-database-03
-title: "Database (3) - JOIN 활용과 데이터 모델링"
+title: "JOIN 활용과 데이터 모델링"
 date: "2025-05-09"
 category: "learning"
 subCategory: "database"

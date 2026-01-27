@@ -1,6 +1,6 @@
 ---
 id: learning-database-05
-title: "Database (5) - MongoDB CRUD와 파이썬 연동"
+title: "MongoDB CRUD와 파이썬 연동"
 date: "2025-05-13"
 category: "learning"
 subCategory: "database"

@@ -1,6 +1,6 @@
 ---
 id: learning-linux-06
-title: "Linux (6) - 시스템 부팅 과정과 사용자 관리"
+title: "시스템 부팅 과정과 사용자 관리"
 date: "2025-05-22"
 category: "learning"
 subCategory: "linux"

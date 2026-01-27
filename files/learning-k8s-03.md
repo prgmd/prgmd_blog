@@ -1,6 +1,6 @@
 ---
 id: learning-k8s-03
-title: "Kubernetes (3) - 클러스터 설치 및 포드 디자인 패턴"
+title: "클러스터 설치 및 포드 디자인 패턴"
 date: "2025-07-01"
 category: "learning"
 subCategory: "kubernetes"

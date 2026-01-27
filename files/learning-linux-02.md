@@ -1,6 +1,6 @@
 ---
 id: learning-linux-02
-title: "Linux (2) - 셸 활용과 파일 시스템 구조"
+title: "셸 활용과 파일 시스템 구조"
 date: "2025-05-16"
 category: "learning"
 subCategory: "linux"

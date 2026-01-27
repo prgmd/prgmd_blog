@@ -1,6 +1,6 @@
 ---
 id: learning-network-01
-title: "Network (1) - 네트워크 기초 및 설정 실무"
+title: "네트워크 기초 및 설정 실무"
 date: "2025-05-26"
 category: "learning"
 subCategory: "network"

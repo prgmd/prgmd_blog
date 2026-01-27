@@ -1,6 +1,6 @@
 ---
 id: learning-linux-04
-title: "Linux (4) - 특수 권한 및 프로세스 관리"
+title: "Linux 특수 권한 및 프로세스 관리"
 date: "2025-05-20"
 category: "learning"
 subCategory: "linux"
