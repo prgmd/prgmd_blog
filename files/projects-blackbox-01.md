@@ -1,0 +1,135 @@
+---
+id: blackbox-dev-001
+title: "클라우드 블랙박스 서비스 'NEVES-BOX' 소개"
+date: "2025-12-07"
+category: "projects"
+subCategory: "blackbox"
+excerpt: "더 안전하고 실용적인 블랙박스 이용을 위해"
+---
+
+![](https://velog.velcdn.com/images/paramad/post/64be7e98-40c4-4729-a517-6e40852712d8/image.png)
+
+
+# 1. 프로젝트 개요 및 배경
+> 프로젝트 명칭: 클라우드 블랙박스 서비스 'NEVES-BOX' (Cloud + Blackbox) 
+
+- 핵심 문제 의식: 사고 발생 시 블랙박스 기기가 파손되거나 범인이 증거 인멸을 위해 기기를 훼손하면 영상을 확보할 수 없다는 점에 착안했습니다. 
+- 솔루션 제안: 영상을 클라우드에 실시간으로 저장하여 데이터 손실을 방지하고, 용량 걱정 없이 언제 어디서든 영상을 확인할 수 있는 환경을 구축하고자 했습니다. 
+
+# 2. 시스템 설계 및 아키텍처
+## (1) 마이크로서비스 아키텍처 (MSA) 도입
+![](https://velog.velcdn.com/images/paramad/post/d7b4ddc4-f621-4b91-b09e-f5ccdce445b7/image.png)
+
+- 설계 방식: 모든 기능을 하나의 단위로 배포하는 모놀리식 방식 대신, 기능을 독립적인 서비스 묶음으로 나누는 MSA를 채택. 
+
+![](https://velog.velcdn.com/images/paramad/post/e5de691f-fd7a-4f8f-b738-8b503aeb2624/image.png)
+
+- 이벤트 스토밍: 서비스에서 발생하는 사건(이벤트)을 중심으로 동작 방식을 정의하고 팀원 간 공유하는 설계 방법론을 적용했습니다. 
+
+## (2) 서버 분리 및 역할:
+![](https://velog.velcdn.com/images/paramad/post/1c22b3bf-6315-4df2-8e0b-fdc34fa23f4c/image.png)
+
+### 유저 서버
+![](https://velog.velcdn.com/images/paramad/post/6f067bb7-f1bf-43aa-ac86-1d9b0fd7fa31/image.png)
+
+> 회원가입, 로그인 및 JWT 발급·인증을 담당합니다. 
+
+### 메일 서버
+![](https://velog.velcdn.com/images/paramad/post/ecb8273d-0376-4b30-9a23-6fd5c4e5de17/image.png)
+
+> 사용자 인증 및 알림 메일을 전송합니다. 
+
+### 상태 서버
+![](https://velog.velcdn.com/images/paramad/post/2ad94f9f-8af4-49e2-94ac-cdac5a01e271/image.png)
+
+> 영상의 녹화 시간, UUID 등 메타데이터를 처리합니다. 
+
+### 영상 & DB 업로드 서버
+![](https://velog.velcdn.com/images/paramad/post/160805c4-4a01-401f-a160-285753d2ce1b/image.png)
+
+> UDP로 들어온 영상을 인코딩하여 파일 시스템에 저장하고, EBS를 확인해 영상을 S3로 업로드합니다.
+
+### 재생 서버
+![](https://velog.velcdn.com/images/paramad/post/e553c9ec-9d35-4e53-bb8f-e55a8a30d2c0/image.png)
+
+> 사용자가 영상을 볼 수 있는 보안 URL을 생성합니다. 
+
+## (3) 프로토콜 및 통신 전략
+![](https://velog.velcdn.com/images/paramad/post/a51d1b8c-9be8-4838-95f7-361e0373f140/image.png)
+
+- SRT(Secure Reliable Transport) 프로토콜: 지연 시간이 매우 낮고(1초 내외) 신뢰도가 높은 UDP 기반의 차세대 프로토콜을 채택하여 실시간 비디오 스트리밍을 구현했습니다. 
+
+![](https://velog.velcdn.com/images/paramad/post/64a8a4f6-295b-49b2-9ea0-55d7f79174d3/image.png)
+
+- 보안 및 배포: AWS CloudFront를 사용하여 정적 콘텐츠 배포 속도를 높이고, 일정 시간이 지나면 만료되는 Signed URL을 생성해 영상 접근의 보안성을 확보했습니다. 
+
+# 3. 인프라 구축 및 성능 최적화
+![](https://velog.velcdn.com/images/paramad/post/49b9487a-8aa7-4829-8b60-a8a507252291/image.png)
+
+## (1) 스토리지 성능 개선 (EFS → EBS)
+![](https://velog.velcdn.com/images/paramad/post/3a5e2560-9514-4921-a394-4bdd7502e900/image.png)
+
+![](https://velog.velcdn.com/images/paramad/post/3e3abdc8-a394-488b-90d0-c6b928d905e2/image.png)
+
+- 문제점: 초기 EFS 구조에서는 파일 시스템 스캔 시간의 편차가 크고 불안정했습니다. 
+
+![](https://velog.velcdn.com/images/paramad/post/12cdb095-9357-43c3-ae52-ea7fb3ecbb97/image.png)
+
+![](https://velog.velcdn.com/images/paramad/post/8dc8514c-879d-4290-8a15-05e162d1df5e/image.png)
+
+- 개선 결과: EBS로 변경한 결과, 스캔 시간이 0.049초에서 0.009초로 약 5.4배 단축되었으며 데이터 전송 속도 또한 안정화되었습니다. 
+
+- 비용 관리: S3 수명 주기 규칙을 설정하여, 7일이 지난 영상 데이터는 장기 보관용 저가 스토리지인 Glacier로 자동 이동되도록 설계했습니다. 
+
+## (2). 로드 밸런싱 및 네트워크
+![](https://velog.velcdn.com/images/paramad/post/fb980733-aaa8-4a80-bc08-3a2abc6fc9f6/image.png)
+
+- 이중 로드 밸런서(NLB) 구조: 블랙박스 기기에서 들어오는 SRT(UDP) 요청 처리용 NLB와 웹 클라이언트에서 들어오는 HTTPS(TCP) 요청 처리용 NLB를 분리하여 운영합니다. 
+
+![](https://velog.velcdn.com/images/paramad/post/09dafa4d-4335-4a8d-91bc-78548fc63195/image.png)
+
+- 서비스 메시 (Istio): 사이드카 프록시(Envoy)를 모든 파드에 주입하여 트래픽을 제어하고, Kiali를 통해 실시간 네트워크 트래픽을 시각화했습니다. 
+
+# 4. 장애 대응 및 기술적 도전 과제
+## (1) 장애 격리 및 모니터링
+![](https://velog.velcdn.com/images/paramad/post/4c1f0562-caa7-4bb9-85ff-cfbeb2a24ee2/image.png)
+
+- 서킷 브레이커: 특정 서비스에서 3회 연속 5xx 에러 발생 시 서킷을 개방(Open)하여 장애가 전체 시스템으로 전파되는 것을 막습니다. 
+
+![](https://velog.velcdn.com/images/paramad/post/aafae4e3-0a81-4b70-895c-3961a22c2bae/image.png)
+
+- 성능 체감: 서킷 브레이커 적용 전 응답 시간은 5~7ms였으나, 적용 후에는 불필요한 시도를 차단하여 90~100$\mu$s로 단축되었습니다. 
+
+![](https://velog.velcdn.com/images/paramad/post/4446531d-33c7-449c-8cb4-a27b218171a5/image.png)
+
+- 알림 시스템: Grafana Alerts를 Slack과 연동하여 파일 업로드 실패 등 장애 상황을 실시간으로 감지합니다. 
+
+## (2) 기술적 문제 해결 사례
+![](https://velog.velcdn.com/images/paramad/post/935fbaa6-7b5f-4325-944f-323640ffa83c/image.png)
+
+![](https://velog.velcdn.com/images/paramad/post/f6f7e913-a400-418e-9814-2469abed7745/image.png)
+
+- 메일 전송 오버헤드: 메일 전송 시마다 반복되던 SMTP SSL 연결 로직을 최적화하여 전송 시간을 3초대에서 1초대 중반으로 개선했습니다. 
+
+![](https://velog.velcdn.com/images/paramad/post/3c21138c-9a81-46ed-95af-54e429d26820/image.png)
+
+![](https://velog.velcdn.com/images/paramad/post/44bf3392-4398-4d98-8a14-89f50c465a56/image.png)
+
+- 세션 어피니티(Session Affinity): 파드가 스케일 아웃되었을 때 사용자 인증 세션을 찾지 못하는 문제를 동일 IP 요청을 동일 서버로 고정하는 설정으로 해결했습니다. 
+
+5. DevOps 및 협업
+![](https://velog.velcdn.com/images/paramad/post/34ebe607-cc09-48fa-a253-7e9b7dbb9602/image.png)
+
+![](https://velog.velcdn.com/images/paramad/post/85e8637f-a518-48c7-917f-67520363702a/image.png)
+
+- IaC (Terraform): 코드를 통해 인프라를 프로비저닝하여 리소스 생성 실수를 줄이고 정확성을 높였습니다. 
+
+![](https://velog.velcdn.com/images/paramad/post/19b5ef2a-dfde-4310-aeb8-ced0d556b0a9/image.png)
+
+- CI/CD 파이프라인: GitHub Actions, ECR, Argo CD, Helm을 사용하여 자동화된 배포 프로세스를 구축했습니다. 
+
+![](https://velog.velcdn.com/images/paramad/post/e763aa89-185a-4289-af73-4ed0c8a0bc1a/image.png)
+
+![](https://velog.velcdn.com/images/paramad/post/4b2861a2-9153-4cdb-a43e-768830691bc5/image.png)
+
+- 협업 도구: Jira와 GitHub Issues를 연동하고, 팀 프로젝트 관리와 동료 코드 리뷰를 진행했습니다.
