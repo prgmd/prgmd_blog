@@ -3,8 +3,7 @@ id: learning-security-01
 title: "정보 보안 개요 및 리눅스 로그 관리"
 date: "2025-06-04"
 category: "learning"
-subCategory: "linux"
-excerpt: "정보 보안의 3요소와 네트워크 보안 장비의 종류, 그리고 리눅스 시스템 로그를 관리하는 방법 정리"
+subCategory: "Linux"
 ---
 
 ## 1. 정보 보안 개요

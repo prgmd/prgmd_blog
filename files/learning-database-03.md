@@ -3,8 +3,7 @@ id: learning-database-03
 title: "JOIN 활용과 데이터 모델링"
 date: "2025-05-09"
 category: "learning"
-subCategory: "database"
-excerpt: "여러 테이블을 결합하는 다양한 JOIN 방식과 효율적인 DB 설계를 위한 정규화 이론"
+subCategory: "Database"
 ---
 
 ## 1. JOIN (테이블 결합)

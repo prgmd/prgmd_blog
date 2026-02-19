@@ -3,8 +3,7 @@ id: learning-cicd-06
 title: "GitOps와 Argo CD: 원칙부터 실습까지"
 date: "2025-08-22"
 category: "learning"
-subCategory: "ci/cd"
-excerpt: "선언적 인프라 관리를 위한 GitOps 원칙, Argo CD 아키텍처, Helm을 이용한 설치 및 애플리케이션 배포 실습 정리"
+subCategory: "CI/CD"
 ---
 
 ## 1. GitOps의 정의와 핵심 원칙

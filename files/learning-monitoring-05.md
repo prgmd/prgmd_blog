@@ -3,8 +3,7 @@ id: learning-monitoring-05
 title: "ELK 스택 설치 및 Spring Boot 로그 수집 환경 구축"
 date: "2025-08-29"
 category: "learning"
-subCategory: "monitoring"
-excerpt: "Linux 서버에 Elasticsearch, Logstash, Kibana를 직접 설치하고 Spring Boot 애플리케이션의 로그를 실시간으로 수집하는 방법 정리"
+subCategory: "Monitoring"
 ---
 
 ## 1. ELK Stack 리눅스 서버 설치

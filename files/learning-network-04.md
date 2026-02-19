@@ -3,8 +3,7 @@ id: learning-network-04
 title: "리눅스 네트워크 진단 및 확인 명령어"
 date: "2025-06-02"
 category: "learning"
-subCategory: "network"
-excerpt: "ping, traceroute, netstat 등 네트워크 상태를 점검하고 장애 원인을 파악하기 위한 필수 명령어 정리"
+subCategory: "Network"
 ---
 
 ## 1. 기본 통신 확인 (ping)

@@ -3,8 +3,7 @@ id: learning-k8s-11
 title: "MetalLB, 인그레스 실습 및 매니페스트 관리 도구"
 date: "2025-08-12"
 category: "learning"
-subCategory: "kubernetes"
-excerpt: "베어메탈 환경의 MetalLB와 Nginx 인그레스 라우팅 실습, Kustomize와 Helm을 활용한 효율적인 매니페스트 관리 방법 정리"
+subCategory: "Kubernetes"
 ---
 
 ## 1. MetalLB 로드 밸런서

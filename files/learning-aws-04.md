@@ -3,8 +3,7 @@ id: learning-aws-04
 title: "S3 심화 설정 및 CloudFront CDN"
 date: "2025-07-24"
 category: "learning"
-subCategory: "aws"
-excerpt: "S3 버킷 정책 및 CORS 설정과 CloudFront를 활용한 전 세계 콘텐츠 배포 최적화(CDN) 정리"
+subCategory: "AWS"
 ---
 
 ## 1. S3 버킷 심화 설정 및 앱 연동

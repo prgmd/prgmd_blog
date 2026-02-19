@@ -3,8 +3,7 @@ id: learning-linux-06
 title: "시스템 부팅 과정과 사용자 관리"
 date: "2025-05-22"
 category: "learning"
-subCategory: "linux"
-excerpt: "C 언어 패키지 빌드 방법, 리눅스 부팅 단계별 메커니즘 및 사용자 계정 보안 체계 정리"
+subCategory: "Linux"
 ---
 
 ## 1. 패키지 관리와 C 언어 빌드

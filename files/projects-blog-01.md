@@ -3,8 +3,7 @@ id: blog-dev-001
 title: "길고도 험난했던 Dev 블로그 제작기: (1) 옵시디언과의 사투"
 date: "2025-12-07"
 category: "projects"
-subCategory: "blog"
-excerpt: "옵시디언에 쌓아둔 자료들을 세상 밖으로 꺼내기 위한 여정"
+subCategory: "Blog"
 ---
 
 ## 0. 서막

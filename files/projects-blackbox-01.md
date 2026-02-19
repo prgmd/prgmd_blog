@@ -3,8 +3,7 @@ id: blackbox-dev-001
 title: "클라우드 블랙박스 서비스 'NEVES-BOX' 소개"
 date: "2025-12-07"
 category: "projects"
-subCategory: "blackbox"
-excerpt: "더 안전하고 실용적인 블랙박스 이용을 위해"
+subCategory: "Blackbox"
 ---
 
 ![](https://velog.velcdn.com/images/paramad/post/64be7e98-40c4-4729-a517-6e40852712d8/image.png)

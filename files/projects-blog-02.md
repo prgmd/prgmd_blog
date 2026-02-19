@@ -3,8 +3,7 @@ id: blog-dev-002
 title: "길고도 험난했던 Dev 블로그 제작기: (2) Vercel 이주와 프론트엔드 리빌딩"
 date: "2026-1-14"
 category: "projects"
-subCategory: "blog"
-excerpt: "Vercel 인프라 위에서 커스텀 프론트엔드 만들기"
+subCategory: "Blog"
 ---
 
 ## 0. 개요

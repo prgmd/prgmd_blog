@@ -2,8 +2,7 @@
 title: "[DevLog] Digem: 분산 스크래퍼 엔진 설계기 (수정 예정)"
 date: "2026-01-19"
 category: "projects"
-subCategory: "digem"
-excerpt: "나는 과연 나의 사이트를 만들 수 있을 것인가"
+subCategory: "Digem"
 ---
 
 ## 1. 개요

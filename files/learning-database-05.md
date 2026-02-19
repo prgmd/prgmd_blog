@@ -3,8 +3,7 @@ id: learning-database-05
 title: "MongoDB CRUD와 파이썬 연동"
 date: "2025-05-13"
 category: "learning"
-subCategory: "database"
-excerpt: "MongoDB의 상세한 데이터 관리 기법과 Python 패키지를 활용한 DB 연동 실무"
+subCategory: "Database"
 ---
 
 ## 1. 데이터베이스 및 컬렉션 상태 조회

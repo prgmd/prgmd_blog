@@ -3,8 +3,7 @@ id: learning-linux-09
 title: "셸 스크립트 활용 및 정규 표현식"
 date: "2025-05-28"
 category: "learning"
-subCategory: "linux"
-excerpt: "셸 스크립트의 다양한 연산자 사용법과 정규 표현식을 활용한 데이터 필터링 실무"
+subCategory: "Linux"
 ---
 
 ## 1. 셸 스크립트 연산자 (Operators)

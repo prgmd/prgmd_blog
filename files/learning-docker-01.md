@@ -3,8 +3,7 @@ id: learning-docker-01
 title: "가상화 기술과 도커 컨테이너 기초"
 date: "2025-06-13"
 category: "learning"
-subCategory: "docker"
-excerpt: "서버 및 네트워크 가상화의 개념과 도커 컨테이너 기술의 특징, 주요 명령어 체계 정리"
+subCategory: "Docker"
 ---
 
 ## 1. 가상화(Virtualization) 기술의 이해

@@ -3,8 +3,7 @@ id: learning-network-01
 title: "네트워크 기초 및 설정 실무"
 date: "2025-05-26"
 category: "learning"
-subCategory: "network"
-excerpt: "IP 주소 체계와 포트 번호 등 네트워크 기본 지식과 nmcli, ip, ifconfig를 활용한 관리 기법"
+subCategory: "Network"
 ---
 
 ## 1. 네트워크 기초 지식

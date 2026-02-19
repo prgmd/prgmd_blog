@@ -3,8 +3,7 @@ id: learning-database-06
 title: "Python과 DB 연동 실무"
 date: "2025-05-14"
 category: "learning"
-subCategory: "database"
-excerpt: "Python 환경에서 PyMySQL과 PyMongo 패키지를 활용한 RDBMS 및 NoSQL 데이터 처리 실습"
+subCategory: "Database"
 ---
 
 ## 1. 데이터베이스 연동 개요

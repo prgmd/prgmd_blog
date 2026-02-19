@@ -3,8 +3,7 @@ id: learning-python-02
 title: "데이터 구조 심화와 예외 처리 및 내장 모듈"
 date: "2025-05-02"
 category: "learning"
-subCategory: "python"
-excerpt: "자료구조의 심화 활용법부터 프로그램의 안정성을 높이는 예외 처리, 그리고 유용한 내장 모듈 정리"
+subCategory: "Python"
 ---
 
 ## 1. 데이터 타입 심화 활용

@@ -3,8 +3,7 @@ id: learning-cloud-02
 title: "클라우드 배포 전략 및 클라우드 네이티브"
 date: "2025-06-10"
 category: "learning"
-subCategory: "cloud"
-excerpt: "클라우드 배포 모델별 특징 비교와 자원 확장 전략, 그리고 클라우드 네이티브 컴퓨팅의 정의 및 변화 양상 정리"
+subCategory: "Cloud"
 ---
 
 ## 1. 클라우드 배포 모델 비교

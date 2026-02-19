@@ -3,8 +3,7 @@ id: learning-cloud-04
 title: "클라우드 보안 체계와 설계 원칙"
 date: "2025-06-12"
 category: "learning"
-subCategory: "cloud"
-excerpt: "클라우드 보안의 필요성과 책임 공유 모델, 제로 트러스트 보안 설계 및 주요 클라우드 보안 서비스 정리"
+subCategory: "Cloud"
 ---
 
 ## 1. 클라우드 보안의 개요

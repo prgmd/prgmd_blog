@@ -3,8 +3,7 @@ id: learning-database-04
 title: "MariaDB 제약 조건과 MongoDB 기초"
 date: "2025-05-12"
 category: "learning"
-subCategory: "database"
-excerpt: "MariaDB의 제약 조건 관리 방법과 NoSQL 데이터베이스인 MongoDB의 기본 구조 이해"
+subCategory: "Database"
 ---
 
 ## 1. MariaDB 제약 조건 관리

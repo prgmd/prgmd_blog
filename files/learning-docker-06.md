@@ -3,8 +3,7 @@ id: learning-docker-06
 title: "데이터 영속성 실습 및 컨테이너 네트워크"
 date: "2025-06-18"
 category: "learning"
-subCategory: "docker"
-excerpt: "MySQL 데이터 영속성 유지 실습, 호스트 로그 저장 및 컨테이너 간 네트워크 연결 설정 정리"
+subCategory: "Docker"
 ---
 
 ## 1. 데이터베이스 영속성 관리 (MySQL)

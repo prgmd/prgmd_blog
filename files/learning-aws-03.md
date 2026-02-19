@@ -3,8 +3,7 @@ id: learning-aws-03
 title: "데이터베이스 서비스 및 S3 활용"
 date: "2025-07-23"
 category: "learning"
-subCategory: "aws"
-excerpt: "데이터 특성에 따른 AWS 전용 데이터베이스 분류와 무제한 확장성을 제공하는 S3 스토리지의 핵심 기능 정리"
+subCategory: "AWS"
 ---
 
 ## 1. AWS 데이터베이스 서비스 분류

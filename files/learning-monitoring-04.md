@@ -3,8 +3,7 @@ id: learning-monitoring-04
 title: "MSA 구성 요소 및 Elastic Stack 개요"
 date: "2025-08-28"
 category: "learning"
-subCategory: "monitoring"
-excerpt: "마이크로서비스 아키텍처를 지탱하는 주요 컴포넌트들과 전문 검색 및 빅데이터 처리를 위한 엘라스틱 스택의 구조 정리"
+subCategory: "Monitoring"
 ---
 
 ## 1. 마이크로서비스 아키텍처(MSA) 주요 컴포넌트

@@ -3,8 +3,7 @@ id: learning-docker-11
 title: "도커 스웜 환경 구축과 스택 배포"
 date: "2025-06-26"
 category: "learning"
-subCategory: "docker"
-excerpt: "도커 컴포즈의 환경 변수 관리부터 스웜 클러스터 초기화, 노드 추가, 오버레이 네트워크 및 스택 배포까지 전체 과정 정리"
+subCategory: "Docker"
 ---
 
 ## 1. 도커 컴포즈 환경 변수 설정

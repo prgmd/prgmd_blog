@@ -3,8 +3,7 @@ id: learning-linux-07
 title: "Linux 사용자 계정 관리와 네트워크 기초"
 date: "2025-05-23"
 category: "learning"
-subCategory: "linux"
-excerpt: "리눅스 사용자 계정 생성 및 수정, 패스워드 에이징 설정 및 TCP/IP 네트워크 기초 이론 정리"
+subCategory: "Linux"
 ---
 
 ## 1. 사용자 계정 관리

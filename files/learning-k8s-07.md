@@ -3,8 +3,7 @@ id: learning-k8s-07
 title: "인그레스와 설정 관리: ConfigMap, Secret"
 date: "2025-07-08"
 category: "learning"
-subCategory: "kubernetes"
-excerpt: "세션 어피니티와 인그레스를 통한 L7 라우팅, ConfigMap과 Secret을 활용한 설정 및 기밀 정보 관리 방법 정리"
+subCategory: "Kubernetes"
 ---
 
 ## 1. 세션 고정 (Session Affinity)

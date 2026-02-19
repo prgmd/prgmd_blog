@@ -3,8 +3,7 @@ id: learning-k8s-06
 title: "잡, 크론잡 및 서비스 리소스"
 date: "2025-07-04"
 category: "learning"
-subCategory: "kubernetes"
-excerpt: "일회성 작업을 위한 Job/CronJob과 클러스터 내부 및 외부 통신을 위한 Service 리소스의 특징 정리"
+subCategory: "Kubernetes"
 ---
 
 ## 1. 잡 (Job)

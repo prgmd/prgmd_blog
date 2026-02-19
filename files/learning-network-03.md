@@ -3,8 +3,7 @@ id: learning-network-03
 title: "네트워크 핵심 장비와 주요 기술"
 date: "2025-05-30"
 category: "learning"
-subCategory: "network"
-excerpt: "스위치의 루프 방지 메커니즘, 라우터와 로드 밸런서의 동작 원리, 그리고 NAT와 DNS 기술의 상세 구조"
+subCategory: "Network"
 ---
 
 ## 1. 스위치(Switch)와 루프 예방

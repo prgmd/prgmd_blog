@@ -3,8 +3,7 @@ id: learning-cloud-03
 title: "클라우드 네이티브의 핵심 요소와 아키텍처"
 date: "2025-06-11"
 category: "learning"
-subCategory: "cloud"
-excerpt: "데브옵스, 애자일 방법론, 마이크로서비스 아키텍처(MSA)의 특징과 클라우드 인프라 서비스 모델 상세 정리"
+subCategory: "Cloud"
 ---
 
 ## 1. 클라우드 네이티브의 핵심 기둥 (Pillars)

@@ -3,8 +3,7 @@ id: learning-linux-02
 title: "셸 활용과 파일 시스템 구조"
 date: "2025-05-16"
 category: "learning"
-subCategory: "linux"
-excerpt: "Vim의 고급 명령과 리눅스 셸의 종류, 입출력 리다이렉션 및 파일 시스템의 계층 구조 정리"
+subCategory: "Linux"
 ---
 
 ## 1. Vim(VI) 편집기 고급 활용

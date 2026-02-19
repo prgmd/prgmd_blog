@@ -3,8 +3,7 @@ id: learning-docker-08
 title: "Dockerfile 최적화 및 프라이빗 레지스트리"
 date: "2025-06-20"
 category: "learning"
-subCategory: "docker"
-excerpt: "효율적인 Dockerfile 작성법, 멀티 스테이지 빌드를 통한 이미지 경량화 및 사설 저장소 구축 정리"
+subCategory: "Docker"
 ---
 
 ## 1. Dockerfile 작성 시 유의 사항

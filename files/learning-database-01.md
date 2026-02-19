@@ -3,8 +3,7 @@ id: learning-database-01
 title: "RDBMS 개념과 SQL 조회 기초"
 date: "2025-05-07"
 category: "learning"
-subCategory: "database"
-excerpt: "데이터베이스 관리 시스템(DBMS)의 이해와 SQL SELECT 문을 이용한 데이터 조회 기본"
+subCategory: "Database"
 ---
 
 ## 1. 데이터베이스와 DBMS의 이해

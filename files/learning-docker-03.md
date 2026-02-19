@@ -3,8 +3,7 @@ id: learning-docker-03
 title: "도커 컨테이너 제어 및 데이터 영속성 관리"
 date: "2025-06-17"
 category: "learning"
-subCategory: "docker"
-excerpt: "컨테이너의 수동 제어 단계와 도커 볼륨 및 바인드 마운트를 이용한 데이터 저장 방식 정리"
+subCategory: "Docker"
 ---
 
 ## 1. 컨테이너 실행 구조와 수동 제어

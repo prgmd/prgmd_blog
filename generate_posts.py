@@ -7,14 +7,24 @@ def parse_frontmatter(content):
     match = re.search(r'^---\s*(.*?)\s*---', content, re.DOTALL | re.MULTILINE)
     if not match:
         return None
-    
+
     yaml_block = match.group(1)
     metadata = {}
     for line in yaml_block.split('\n'):
         if ':' in line:
             key, value = line.split(':', 1)
-            # 따옴표 및 공백 제거
-            metadata[key.strip()] = value.strip().strip('"').strip("'")
+            key = key.strip()
+            value = value.strip()
+            # 배열 형식 처리: ["A", "B"] or ['A', 'B']
+            if value.startswith('['):
+                try:
+                    parsed = json.loads(value)
+                    metadata[key] = parsed
+                    continue
+                except json.JSONDecodeError:
+                    pass
+            # 일반 문자열
+            metadata[key] = value.strip('"').strip("'")
     return metadata
 
 def build_posts_json():

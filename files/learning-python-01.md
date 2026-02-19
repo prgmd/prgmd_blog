@@ -3,8 +3,7 @@ id: learning-python-01
 title: "객체 지향 프로그래밍과 데이터 타입 기초"
 date: "2025-04-30"
 category: "learning"
-subCategory: "python"
-excerpt: "파이썬의 핵심인 객체 지향 프로그래밍(OOP) 특징부터 시퀀스 자료형까지의 핵심 요약"
+subCategory: "Python"
 ---
 
 ## 1. 객체 지향 프로그래밍(OOP)의 이해

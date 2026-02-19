@@ -3,8 +3,7 @@ id: learning-network-02
 title: "통신 메커니즘과 주소 체계 심화"
 date: "2025-05-29"
 category: "learning"
-subCategory: "network"
-excerpt: "MAC/IP 주소의 세부 구조, ARP 프로토콜의 동작 원리 및 스위치 장비의 핵심 기능 정리"
+subCategory: "Network"
 ---
 
 ## 1. 계층별 주소 체계와 동작

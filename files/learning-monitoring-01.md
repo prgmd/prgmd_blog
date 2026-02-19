@@ -3,8 +3,7 @@ id: learning-monitoring-01
 title: "관측 가능성: 개념, 트래픽 관리 및 MSA"
 date: "2025-08-13"
 category: "learning"
-subCategory: "monitoring"
-excerpt: "모니터링을 넘어선 관측 가능성의 개념과 3요소, 클라우드 환경의 트래픽 관리 기법 및 MSA 배포 워크플로우 정리"
+subCategory: "Monitoring"
 ---
 
 ## 1. 관측 가능성의 개념

@@ -3,8 +3,7 @@ id: learning-linux-01
 title: "리눅스 기초와 Vim 편집기"
 date: "2025-05-15"
 category: "learning"
-subCategory: "linux"
-excerpt: "리눅스 시스템의 구조 이해와 기본 명령어, 그리고 필수 편집기인 Vim의 동작 모드 정리"
+subCategory: "Linux"
 ---
 
 ## 1. 리눅스(Linux) 시스템 개요

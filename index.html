@@ -51,8 +51,8 @@
         .history-item { @apply flex gap-4 pb-6 border-l border-white/10 ml-1 pl-6 relative last:pb-0; }
         .history-item::before { content: ''; @apply absolute left-[-4.5px] top-1.5 w-2 h-2 rounded-full bg-zinc-700 border border-background-dark; }
         
-        .typing-container { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 2px solid #0064fa; animation: typing 3s steps(40, end), blink-caret .75s step-end infinite; }
-        @keyframes typing { from { width: 0 } to { width: 100% } }
+        .typing-container { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 2px solid #0064fa; animation: typing 3s steps(33, end) forwards, blink-caret .75s step-end infinite; }
+        @keyframes typing { from { max-width: 0 } to { max-width: 100% } }
         @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #0064fa; } }
 
         .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
@@ -252,7 +252,7 @@
                         <article class="max-w-2xl md:max-w-4xl mx-auto w-full animate-fadeIn">
                             <header class="mb-12 border-b border-white/10 pb-8 text-center">
                                 <h1 class="text-2xl md:text-5xl font-black text-white tracking-tighter mb-4">${post.title}</h1>
-                                <div class="text-sm text-zinc-500">${post.date} • ${post.subCategory.toUpperCase()}</div>
+                                <div class="text-sm text-zinc-500">${post.date} • ${(Array.isArray(post.subCategory) ? post.subCategory : [post.subCategory]).join(' · ').toUpperCase()}</div>
                             </header>
                             <div class="prose">${marked.parse(cleanText)}</div>
                         </article>
@@ -263,41 +263,65 @@
                 }
             }
         
+            function filterPosts(subCat) {
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    const active = btn.dataset.sub === subCat;
+                    btn.className = `filter-btn px-3 py-1 text-xs rounded-sm border transition-all cursor-pointer ${
+                        active ? 'border-primary/50 text-white bg-primary/10' : 'border-white/10 text-zinc-400 hover:text-white hover:border-white/30'
+                    }`;
+                });
+                document.querySelectorAll('#post-list [data-sub]').forEach(item => {
+                    item.classList.toggle('hidden', subCat !== '__all__' && !item.dataset.sub.split(',').includes(subCat));
+                });
+            }
+
             function showCategory(cat) {
                 updateBreadcrumb([cat]);
-                const posts = allPosts.filter(p => p.category === cat);
-                const subCats = [...new Set(posts.map(p => p.subCategory))];
+                const posts = allPosts.filter(p => p.category === cat).sort((a, b) => b.date.localeCompare(a.date));
+                let subCats = [...new Set(posts.flatMap(p => Array.isArray(p.subCategory) ? p.subCategory : [p.subCategory]))];
+                if (cat === 'projects') {
+                    ['Digem', 'Blackbox', 'Blog'].forEach(s => !subCats.includes(s) && subCats.push(s));
+                    subCats = subCats.filter(s => s !== 'projects');
+                }
+                if (cat === 'learning') {
+                    techStack.forEach(t => !subCats.includes(t.name) && subCats.push(t.name));
+                }
 
                 document.getElementById('content-area').innerHTML = `
                     <div class="max-w-2xl md:max-w-4xl mx-auto w-full animate-fadeIn">
-                        <h2 class="text-3xl md:text-4xl font-black mb-10 tracking-tighter uppercase text-center">${cat}</h2>
-                        ${subCats.length > 0 ? `
-                            <div class="space-y-10">
-                                ${subCats.map(sub => {
-                                    const subPosts = posts.filter(p => p.subCategory === sub);
-                                    return `
-                                        <div>
-                                            <h3 class="text-sm font-black text-zinc-500 tracking-[0.3em] uppercase border-b border-white/10 pb-2 mb-4">${sub}</h3>
-                                            <div class="space-y-2">
-                                                ${subPosts.map(p => `
-                                                    <a href="#post/${p.id}" class="interactive-card flex items-center justify-between gap-4">
-                                                        <h4 class="text-base font-bold text-white">${p.title}</h4>
-                                                        <span class="text-xs text-zinc-500 shrink-0">${p.date}</span>
-                                                    </a>
-                                                `).join('')}
-                                            </div>
-                                        </div>
-                                    `;
-                                }).join('')}
-                            </div>
-                        ` : `<p class="text-zinc-500 italic text-center">아직 작성된 글이 없습니다.</p>`}
+                        <h2 class="text-3xl md:text-4xl font-black mb-8 tracking-tighter uppercase text-center">${cat}</h2>
+
+                        <div class="flex flex-wrap gap-2 justify-center mb-8">
+                            <button data-sub="__all__" onclick="filterPosts('__all__')"
+                                class="filter-btn px-3 py-1 text-xs rounded-sm border transition-all cursor-pointer border-primary/50 text-white bg-primary/10">
+                                All
+                            </button>
+                            ${subCats.map(sub => `
+                                <button data-sub="${sub}" onclick="filterPosts('${sub}')"
+                                    class="filter-btn px-3 py-1 text-xs rounded-sm border transition-all cursor-pointer border-white/10 text-zinc-400 hover:text-white hover:border-white/30">
+                                    ${sub}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <div id="post-list" class="space-y-2">
+                            ${posts.length > 0 ? posts.map(p => `
+                                <a href="#post/${p.id}" data-sub="${Array.isArray(p.subCategory) ? p.subCategory.join(',') : p.subCategory}" class="interactive-card flex items-center justify-between gap-4">
+                                    <h4 class="text-base font-bold text-white">${p.title}</h4>
+                                    <div class="flex items-center gap-3 shrink-0">
+                                        <span class="text-[11px] px-2 py-0.5 border border-white/10 text-zinc-500 rounded-sm">${Array.isArray(p.subCategory) ? p.subCategory.join(' · ') : p.subCategory}</span>
+                                        <span class="text-xs text-zinc-500 hidden md:block">${p.date}</span>
+                                    </div>
+                                </a>
+                            `).join('') : `<p class="text-zinc-500 italic text-center">아직 작성된 글이 없습니다.</p>`}
+                        </div>
                     </div>
                 `;
             }
 
             function showArchive(subCat) {
                 updateBreadcrumb([subCat]);
-                const filtered = allPosts.filter(p => p.subCategory === subCat);
+                const filtered = allPosts.filter(p => Array.isArray(p.subCategory) ? p.subCategory.includes(subCat) : p.subCategory === subCat);
                 
                 document.getElementById('content-area').innerHTML = `
                     <div class="max-w-2xl md:max-w-4xl mx-auto w-full animate-fadeIn">
@@ -337,23 +361,23 @@
                         <section>
                             <div onclick="toggleSection('timeline')" class="flex items-center justify-between cursor-pointer pb-2 border-b border-white/10 select-none">
                                 <span class="text-sm font-black text-zinc-500 tracking-[0.3em] uppercase">Timeline</span>
-                                <span id="ico-timeline" class="text-zinc-500 text-base" style="transition: transform 0.3s ease; display: inline-block">▶</span>
+                                <span id="ico-timeline" class="text-zinc-500 text-base" style="transition: transform 0.3s ease; display: inline-block; transform: rotate(90deg)">▶</span>
                             </div>
-                            <div id="sec-timeline" data-open="false" style="max-height: 0; overflow: hidden; transition: max-height 0.35s ease">
+                            <div id="sec-timeline" data-open="true" style="max-height: 2000px; overflow: hidden; transition: max-height 0.35s ease">
                                 <div class="mt-8 space-y-5 max-w-lg mx-auto pb-2">
-                                    <div class="flex items-baseline gap-6">
+                                    <div class="flex items-center gap-6">
                                         <p class="text-sm text-zinc-400 shrink-0 w-36 text-right">2017.03.02 ~ 2024.02.22</p>
                                         <h4 class="text-lg font-bold">건국대학교 스마트운행체공학과 졸업</h4>
                                     </div>
-                                    <div class="flex items-baseline gap-6">
+                                    <div class="flex items-center gap-6">
                                         <p class="text-sm text-zinc-400 shrink-0 w-36 text-right">2024.03.15 ~ 2024.11.14</p>
                                         <h4 class="text-lg font-bold">CJ ENM 아티스트 사업부 데이터 분석</h4>
                                     </div>
-                                    <div class="flex items-baseline gap-6">
+                                    <div class="flex items-center gap-6">
                                         <p class="text-sm text-zinc-400 shrink-0 w-36 text-right">2025.04.28 ~ 2025.11.12</p>
                                         <h4 class="text-lg font-bold">현대오토에버 모빌리티 SW 스쿨 2기</h4>
                                     </div>
-                                    <div class="flex items-baseline gap-6">
+                                    <div class="flex items-center gap-6">
                                         <p class="text-sm text-zinc-400 shrink-0 w-36 text-right">2026.01.07 ~ 현재</p>
                                         <h4 class="text-lg font-bold">SSAFY 15기 교육생</h4>
                                     </div>
@@ -364,9 +388,9 @@
                         <section>
                             <div onclick="toggleSection('stack')" class="flex items-center justify-between cursor-pointer pb-2 border-b border-white/10 select-none">
                                 <span class="text-sm font-black text-zinc-500 tracking-[0.3em] uppercase">Technical Stack</span>
-                                <span id="ico-stack" class="text-zinc-500 text-base" style="transition: transform 0.3s ease; display: inline-block">▶</span>
+                                <span id="ico-stack" class="text-zinc-500 text-base" style="transition: transform 0.3s ease; display: inline-block; transform: rotate(90deg)">▶</span>
                             </div>
-                            <div id="sec-stack" data-open="false" style="max-height: 0; overflow: hidden; transition: max-height 0.35s ease">
+                            <div id="sec-stack" data-open="true" style="max-height: 2000px; overflow: hidden; transition: max-height 0.35s ease">
                                 <div class="mt-8 space-y-8 text-center pb-2">
                                     ${techStackGroups.map(g => `
                                         <div>
@@ -383,9 +407,9 @@
                         <section>
                             <div onclick="toggleSection('projects')" class="flex items-center justify-between cursor-pointer pb-2 border-b border-white/10 select-none">
                                 <span class="text-sm font-black text-zinc-500 tracking-[0.3em] uppercase">Projects</span>
-                                <span id="ico-projects" class="text-zinc-500 text-base" style="transition: transform 0.3s ease; display: inline-block">▶</span>
+                                <span id="ico-projects" class="text-zinc-500 text-base" style="transition: transform 0.3s ease; display: inline-block; transform: rotate(90deg)">▶</span>
                             </div>
-                            <div id="sec-projects" data-open="false" style="max-height: 0; overflow: hidden; transition: max-height 0.35s ease">
+                            <div id="sec-projects" data-open="true" style="max-height: 2000px; overflow: hidden; transition: max-height 0.35s ease">
                                 <div class="mt-4 space-y-3 pb-2">
                                     <a href="#archive/digem" class="interactive-card flex items-center gap-6 py-5">
                                         <span class="material-symbols-outlined text-4xl text-zinc-500 shrink-0">music_note</span>

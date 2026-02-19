@@ -3,8 +3,7 @@ id: learning-k8s-09
 title: "Volume API와 영구 저장소"
 date: "2025-07-10"
 category: "learning"
-subCategory: "kubernetes"
-excerpt: "볼륨, PV, PVC의 차이점과 CSI 인터페이스를 통한 외부 스토리지 연동 방법 정리"
+subCategory: "Kubernetes"
 ---
 
 ## 1. Volume API 개요

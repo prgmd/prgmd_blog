@@ -3,8 +3,7 @@ id: learning-aws-08
 title: "EKS 구축 도구 및 RDS 인프라 구성"
 date: "2025-08-04"
 category: "learning"
-subCategory: "aws"
-excerpt: "EKS 클러스터 관리를 위한 주요 CLI 도구 설치 방법과 CloudFormation을 활용한 VPC 및 RDS 가용성 구성 정리"
+subCategory: "AWS"
 ---
 
 ## 1. EKS 구축 및 관리 도구 설치

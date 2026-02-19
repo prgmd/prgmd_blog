@@ -3,8 +3,7 @@ id: learning-aws-11
 title: "EKS 로그 관리, 오토스케일링 및 클러스터 보안 (2)"
 date: "2025-08-06"
 category: "learning"
-subCategory: "aws"
-excerpt: "Fluentd와 CloudWatch를 이용한 로그 관리, Cluster AutoScaler 및 HPA를 활용한 자원 최적화, RBAC 기반 보안 설정 정리"
+subCategory: "AWS"
 ---
 
 ## 1. 로그 관리와 운영

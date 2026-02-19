@@ -3,8 +3,7 @@ id: learning-k8s-01
 title: "쿠버네티스 기초: 런타임, 통신 및 클러스터 구축"
 date: "2025-06-30"
 category: "learning"
-subCategory: "kubernetes"
-excerpt: "컨테이너 런타임의 종류와 클러스터 내외부 통신 원리, 클러스터 구축 도구 비교 및 kubectl을 이용한 리소스 관리 방법 정리"
+subCategory: "Kubernetes"
 ---
 
 ## 1. 컨테이너 런타임

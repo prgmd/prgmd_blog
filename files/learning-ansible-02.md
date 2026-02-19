@@ -3,8 +3,7 @@ id: learning-ansible-02
 title: "변수, 팩트(Facts) 및 제어문 활용"
 date: "2025-08-08"
 category: "learning"
-subCategory: "ansible"
-excerpt: "앤서블의 다양한 변수 정의 방법과 시스템 정보를 수집하는 팩트, 그리고 플레이북의 유연성을 높여주는 조건문 및 반복문 정리"
+subCategory: "Ansible"
 ---
 
 ## 1. 변수(Variables)의 종류와 사용법

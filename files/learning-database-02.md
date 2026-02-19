@@ -3,8 +3,7 @@ id: learning-database-02
 title: "SQL 함수와 서브쿼리 활용"
 date: "2025-05-08"
 category: "learning"
-subCategory: "database"
-excerpt: "데이터 가공을 위한 내장 함수, 통계를 위한 데이터 그룹화 및 강력한 서브쿼리 기술 정리"
+subCategory: "Database"
 ---
 
 ## 1. 데이터베이스 함수 (Function)
