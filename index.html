@@ -350,51 +350,76 @@
                             </div>
                         </section>
 
-                        <section class="text-center">
-                            <h3 class="section-title">// Timeline</h3>
-                            <div class="mt-8 space-y-8">
-                                <div>
-                                    <p class="text-sm text-zinc-500 mb-2">2017.03.02 ~ 2024.02.22</p>
-                                    <h4 class="text-lg font-bold">건국대학교 스마트운행체공학과 졸업</h4>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-zinc-500 mb-2">2024.03.15 ~ 2024.11.14</p>
-                                    <h4 class="text-lg font-bold">CJ ENM 아티스트 사업부 데이터 분석 계약직 근무</h4>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-zinc-500 mb-2">2025.04.28 ~ 2025.11.12</p>
-                                    <h4 class="text-lg font-bold">현대오토에버 모빌리티 SW 스쿨 2기 과정</h4>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-zinc-500 mb-2">2026.01.07 ~ 현재</p>
-                                    <h4 class="text-lg font-bold">SSAFY(삼성청년SW아카데미) 15기 교육생</h4>
-                                </div>
+                        <section>
+                            <div onclick="toggleSection('timeline')" class="flex items-center justify-between cursor-pointer pb-2 border-b border-white/10 select-none">
+                                <span class="text-sm font-black text-zinc-500 tracking-[0.3em] uppercase">// Timeline</span>
+                                <span id="ico-timeline" class="text-zinc-500 text-base" style="transition: transform 0.3s ease; display: inline-block">▶</span>
                             </div>
-                        </section>
-
-                        <section class="text-center">
-                            <h3 class="section-title">// Technical Stack</h3>
-                            <div class="mt-8 space-y-8">
-                                ${techStackGroups.map(g => `
+                            <div id="sec-timeline" data-open="false" style="max-height: 0; overflow: hidden; transition: max-height 0.35s ease">
+                                <div class="mt-8 space-y-8 text-center pb-2">
                                     <div>
-                                        <p class="text-xs text-zinc-600 uppercase tracking-widest mb-3">${g.group}</p>
-                                        <div class="flex flex-wrap gap-2 justify-center">
-                                            ${g.items.map(s => `<span class="stack-badge" style="background-color:${s.color}18; color:${s.color}; border: 1px solid ${s.color}40;">${s.name}</span>`).join('')}
-                                        </div>
+                                        <p class="text-sm text-zinc-500 mb-2">2017.03.02 ~ 2024.02.22</p>
+                                        <h4 class="text-lg font-bold">건국대학교 스마트운행체공학과 졸업</h4>
                                     </div>
-                                `).join('')}
+                                    <div>
+                                        <p class="text-sm text-zinc-500 mb-2">2024.03.15 ~ 2024.11.14</p>
+                                        <h4 class="text-lg font-bold">CJ ENM 아티스트 사업부 데이터 분석 계약직 근무</h4>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-zinc-500 mb-2">2025.04.28 ~ 2025.11.12</p>
+                                        <h4 class="text-lg font-bold">현대오토에버 모빌리티 SW 스쿨 2기 과정</h4>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-zinc-500 mb-2">2026.01.07 ~ 현재</p>
+                                        <h4 class="text-lg font-bold">SSAFY(삼성청년SW아카데미) 15기 교육생</h4>
+                                    </div>
+                                </div>
                             </div>
                         </section>
 
-                        <section class="text-center">
-                            <h3 class="section-title">// Project Briefs</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 text-left">
-                                <a href="#archive/digem" class="interactive-card">
-                                    <div class="flex items-start gap-4"><span class="material-symbols-outlined text-3xl text-zinc-500">music_note</span><div><h4 class="text-white font-bold mb-2 tracking-tight">Digem_</h4><p class="text-sm text-zinc-500 leading-relaxed">음악 아티클 분산 수집 엔진</p></div></div>
-                                </a>
-                                <a href="#archive/blackbox" class="interactive-card">
-                                    <div class="flex items-start gap-4"><span class="material-symbols-outlined text-3xl text-zinc-500">videocam</span><div><h4 class="text-white font-bold mb-2 tracking-tight">Cloud_Blackbox_</h4><p class="text-sm text-zinc-500 leading-relaxed">클라우드 기반 영상 관제 시스템</p></div></div>
-                                </a>
+                        <section>
+                            <div onclick="toggleSection('stack')" class="flex items-center justify-between cursor-pointer pb-2 border-b border-white/10 select-none">
+                                <span class="text-sm font-black text-zinc-500 tracking-[0.3em] uppercase">// Technical Stack</span>
+                                <span id="ico-stack" class="text-zinc-500 text-base" style="transition: transform 0.3s ease; display: inline-block">▶</span>
+                            </div>
+                            <div id="sec-stack" data-open="false" style="max-height: 0; overflow: hidden; transition: max-height 0.35s ease">
+                                <div class="mt-8 space-y-8 text-center pb-2">
+                                    ${techStackGroups.map(g => `
+                                        <div>
+                                            <p class="text-xs text-zinc-600 uppercase tracking-widest mb-3">${g.group}</p>
+                                            <div class="flex flex-wrap gap-2 justify-center">
+                                                ${g.items.map(s => `<span class="stack-badge" style="background-color:${s.color}18; color:${s.color}; border: 1px solid ${s.color}40;">${s.name}</span>`).join('')}
+                                            </div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </section>
+
+                        <section>
+                            <div onclick="toggleSection('projects')" class="flex items-center justify-between cursor-pointer pb-2 border-b border-white/10 select-none">
+                                <span class="text-sm font-black text-zinc-500 tracking-[0.3em] uppercase">// Projects</span>
+                                <span id="ico-projects" class="text-zinc-500 text-base" style="transition: transform 0.3s ease; display: inline-block">▶</span>
+                            </div>
+                            <div id="sec-projects" data-open="false" style="max-height: 0; overflow: hidden; transition: max-height 0.35s ease">
+                                <div class="mt-4 space-y-3 pb-2">
+                                    <a href="#archive/digem" class="interactive-card flex items-center gap-5">
+                                        <span class="material-symbols-outlined text-2xl text-zinc-500 shrink-0">music_note</span>
+                                        <div class="flex-1 min-w-0">
+                                            <h4 class="text-white font-bold tracking-tight mb-1">Digem_</h4>
+                                            <p class="text-sm text-zinc-500">음악 아티클 분산 수집 엔진</p>
+                                        </div>
+                                        <span class="material-symbols-outlined text-zinc-700 text-base shrink-0">chevron_right</span>
+                                    </a>
+                                    <a href="#archive/blackbox" class="interactive-card flex items-center gap-5">
+                                        <span class="material-symbols-outlined text-2xl text-zinc-500 shrink-0">videocam</span>
+                                        <div class="flex-1 min-w-0">
+                                            <h4 class="text-white font-bold tracking-tight mb-1">Cloud_Blackbox_</h4>
+                                            <p class="text-sm text-zinc-500">클라우드 기반 영상 관제 시스템</p>
+                                        </div>
+                                        <span class="material-symbols-outlined text-zinc-700 text-base shrink-0">chevron_right</span>
+                                    </a>
+                                </div>
                             </div>
                         </section>
 
@@ -403,6 +428,15 @@
             }
         
             // --- 유틸리티 ---
+            function toggleSection(id) {
+                const content = document.getElementById('sec-' + id);
+                const icon = document.getElementById('ico-' + id);
+                const isOpen = content.dataset.open === 'true';
+                content.style.maxHeight = isOpen ? '0px' : content.scrollHeight + 'px';
+                icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(90deg)';
+                content.dataset.open = isOpen ? 'false' : 'true';
+            }
+
             function toggleExplorer() {
                 const panel = document.getElementById('explorer-panel');
                 const overlay = document.getElementById('explorer-overlay');
