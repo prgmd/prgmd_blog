@@ -3,7 +3,7 @@ id: learning-aws-05
 title: "컨테이너 배포 자동화 및 ECS 서비스"
 date: "2025-07-25"
 category: "learning"
-subCategory: "AWS"
+subCategory: ["AWS", "Docker"]
 ---
 
 ## 1. Django 애플리케이션 도커 배포 프로세스

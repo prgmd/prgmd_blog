@@ -3,7 +3,7 @@ id: learning-aws-10
 title: "EKS 로그 관리, 오토스케일링 및 클러스터 보안"
 date: "2025-08-06"
 category: "learning"
-subCategory: "AWS"
+subCategory: ["AWS", "Kubernetes", "Monitoring"]
 ---
 
 ## 1. 로그 관리와 운영

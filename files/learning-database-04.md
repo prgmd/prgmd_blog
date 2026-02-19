@@ -3,7 +3,7 @@ id: learning-database-04
 title: "MariaDB 제약 조건과 MongoDB 기초"
 date: "2025-05-12"
 category: "learning"
-subCategory: "Database"
+subCategory: ["Database", "MongoDB"]
 ---
 
 ## 1. MariaDB 제약 조건 관리

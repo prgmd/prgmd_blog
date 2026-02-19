@@ -3,7 +3,7 @@ id: learning-cicd-08
 title: "쿠버네티스 배포 전략 및 Argo Rollouts"
 date: "2025-08-28"
 category: "learning"
-subCategory: "CI/CD"
+subCategory: ["CI/CD", "Kubernetes"]
 ---
 
 ## 1. 쿠버네티스 표준 블루-그린 배포 (Blue-Green)

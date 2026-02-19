@@ -3,7 +3,7 @@ id: learning-cicd-03
 title: "GitHub Actions 심화 및 프로젝트 실습"
 date: "2025-07-17"
 category: "learning"
-subCategory: "CI/CD"
+subCategory: ["CI/CD", "GitHub Actions"]
 ---
 
 ## 1. CI/CD와 GitHub Actions 개요

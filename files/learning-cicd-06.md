@@ -3,7 +3,7 @@ id: learning-cicd-06
 title: "GitOps와 Argo CD: 원칙부터 실습까지"
 date: "2025-08-22"
 category: "learning"
-subCategory: "CI/CD"
+subCategory: ["CI/CD", "Kubernetes"]
 ---
 
 ## 1. GitOps의 정의와 핵심 원칙

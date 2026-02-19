@@ -3,7 +3,7 @@ id: learning-aws-07
 title: "EKS 클러스터 구축 및 백엔드 개발 환경 설정"
 date: "2025-07-29"
 category: "learning"
-subCategory: "AWS"
+subCategory: ["AWS", "Kubernetes"]
 ---
 
 ## 1. Amazon EKS (Elastic Kubernetes Service) 개요

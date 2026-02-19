@@ -68,7 +68,10 @@
         "title": "쿠버네티스 배포 전략 및 Argo Rollouts",
         "date": "2025-08-28",
         "category": "learning",
-        "subCategory": "CI/CD",
+        "subCategory": [
+            "CI/CD",
+            "Kubernetes"
+        ],
         "file": "learning-cicd-08.md"
     },
     {
@@ -76,7 +79,10 @@
         "title": "GitOps와 Argo CD: 원칙부터 실습까지",
         "date": "2025-08-22",
         "category": "learning",
-        "subCategory": "CI/CD",
+        "subCategory": [
+            "CI/CD",
+            "Kubernetes"
+        ],
         "file": "learning-cicd-06.md"
     },
     {
@@ -100,7 +106,7 @@
     },
     {
         "id": "learning-monitoring-02",
-        "title": "관측 가능성(13) - 트래픽 관리 및 마이크로 서비스 아키텍처",
+        "title": "관측 가능성 - 트래픽 관리 및 마이크로 서비스 아키텍처",
         "date": "2025-08-13",
         "category": "learning",
         "subCategory": "Monitoring",
@@ -143,7 +149,11 @@
         "title": "EKS 로그 관리, 오토스케일링 및 클러스터 보안 (2)",
         "date": "2025-08-06",
         "category": "learning",
-        "subCategory": "AWS",
+        "subCategory": [
+            "AWS",
+            "Kubernetes",
+            "Monitoring"
+        ],
         "file": "learning-aws-11.md"
     },
     {
@@ -151,7 +161,11 @@
         "title": "EKS 로그 관리, 오토스케일링 및 클러스터 보안",
         "date": "2025-08-06",
         "category": "learning",
-        "subCategory": "AWS",
+        "subCategory": [
+            "AWS",
+            "Kubernetes",
+            "Monitoring"
+        ],
         "file": "learning-aws-10.md"
     },
     {
@@ -159,7 +173,10 @@
         "title": "EKS 백엔드 배포 및 리소스 관리",
         "date": "2025-08-05",
         "category": "learning",
-        "subCategory": "AWS",
+        "subCategory": [
+            "AWS",
+            "Kubernetes"
+        ],
         "file": "learning-aws-09.md"
     },
     {
@@ -167,7 +184,10 @@
         "title": "EKS 구축 도구 및 RDS 인프라 구성",
         "date": "2025-08-04",
         "category": "learning",
-        "subCategory": "AWS",
+        "subCategory": [
+            "AWS",
+            "Kubernetes"
+        ],
         "file": "learning-aws-08.md"
     },
     {
@@ -175,7 +195,10 @@
         "title": "EKS 클러스터 구축 및 백엔드 개발 환경 설정",
         "date": "2025-07-29",
         "category": "learning",
-        "subCategory": "AWS",
+        "subCategory": [
+            "AWS",
+            "Kubernetes"
+        ],
         "file": "learning-aws-07.md"
     },
     {
@@ -183,7 +206,11 @@
         "title": "ECS 배포 전략 및 CI/CD 파이프라인 구축",
         "date": "2025-07-28",
         "category": "learning",
-        "subCategory": "AWS",
+        "subCategory": [
+            "AWS",
+            "Docker",
+            "CI/CD"
+        ],
         "file": "learning-aws-06.md"
     },
     {
@@ -191,7 +218,10 @@
         "title": "컨테이너 배포 자동화 및 ECS 서비스",
         "date": "2025-07-25",
         "category": "learning",
-        "subCategory": "AWS",
+        "subCategory": [
+            "AWS",
+            "Docker"
+        ],
         "file": "learning-aws-05.md"
     },
     {
@@ -239,7 +269,10 @@
         "title": "GitHub Actions 심화 및 프로젝트 실습",
         "date": "2025-07-17",
         "category": "learning",
-        "subCategory": "CI/CD",
+        "subCategory": [
+            "CI/CD",
+            "GitHub Actions"
+        ],
         "file": "learning-cicd-03.md"
     },
     {
@@ -343,7 +376,11 @@
         "title": "GitHub Actions를 이용한 도커 배포 자동화",
         "date": "2025-06-23",
         "category": "learning",
-        "subCategory": "Docker",
+        "subCategory": [
+            "Docker",
+            "CI/CD",
+            "GitHub Actions"
+        ],
         "file": "learning-docker-09.md"
     },
     {
@@ -495,7 +532,10 @@
         "title": "네트워크 서비스 및 셸 프로그래밍 기초",
         "date": "2025-05-27",
         "category": "learning",
-        "subCategory": "Linux",
+        "subCategory": [
+            "Linux",
+            "Network"
+        ],
         "file": "learning-linux-08.md"
     },
     {
@@ -511,7 +551,10 @@
         "title": "Linux 사용자 계정 관리와 네트워크 기초",
         "date": "2025-05-23",
         "category": "learning",
-        "subCategory": "Linux",
+        "subCategory": [
+            "Linux",
+            "Network"
+        ],
         "file": "learning-linux-07.md"
     },
     {
@@ -567,7 +610,10 @@
         "title": "Python과 DB 연동 실무",
         "date": "2025-05-14",
         "category": "learning",
-        "subCategory": "Database",
+        "subCategory": [
+            "Database",
+            "Python"
+        ],
         "file": "learning-database-06.md"
     },
     {
@@ -575,7 +621,11 @@
         "title": "MongoDB CRUD와 파이썬 연동",
         "date": "2025-05-13",
         "category": "learning",
-        "subCategory": "Database",
+        "subCategory": [
+            "Database",
+            "MongoDB",
+            "Python"
+        ],
         "file": "learning-database-05.md"
     },
     {
@@ -583,7 +633,10 @@
         "title": "MariaDB 제약 조건과 MongoDB 기초",
         "date": "2025-05-12",
         "category": "learning",
-        "subCategory": "Database",
+        "subCategory": [
+            "Database",
+            "MongoDB"
+        ],
         "file": "learning-database-04.md"
     },
     {

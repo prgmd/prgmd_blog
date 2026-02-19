@@ -3,7 +3,7 @@ id: learning-aws-08
 title: "EKS 구축 도구 및 RDS 인프라 구성"
 date: "2025-08-04"
 category: "learning"
-subCategory: "AWS"
+subCategory: ["AWS", "Kubernetes"]
 ---
 
 ## 1. EKS 구축 및 관리 도구 설치

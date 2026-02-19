@@ -3,7 +3,7 @@ id: learning-aws-09
 title: "EKS 백엔드 배포 및 리소스 관리"
 date: "2025-08-05"
 category: "learning"
-subCategory: "AWS"
+subCategory: ["AWS", "Kubernetes"]
 ---
 
 ## 1. 백엔드 애플리케이션 로컬 환경 테스트

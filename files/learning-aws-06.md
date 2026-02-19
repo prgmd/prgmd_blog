@@ -3,7 +3,7 @@ id: learning-aws-06
 title: "ECS 배포 전략 및 CI/CD 파이프라인 구축"
 date: "2025-07-28"
 category: "learning"
-subCategory: "AWS"
+subCategory: ["AWS", "Docker", "CI/CD"]
 ---
 
 ## 1. ECS 배포 전략 및 오토 스케일링

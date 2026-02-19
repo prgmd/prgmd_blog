@@ -3,7 +3,7 @@ id: learning-database-06
 title: "Python과 DB 연동 실무"
 date: "2025-05-14"
 category: "learning"
-subCategory: "Database"
+subCategory: ["Database", "Python"]
 ---
 
 ## 1. 데이터베이스 연동 개요

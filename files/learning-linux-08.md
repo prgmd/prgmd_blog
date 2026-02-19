@@ -3,7 +3,7 @@ id: learning-linux-08
 title: "네트워크 서비스 및 셸 프로그래밍 기초"
 date: "2025-05-27"
 category: "learning"
-subCategory: "Linux"
+subCategory: ["Linux", "Network"]
 ---
 
 ## 1. 네트워크 관리 프로토콜 및 서버 설정
