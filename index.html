@@ -26,6 +26,8 @@
     </script>
 
     <style type="text/tailwindcss">
+        /* 모바일에서 viewport 너비에 비례해 폰트 크기 자동 조정 (데스크탑 ≥ 400px 완전 무영향) */
+        html { font-size: clamp(13px, 4vw, 16px); }
         body { font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; background-color: #050505; color: white; }
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #000000; }
