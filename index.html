@@ -315,12 +315,12 @@
 
                         <div id="post-list" class="space-y-2">
                             ${posts.length > 0 ? posts.map(p => `
-                                <a href="#post/${p.id}" data-sub="${Array.isArray(p.subCategory) ? p.subCategory.join(',') : p.subCategory}" class="interactive-card flex items-center justify-between gap-4">
-                                    <div class="flex items-center gap-4 min-w-0">
-                                        <span class="text-xs text-white shrink-0">${p.date}</span>
+                                <a href="#post/${p.id}" data-sub="${Array.isArray(p.subCategory) ? p.subCategory.join(',') : p.subCategory}" class="interactive-card flex items-center gap-4">
+                                    <span class="text-xs text-zinc-500 shrink-0">${p.date}</span>
+                                    <div class="min-w-0">
                                         <h4 class="text-base font-bold text-white">${p.title}</h4>
+                                        <p class="text-[11px] text-zinc-500 mt-1">${Array.isArray(p.subCategory) ? p.subCategory.join(' · ') : p.subCategory}</p>
                                     </div>
-                                    <span class="text-[11px] px-2 py-0.5 border border-white/20 text-white rounded-sm shrink-0">${Array.isArray(p.subCategory) ? p.subCategory.join(' · ') : p.subCategory}</span>
                                 </a>
                             `).join('') : `<p class="text-zinc-500 italic text-center">아직 작성된 글이 없습니다.</p>`}
                         </div>
