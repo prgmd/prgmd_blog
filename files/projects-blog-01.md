@@ -29,7 +29,7 @@ GitHub 프로젝트인 [Obsidian Blogger](https://obsidian-bloger.pages.dev/)를
 3. **템플릿 자동화:** `Templater` 플러그인을 사용하여 포스트 형식을 표준화. (이건 개발 블로그가 꼭 아니더라도 정말 좋은 기능이다. 추후 시간이 되면 다뤄보려 한다)
 4. **Sync 프로세스:** 옵시디언의 `Git` 플러그인을 통해 변경 사항을 **Commit-and-Sync** 하기만 하면 즉시 블로그에 반영되는 파이프라인을 완성되는 구조. 아니, 옵시디언에 Git 연동 플러그인이 있다는 건 상상도 못했다. 이게 있다면 굳이 Google Drive 같이 클라우드에 연동해서 파일을 받아볼 필요도 없지 않았을까 싶기도. (물론 당연히 Private으로 설정해야 한다)
   
-![auroracamp blog main page](/According%20Files/image.png)
+![](https://velog.velcdn.com/images/paramad/post/bbd79905-f9f1-484d-a3ef-394c2025df87/image.png)
   
 ### 문제
 - **장점:** 기본 프레임워크를 제공하고, 원하면 아예 프론트를 뜯어 고쳐서 만들 수 있는 구조였다. 고치기가 좀 쉬워보이지는 않았지만, 애초에 Sync 프로세스가 존재한다는 점에서 꽤 매력적인 선택지였다. (사실 `Templater` 플러그인과 `Git` 플러그인의 존재만으로도 얻은 게 많았다)

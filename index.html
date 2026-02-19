@@ -10,7 +10,7 @@
             <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-            <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet"/>    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+            <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet"/>
 
     <script>
@@ -19,7 +19,7 @@
             theme: {
                 extend: {
                     colors: { "primary": "#0064fa", "background-dark": "#050505" },
-                    fontFamily: { "mono": ["Space Grotesk", "monospace"], "sans": ["Pretendard", "sans-serif"] },
+                    fontFamily: { "mono": ["monospace"], "sans": ["Pretendard", "sans-serif"] },
                 },
             },
         }
@@ -43,10 +43,10 @@
             #explorer-overlay.show { display: block; }
         }
 
-        .section-title { @apply text-[12px] font-black text-primary mb-8 font-mono tracking-[0.3em] uppercase border-b border-primary/20 pb-2 inline-block; }
-        
-        /* [수정] 스택 배지: 배경색 적용, 흰색 글씨 */
-        .stack-badge { @apply flex items-center px-3 py-1 text-[10px] font-bold font-mono text-white rounded-sm transition-opacity hover:opacity-80 shadow-sm; }
+        .section-title { @apply text-sm font-black text-zinc-500 mb-8 tracking-[0.3em] uppercase border-b border-white/10 pb-2 inline-block; }
+
+        /* 스택 배지: 색상 톤다운 (배경 투명, 텍스트에 색상 적용) */
+        .stack-badge { @apply flex items-center px-3 py-1 text-sm font-bold rounded-sm transition-opacity hover:opacity-70; }
         
         .history-item { @apply flex gap-4 pb-6 border-l border-white/10 ml-1 pl-6 relative last:pb-0; }
         .history-item::before { content: ''; @apply absolute left-[-4.5px] top-1.5 w-2 h-2 rounded-full bg-zinc-700 border border-background-dark; }
@@ -58,29 +58,29 @@
         .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .social-badge { @apply flex items-center gap-2 px-5 py-2 border border-white/10 hover:border-primary/50 hover:bg-primary/5 transition-all rounded-full text-[11px] font-bold uppercase tracking-widest; }
+        .social-badge { @apply flex items-center gap-2 px-5 py-2 border border-white/10 hover:border-primary/50 hover:bg-primary/5 transition-all rounded-full text-[13px] font-bold uppercase tracking-widest; }
         
         /* 아카이브/브리프 카드 */
         .interactive-card { @apply p-4 md:p-6 border border-white/10 bg-zinc-900/10 hover:border-primary/50 hover:bg-zinc-900/30 cursor-pointer transition-all rounded-sm; }
 
-        .explorer-item { @apply flex items-center gap-2 px-4 py-1.5 text-[11px] text-zinc-400 hover:bg-white/5 hover:text-white cursor-pointer transition-colors; }
-        .explorer-folder { @apply flex items-center justify-between px-3 py-1.5 text-[11px] font-bold text-zinc-500 uppercase tracking-widest mt-2 cursor-pointer hover:text-zinc-300; }
+        .explorer-item { @apply flex items-center gap-2 px-4 py-1.5 text-[13px] text-zinc-400 hover:bg-white/5 hover:text-white cursor-pointer transition-colors; }
+        .explorer-folder { @apply flex items-center justify-between px-3 py-1.5 text-xs font-bold text-zinc-500 uppercase tracking-widest mt-2 cursor-pointer hover:text-zinc-300; }
         .folder-content { @apply overflow-hidden transition-all duration-300 max-h-0 border-l border-white/5 ml-4; }
         .folder-open { @apply max-h-[1000px]; }
         .rotate-icon { @apply transition-transform duration-300 text-[14px]; }
         .rotated { transform: rotate(90deg); }
 
-        .prose { @apply text-zinc-300 text-[14px] md:text-[16px] leading-[1.7] md:leading-[1.8]; }
+        .prose { @apply text-zinc-300 text-base md:text-lg leading-[1.7] md:leading-[1.8]; }
         .prose p { @apply mb-6; }
         .prose strong { @apply font-bold text-white; }
         .prose em { @apply italic text-zinc-400; }
         .prose a { @apply text-primary hover:underline; }
         .prose blockquote { @apply border-l-4 border-zinc-700 pl-4 md:pl-6 py-2 my-4 md:my-6 italic text-zinc-400 text-sm md:text-base; }
-        .prose code { @apply bg-zinc-800/80 text-amber-300 font-mono px-1.5 py-1 rounded-md text-[13px]; }
+        .prose code { @apply bg-zinc-800/80 text-amber-300 font-mono px-1.5 py-1 rounded-md text-sm; }
         .prose img { @apply block mx-auto my-8 rounded-lg shadow-lg max-w-full; }
-        .prose h2 { @apply text-xl md:text-2xl font-bold mb-4 md:mb-6 mt-8 md:mt-12 text-white flex items-center gap-2 font-mono; }
-        .prose h2::before { content: ''; @apply w-1.5 h-5 md:h-6 bg-primary inline-block rounded-full; }
-        .prose h3 { @apply text-lg md:text-xl font-bold mb-3 md:mb-4 mt-6 md:mt-8 text-white border-l-2 border-primary pl-4; }
+        .prose h2 { @apply text-xl md:text-2xl font-bold mb-4 md:mb-6 mt-8 md:mt-12 text-white flex items-center gap-2; }
+        .prose h2::before { content: ''; @apply w-1.5 h-5 md:h-6 bg-zinc-600 inline-block rounded-full; }
+        .prose h3 { @apply text-lg md:text-xl font-bold mb-3 md:mb-4 mt-6 md:mt-8 text-white border-l-2 border-zinc-700 pl-4; }
         .prose h4 { @apply text-lg font-bold mb-3 mt-6 text-white/90; }
         .prose ul { @apply list-disc list-inside ml-4 mb-6 space-y-2; }
         .prose ol { @apply list-decimal list-inside ml-4 mb-6 space-y-2; }
@@ -97,8 +97,8 @@
         <button onclick="toggleExplorer()" class="flex items-center px-4 border-r border-white/10 hover:bg-white/5 transition-colors text-zinc-400 hover:text-white">
             <span class="material-symbols-outlined">menu</span>
         </button>
-        <div class="flex items-center gap-2 px-6 border-r border-white/10 bg-zinc-900/50 font-mono text-xs">
-            <span class="text-primary">const</span> <span class="text-white">aurora</span> = <span class="text-green-500">"CAMP"</span>;
+        <div class="flex items-center px-6 border-r border-white/10">
+            <span class="text-white font-black text-sm tracking-tight">AURORACAMP</span>
         </div>
     </div>
 </header>
@@ -106,12 +106,12 @@
 <div class="flex flex-1 overflow-hidden relative">
     <div id="explorer-overlay" onclick="toggleExplorer()"></div>
     <aside id="explorer-panel" class="h-full border-r border-white/10 bg-[#0a0a0a] flex flex-col shrink-0 select-none md:translate-x-0 md:opacity-100">
-        <div class="p-4 text-[10px] uppercase font-bold tracking-widest text-zinc-600 border-b border-white/5">Explorer</div>
+        <div class="p-4 text-[11px] uppercase font-bold tracking-widest text-zinc-600 border-b border-white/5">Explorer</div>
         <div class="flex-1 overflow-y-auto custom-scrollbar py-2" id="explorer-content"></div>
     </aside>
 
     <main class="flex-1 flex flex-col bg-background-dark overflow-hidden w-full relative">
-                <div class="h-9 border-b border-white/10 flex items-center px-4 bg-zinc-900/20 text-[10px] font-mono text-zinc-500 select-none">
+                <div class="h-9 border-b border-white/10 flex items-center px-4 bg-zinc-900/20 text-xs text-zinc-500 select-none">
                     <button id="back-btn" onclick="window.history.back()" class="flex items-center justify-center w-6 h-6 mr-2 hover:bg-white/10 rounded transition-colors text-white">
                         <span class="material-symbols-outlined text-sm">chevron_left</span>
                     </button>
@@ -123,14 +123,31 @@
         
         <script>
             let allPosts = [];
-            const techStack = [
-                { name: "Ansible", color: "#EE0000" }, { name: "AWS", color: "#FF9900" },
-                { name: "CI/CD", color: "#4CAF50" }, { name: "Cloud", color: "#2196F3" },
-                { name: "Database", color: "#336791" }, { name: "Docker", color: "#2496ED" },
-                { name: "Kubernetes", color: "#326CE5" }, { name: "Linux", color: "#E8B000" },
-                { name: "Monitoring", color: "#E6522C" }, { name: "Network", color: "#00BCD4" },
-                { name: "Python", color: "#3776AB" }
+            const techStackGroups = [
+                { group: "Cloud", items: [
+                    { name: "AWS", color: "#FF9900" },
+                    { name: "Terraform", color: "#7B42BC" },
+                ]},
+                { group: "Container & Automation", items: [
+                    { name: "Docker", color: "#2496ED" },
+                    { name: "Kubernetes", color: "#326CE5" },
+                    { name: "Ansible", color: "#EE0000" },
+                    { name: "GitHub Actions", color: "#2088FF" },
+                ]},
+                { group: "System & Monitoring", items: [
+                    { name: "Linux", color: "#E8B000" },
+                    { name: "VirtualBox", color: "#2F6FAD" },
+                    { name: "Prometheus", color: "#E6522C" },
+                    { name: "Grafana", color: "#F46800" },
+                ]},
+                { group: "Data", items: [
+                    { name: "PostgreSQL", color: "#336791" },
+                    { name: "MongoDB", color: "#47A248" },
+                    { name: "Redis", color: "#DC382D" },
+                    { name: "Python", color: "#3776AB" },
+                ]},
             ];
+            const techStack = techStackGroups.flatMap(g => g.items);
         
             // --- 라우팅 및 렌더링 ---
             async function initBlog() {
@@ -202,13 +219,16 @@
                 function getIconForSubCategory(subCat) {
                     const icons = {
                         "digem": { symbol: "music_note", color: "#FF6B6B" }, "blackbox": { symbol: "videocam", color: "#4ECDC4" },
-                        "blog": { symbol: "note_add", color: "#9B59B6" }, "ansible": { symbol: "settings_suggest", color: "#EE0000" },
-                        "aws": { symbol: "cloud", color: "#FF9900" }, "ci/cd": { symbol: "sync", color: "#4CAF50" },
-                        "cloud": { symbol: "cloud_queue", color: "#2196F3" }, "database": { symbol: "database", color: "#336791" },
+                        "blog": { symbol: "note_add", color: "#9B59B6" },
+                        "aws": { symbol: "cloud", color: "#FF9900" },
                         "docker": { symbol: "package", color: "#2496ED" }, "kubernetes": { symbol: "grid_4x4", color: "#326CE5" },
-                        "linux": { symbol: "terminal", color: "#E8B000" },
-                        "monitoring": { symbol: "monitoring", color: "#E6522C" }, "network": { symbol: "lan", color: "#00BCD4" },
-                        "python": { symbol: "code", color: "#3776AB" },
+                        "aws": { symbol: "cloud", color: "#FF9900" }, "terraform": { symbol: "construction", color: "#7B42BC" },
+                        "docker": { symbol: "package", color: "#2496ED" }, "kubernetes": { symbol: "grid_4x4", color: "#326CE5" },
+                        "ansible": { symbol: "settings_suggest", color: "#EE0000" }, "github actions": { symbol: "play_circle", color: "#2088FF" },
+                        "linux": { symbol: "terminal", color: "#E8B000" }, "virtualbox": { symbol: "computer", color: "#2F6FAD" },
+                        "prometheus": { symbol: "monitoring", color: "#E6522C" }, "grafana": { symbol: "bar_chart", color: "#F46800" },
+                        "postgresql": { symbol: "database", color: "#336791" }, "mongodb": { symbol: "database", color: "#47A248" },
+                        "redis": { symbol: "memory", color: "#DC382D" }, "python": { symbol: "code", color: "#3776AB" },
                         "default": { symbol: "folder", color: "#FFFFFF" }
                     };
                     return icons[subCat] || icons["default"];
@@ -279,7 +299,7 @@
                         <article class="max-w-4xl animate-fadeIn">
                             <header class="mb-12 border-b border-white/10 pb-8">
                                 <h1 class="text-2xl md:text-5xl font-black text-white tracking-tighter mb-4">${post.title}</h1>
-                                <div class="text-[13px] font-mono text-zinc-500">${post.date} • ${post.subCategory.toUpperCase()}</div>
+                                <div class="text-sm text-zinc-500">${post.date} • ${post.subCategory.toUpperCase()}</div>
                             </header>
                             <div class="prose">${marked.parse(cleanText)}</div>
                         </article>
@@ -296,13 +316,13 @@
                 
                 document.getElementById('content-area').innerHTML = `
                     <div class="max-w-4xl animate-fadeIn">
-                        <h2 class="text-2xl md:text-3xl font-black mb-6 md:mb-10 tracking-tighter uppercase font-mono">${subCat}</h2>
+                        <h2 class="text-3xl md:text-4xl font-black mb-6 md:mb-10 tracking-tighter uppercase">${subCat}</h2>
                         ${filtered.length > 0 ? `
                             <div class="grid grid-cols-1 gap-4">
                                 ${filtered.map(p => `
                                     <a href="#post/${p.id}" class="interactive-card">
-                                        <p class="text-[10px] font-mono text-zinc-400 mb-2">${p.date}</p>
-                                        <h3 class="text-lg font-bold text-white mb-2">${p.title}</h3>
+                                        <p class="text-xs text-zinc-400 mb-2">${p.date}</p>
+                                        <h3 class="text-xl font-bold text-white mb-2">${p.title}</h3>
                                         <p class="text-sm text-zinc-500">${p.excerpt}</p>
                                     </a>
                                 `).join('')}
@@ -315,50 +335,70 @@
             function showAbout() {
                 updateBreadcrumb(null);
                 document.getElementById('content-area').innerHTML = `
-                    <section>
-                        <div class="flex flex-wrap items-center gap-4 mb-4">
-                            <h1 class="text-3xl md:text-5xl font-black uppercase tracking-tighter">JANG JUN HWAN</h1>
-                            <div class="px-2 py-0.5 bg-green-500/10 text-[9px] text-green-400 font-mono border border-green-500/20 rounded">Active</div>
-                        </div>
-                        <p class="text-zinc-400 max-w-2xl text-lg italic mb-8"><span class="typing-container">클라우드 인프라와 데이터 엔지니어링을 공부하는 장준환입니다.</span></p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="https://github.com/prgmd" target="_blank" class="social-badge"><span class="material-symbols-outlined text-sm">code</span> GitHub</a>
-                            <a href="https://solved.ac/profile/trackcamp" target="_blank" class="social-badge"><span class="material-symbols-outlined text-sm">verified</span> Solved.ac</a>
-                            <a href="https://dig-em.com" target="_blank" class="social-badge"><span class="material-symbols-outlined text-sm">music_note</span> Dig-em</a>
-                        </div>
-                    </section>
-                    <section>
-                        <h3 class="section-title">// Timeline</h3>
-                        <div class="max-w-xl">
-                            <div class="history-item"><div><h4 class="text-sm font-bold italic">건국대학교 스마트운행체공학과 졸업</h4><p class="text-[11px] text-zinc-500 mt-1 font-mono">2017.03.02 ~ 2024.02.22</p></div></div>
-                            <div class="history-item"><div><h4 class="text-sm font-bold italic">CJ ENM 아티스트 사업부 데이터 분석 계약직 근무</h4><p class="text-[11px] text-zinc-500 mt-1 font-mono">2024.03.15 ~ 2024.11.14</p></div></div>
-                            <div class="history-item"><div><h4 class="text-sm font-bold italic">현대오토에버 모빌리티 SW 스쿨 2기 과정</h4><p class="text-[11px] text-zinc-500 mt-1 font-mono">2025.04.28 ~ 2025.11.12</p></div></div>
-                            <div class="history-item"><div><h4 class="text-sm font-bold italic">SSAFY(삼성청년SW아카데미) 15기 교육생</h4><p class="text-[11px] text-zinc-500 mt-1 font-mono">2026.01.07 ~ 현재</p></div></div>
-                        </div>
-                    </section>
-                    <section>
-                        <h3 class="section-title">// Technical Stack</h3>
-                        <div class="flex flex-wrap gap-2 max-w-2xl">
-                            ${techStack.map(s => `<span class="stack-badge" style="background-color:${s.color};">${s.name}</span>`).join('')}
-                        </div>
-                    </section>
-                    <section>
-                        <h3 class="section-title">// Project Briefs</h3>
-                        <div class="grid grid-cols-1 gap-4 max-w-2xl">
-                            <a href="#archive/digem" class="interactive-card">
-                                <div class="flex items-start gap-4"><span class="text-5xl">🎵</span><div><h4 class="text-white font-bold mb-2 font-mono tracking-tight">Digem_</h4><p class="text-xs text-zinc-500 leading-relaxed">음악 아티클 분산 수집 엔진</p></div></div>
-                            </a>
-                            <a href="#archive/blackbox" class="interactive-card">
-                                <div class="flex items-start gap-4"><span class="text-5xl">📹</span><div><h4 class="text-white font-bold mb-2 font-mono tracking-tight">Cloud_Blackbox_</h4><p class="text-xs text-zinc-500 leading-relaxed">클라우드 기반 영상 관제 시스템</p></div></div>
-                            </a>
-                        </div>
-                    </section>
-                    <section>
-                        <h3 class="section-title">// Algorithm Streak</h3>
-                        <div class="max-w-md p-6 border border-white/10 bg-zinc-900/10 rounded-lg">
-                            <img src="http://mazandi.herokuapp.com/api?handle=trackcamp&theme=dark" class="w-full opacity-80">
-                        </div>
-                    </section>
+                    <div class="max-w-2xl mx-auto w-full animate-fadeIn space-y-16 md:space-y-24">
+
+                        <section class="text-center">
+                            <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">JANG JUN HWAN</h1>
+                            <p class="text-zinc-400 text-xl italic mb-8"><span class="typing-container">클라우드 인프라와 데이터 엔지니어링을 공부하는 장준환입니다.</span></p>
+                            <div class="flex flex-wrap gap-4 justify-center mb-8">
+                                <a href="https://github.com/prgmd" target="_blank" class="social-badge"><span class="material-symbols-outlined text-sm">code</span> GitHub</a>
+                                <a href="https://solved.ac/profile/trackcamp" target="_blank" class="social-badge"><span class="material-symbols-outlined text-sm">verified</span> Solved.ac</a>
+                                <a href="https://dig-em.com" target="_blank" class="social-badge"><span class="material-symbols-outlined text-sm">music_note</span> Dig-em</a>
+                            </div>
+                            <div class="max-w-xs mx-auto p-4 border border-white/10 bg-zinc-900/10 rounded-lg">
+                                <img src="http://mazandi.herokuapp.com/api?handle=trackcamp&theme=dark" class="w-full opacity-70">
+                            </div>
+                        </section>
+
+                        <section class="text-center">
+                            <h3 class="section-title">// Timeline</h3>
+                            <div class="mt-8 space-y-8">
+                                <div>
+                                    <p class="text-sm text-zinc-500 mb-2">2017.03.02 ~ 2024.02.22</p>
+                                    <h4 class="text-lg font-bold">건국대학교 스마트운행체공학과 졸업</h4>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-zinc-500 mb-2">2024.03.15 ~ 2024.11.14</p>
+                                    <h4 class="text-lg font-bold">CJ ENM 아티스트 사업부 데이터 분석 계약직 근무</h4>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-zinc-500 mb-2">2025.04.28 ~ 2025.11.12</p>
+                                    <h4 class="text-lg font-bold">현대오토에버 모빌리티 SW 스쿨 2기 과정</h4>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-zinc-500 mb-2">2026.01.07 ~ 현재</p>
+                                    <h4 class="text-lg font-bold">SSAFY(삼성청년SW아카데미) 15기 교육생</h4>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="text-center">
+                            <h3 class="section-title">// Technical Stack</h3>
+                            <div class="mt-8 space-y-8">
+                                ${techStackGroups.map(g => `
+                                    <div>
+                                        <p class="text-xs text-zinc-600 uppercase tracking-widest mb-3">${g.group}</p>
+                                        <div class="flex flex-wrap gap-2 justify-center">
+                                            ${g.items.map(s => `<span class="stack-badge" style="background-color:${s.color}18; color:${s.color}; border: 1px solid ${s.color}40;">${s.name}</span>`).join('')}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </section>
+
+                        <section class="text-center">
+                            <h3 class="section-title">// Project Briefs</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 text-left">
+                                <a href="#archive/digem" class="interactive-card">
+                                    <div class="flex items-start gap-4"><span class="material-symbols-outlined text-3xl text-zinc-500">music_note</span><div><h4 class="text-white font-bold mb-2 tracking-tight">Digem_</h4><p class="text-sm text-zinc-500 leading-relaxed">음악 아티클 분산 수집 엔진</p></div></div>
+                                </a>
+                                <a href="#archive/blackbox" class="interactive-card">
+                                    <div class="flex items-start gap-4"><span class="material-symbols-outlined text-3xl text-zinc-500">videocam</span><div><h4 class="text-white font-bold mb-2 tracking-tight">Cloud_Blackbox_</h4><p class="text-sm text-zinc-500 leading-relaxed">클라우드 기반 영상 관제 시스템</p></div></div>
+                                </a>
+                            </div>
+                        </section>
+
+                    </div>
                 `;
             }
         
