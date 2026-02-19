@@ -183,8 +183,12 @@
                 if (hash.startsWith('post/')) {
                     loadPost(hash.replace('post/', ''));
                 } else if (hash.startsWith('archive/')) {
-                    const val = hash.replace('archive/', '');
-                    mainCategories.includes(val) ? showCategory(val) : showArchive(val);
+                    const parts = hash.replace('archive/', '').split('/');
+                    if (mainCategories.includes(parts[0])) {
+                        showCategory(parts[0], parts[1] || null);
+                    } else {
+                        showArchive(parts[0]);
+                    }
                 } else {
                     showAbout();
                 }
@@ -280,7 +284,7 @@
                 });
             }
 
-            function showCategory(cat) {
+            function showCategory(cat, initialFilter = null) {
                 updateBreadcrumb([cat]);
                 const posts = allPosts.filter(p => p.category === cat).sort((a, b) => b.date.localeCompare(a.date));
                 let subCats = [...new Set(posts.flatMap(p => Array.isArray(p.subCategory) ? p.subCategory : [p.subCategory]))];
@@ -322,6 +326,7 @@
                         </div>
                     </div>
                 `;
+                if (initialFilter) filterPosts(initialFilter);
             }
 
             function showArchive(subCat) {
@@ -415,7 +420,7 @@
                             </div>
                             <div id="sec-projects" data-open="true" style="max-height: 2000px; overflow: hidden; transition: max-height 0.35s ease">
                                 <div class="mt-4 space-y-3 pb-2">
-                                    <a href="#archive/digem" class="interactive-card flex items-center gap-6 py-5">
+                                    <a href="#archive/projects/Digem" class="interactive-card flex items-center gap-6 py-5">
                                         <span class="material-symbols-outlined text-4xl text-zinc-500 shrink-0">music_note</span>
                                         <div class="flex-1 min-w-0">
                                             <h4 class="text-white font-bold text-base tracking-tight mb-2">Digem</h4>
@@ -423,7 +428,7 @@
                                         </div>
                                         <span class="material-symbols-outlined text-zinc-700 text-xl shrink-0">chevron_right</span>
                                     </a>
-                                    <a href="#archive/blackbox" class="interactive-card flex items-center gap-6 py-5">
+                                    <a href="#archive/projects/Blackbox" class="interactive-card flex items-center gap-6 py-5">
                                         <span class="material-symbols-outlined text-4xl text-zinc-500 shrink-0">videocam</span>
                                         <div class="flex-1 min-w-0">
                                             <h4 class="text-white font-bold text-base tracking-tight mb-2">Cloud Blackbox</h4>
