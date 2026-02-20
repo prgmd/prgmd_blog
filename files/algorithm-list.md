@@ -70,7 +70,7 @@ def bubblesort(a, n): # n은 a의 원소 수
                 a[j], a[j+1] = a[j+1], a[j]
 ```
 
-```
+``` python
 [55, 7, 78, 12, 42] # 처음
 
 [7, 55, 78, 12, 42]
@@ -125,7 +125,7 @@ def counting_sort(data, k):
 
 ```
 
-```
+``` python
 data = [0, 4, 1, 3, 1, 2, 4, 1]
 counts = [1, 3, 1, 1, 2] # 빈도수
 counts = [1, 4, 5, 6, 8] # 누적합
