@@ -23,6 +23,13 @@ def parse_frontmatter(content):
                     continue
                 except json.JSONDecodeError:
                     pass
+            # 불리언 처리
+            if value.lower() == 'true':
+                metadata[key] = True
+                continue
+            if value.lower() == 'false':
+                metadata[key] = False
+                continue
             # 일반 문자열
             metadata[key] = value.strip('"').strip("'")
     return metadata

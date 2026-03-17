@@ -336,7 +336,7 @@
 
             function showCategory(cat, initialFilter = null) {
                 updateBreadcrumb([cat]);
-                const posts = allPosts.filter(p => p.category === cat).sort((a, b) => b.date.localeCompare(a.date));
+                const posts = allPosts.filter(p => p.category === cat && !p.hidden).sort((a, b) => b.date.localeCompare(a.date));
                 let subCats = [...new Set(posts.flatMap(p => Array.isArray(p.subCategory) ? p.subCategory : [p.subCategory]))];
                 if (cat === 'projects') {
                     ['Digem', 'Blackbox', 'Blog'].forEach(s => !subCats.includes(s) && subCats.push(s));
@@ -381,7 +381,7 @@
 
             function showArchive(subCat) {
                 updateBreadcrumb([subCat]);
-                const filtered = allPosts.filter(p => Array.isArray(p.subCategory) ? p.subCategory.includes(subCat) : p.subCategory === subCat);
+                const filtered = allPosts.filter(p => !p.hidden && (Array.isArray(p.subCategory) ? p.subCategory.includes(subCat) : p.subCategory === subCat));
                 
                 document.getElementById('content-area').innerHTML = `
                     <div class="max-w-2xl md:max-w-4xl mx-auto w-full animate-fadeIn">
