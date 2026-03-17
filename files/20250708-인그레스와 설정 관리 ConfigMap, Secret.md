@@ -1,5 +1,5 @@
 ---
-id: learning-k8s-07
+id: 20250708-인그레스와 설정 관리 ConfigMap, Secret
 title: "인그레스와 설정 관리: ConfigMap, Secret"
 date: "2025-07-08"
 category: "learning"

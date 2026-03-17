@@ -1,5 +1,5 @@
 ---
-id: learning-cicd-08
+id: 20250828-쿠버네티스 배포 전략 및 Argo Rollouts
 title: "쿠버네티스 배포 전략 및 Argo Rollouts"
 date: "2025-08-28"
 category: "learning"

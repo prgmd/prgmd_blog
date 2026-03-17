@@ -1,5 +1,5 @@
 ---
-id: learning-monitoring-05
+id: 20250829-ELK 스택 설치 및 Spring Boot 로그 수집 환경 구축
 title: "ELK 스택 설치 및 Spring Boot 로그 수집 환경 구축"
 date: "2025-08-29"
 category: "learning"

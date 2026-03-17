@@ -1,5 +1,5 @@
 ---
-id: learning-aws-04
+id: 20250724-S3 심화 설정 및 CloudFront CDN
 title: "S3 심화 설정 및 CloudFront CDN"
 date: "2025-07-24"
 category: "learning"

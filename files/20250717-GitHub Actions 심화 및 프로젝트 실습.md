@@ -1,5 +1,5 @@
 ---
-id: learning-cicd-03
+id: 20250717-GitHub Actions 심화 및 프로젝트 실습
 title: "GitHub Actions 심화 및 프로젝트 실습"
 date: "2025-07-17"
 category: "learning"

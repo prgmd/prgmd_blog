@@ -1,5 +1,5 @@
 ---
-id: learning-monitoring-04
+id: 20250828-MSA 구성 요소 및 Elastic Stack 개요
 title: "MSA 구성 요소 및 Elastic Stack 개요"
 date: "2025-08-28"
 category: "learning"

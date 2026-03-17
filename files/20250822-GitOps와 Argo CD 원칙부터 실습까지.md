@@ -1,5 +1,5 @@
 ---
-id: learning-cicd-06
+id: 20250822-GitOps와 Argo CD 원칙부터 실습까지
 title: "GitOps와 Argo CD: 원칙부터 실습까지"
 date: "2025-08-22"
 category: "learning"

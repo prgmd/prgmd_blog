@@ -1,5 +1,5 @@
 ---
-id: learning-docker-07
+id: 20250619-도커파일(Dockerfile)과 카프카 기초
 title: "도커파일(Dockerfile)과 카프카 기초"
 date: "2025-06-19"
 category: "learning"

@@ -1,5 +1,5 @@
 ---
-id: learning-cicd-05
+id: 20250820-TDD 방법론과 Jenkins 기반 테스트 파이프라인 구축
 title: "TDD 방법론과 Jenkins 기반 테스트 파이프라인 구축"
 date: "2025-08-20"
 category: "learning"

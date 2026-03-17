@@ -1,5 +1,5 @@
 ---
-id: learning-docker-08
+id: 20250620-Dockerfile 최적화 및 프라이빗 레지스트리
 title: "Dockerfile 최적화 및 프라이빗 레지스트리"
 date: "2025-06-20"
 category: "learning"

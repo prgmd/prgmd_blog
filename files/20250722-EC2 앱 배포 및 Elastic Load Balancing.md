@@ -1,5 +1,5 @@
 ---
-id: learning-aws-02
+id: 20250722-EC2 앱 배포 및 Elastic Load Balancing
 title: "EC2 앱 배포 및 Elastic Load Balancing"
 date: "2025-07-22"
 category: "learning"
