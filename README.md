@@ -180,3 +180,37 @@ Git push 없이 브라우저에서 직접 게시글을 작성·수정·삭제할
 - `/admin` 접속 → GitHub OAuth 로그인 → Decap CMS 에디터 진입
 - 게시글 저장(Publish) 시 GitHub API로 `files/*.md` 커밋 → Vercel 자동 재빌드 (~1분)
 - 일반 방문자에게는 `/admin` 경로가 노출되지 않으며, GitHub 계정 인증 없이는 편집 불가
+
+---
+
+**Contributions 그래프 추가**
+
+소개 페이지 하단에 GitHub 잔디 스타일의 게시글 작성 현황 그래프를 추가했습니다.
+
+- 최근 52주(1년) 기간의 게시글 작성 날짜를 격자로 시각화
+- 색상: 0개(회색) → 1개 → 2개 → 3개+(파랑, 블로그 primary 색상)
+- hover 시 날짜 및 게시글 수 tooltip 표시
+- 가로 스크롤바 커스텀 스타일 적용 (4px, 다크 테마)
+- 날짜 형식 불일치 자동 정규화 처리 (`2026-1-23` → `2026-01-23`)
+
+---
+
+**게시글 숨김 기능 추가**
+
+frontmatter에 `hidden: true`를 추가하면 목록에서 노출되지 않습니다.
+
+```yaml
+---
+id: example-post
+title: 제목
+date: 2026-03-17
+category: learning
+subCategory: AWS
+hidden: true
+---
+```
+
+- 기본값: 노출 (`hidden` 미설정 또는 `hidden: false`)
+- 숨김 설정 시 카테고리 목록, 서브카테고리 목록에서 제외
+- 직접 URL(`#post/{id}`) 접근은 가능
+- `generate_posts.py`에 불리언 파싱 추가 (`true`/`false` 문자열 → Python bool)
