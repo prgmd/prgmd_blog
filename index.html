@@ -31,7 +31,7 @@
         /* 모바일에서 viewport 너비에 비례해 폰트 크기 자동 조정 (데스크탑 ≥ 400px 완전 무영향) */
         html { font-size: clamp(13px, 4vw, 16px); }
         body { font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; background-color: #050505; color: white; }
-        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #000000; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; }
         
@@ -502,10 +502,112 @@
                             </div>
                         </section>
 
+                        <section>
+                            <div onclick="toggleSection('contrib')" class="flex items-center justify-between cursor-pointer pb-2 border-b border-white/10 select-none">
+                                <span class="text-sm font-black text-zinc-500 tracking-[0.3em] uppercase">Contributions</span>
+                                <span id="ico-contrib" class="text-zinc-500 text-base" style="transition: transform 0.3s ease; display: inline-block; transform: rotate(90deg)">▶</span>
+                            </div>
+                            <div id="sec-contrib" data-open="true" style="max-height: 2000px; overflow: hidden; transition: max-height 0.35s ease">
+                                ${buildContribGraph()}
+                            </div>
+                        </section>
+
                     </div>
                 `;
             }
-        
+
+            function buildContribGraph() {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                // 날짜 정규화 후 date → count 맵 생성 ("2026-1-23" → "2026-01-23")
+                const countMap = {};
+                allPosts.forEach(p => {
+                    if (!p.date) return;
+                    const parts = p.date.trim().split('-');
+                    if (parts.length !== 3) return;
+                    const normalized = `${parts[0]}-${parts[1].padStart(2,'0')}-${parts[2].padStart(2,'0')}`;
+                    countMap[normalized] = (countMap[normalized] || 0) + 1;
+                });
+
+                // 52주 전 일요일부터 시작
+                const start = new Date(today);
+                start.setDate(start.getDate() - 52 * 7);
+                start.setDate(start.getDate() - start.getDay());
+
+                // 주(week) 단위로 배열 생성
+                const weeks = [];
+                const monthLabels = [];
+                const cur = new Date(start);
+                let lastMonth = -1;
+
+                while (cur <= today) {
+                    const week = [];
+                    for (let d = 0; d < 7; d++) {
+                        if (d === 0 && cur.getMonth() !== lastMonth) {
+                            monthLabels.push({ weekIdx: weeks.length, label: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][cur.getMonth()] });
+                            lastMonth = cur.getMonth();
+                        }
+                        const dateStr = cur.toISOString().split('T')[0];
+                        week.push({ date: dateStr, count: cur > today ? -1 : (countMap[dateStr] || 0) });
+                        cur.setDate(cur.getDate() + 1);
+                    }
+                    weeks.push(week);
+                }
+
+                const startStr = start.toISOString().split('T')[0];
+                const todayStr = today.toISOString().split('T')[0];
+                const total = allPosts.filter(p => {
+                    if (!p.date) return false;
+                    const parts = p.date.trim().split('-');
+                    if (parts.length !== 3) return false;
+                    const n = `${parts[0]}-${parts[1].padStart(2,'0')}-${parts[2].padStart(2,'0')}`;
+                    return n >= startStr && n <= todayStr;
+                }).length;
+
+                const CELL = 15;
+
+                function cellColor(count) {
+                    if (count < 0)  return '#0a0a0a';
+                    if (count === 0) return '#27272a';
+                    if (count === 1) return 'rgba(0,100,250,0.35)';
+                    if (count === 2) return 'rgba(0,100,250,0.65)';
+                    return '#0064fa';
+                }
+
+                const monthLabelHtml = monthLabels.map(({ weekIdx: wi, label }) =>
+                    `<span class="absolute text-[10px] text-zinc-500" style="left:${wi * CELL}px">${label}</span>`
+                ).join('');
+
+                const weeksHtml = weeks.map(week =>
+                    `<div class="flex flex-col gap-[3px]">${
+                        week.map(({ date, count }) =>
+                            `<div class="w-3 h-3 rounded-sm" style="background:${cellColor(count)}" title="${count > 0 ? date + ' (' + count + '개)' : date}"></div>`
+                        ).join('')
+                    }</div>`
+                ).join('');
+
+                return `
+                    <div class="mt-6 pb-2">
+                        <p class="text-xs text-zinc-600 mb-3">최근 1년 · 총 <span class="text-zinc-400">${total}개</span> 게시글</p>
+                        <div class="overflow-x-auto custom-scrollbar">
+                            <div class="inline-block pb-1">
+                                <div class="relative h-4 mb-1" style="width:${weeks.length * CELL}px">${monthLabelHtml}</div>
+                                <div class="flex gap-[3px]">${weeksHtml}</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5 mt-3 justify-end">
+                            <span class="text-[10px] text-zinc-600 mr-1">없음</span>
+                            <div class="w-3 h-3 rounded-sm" style="background:#27272a"></div>
+                            <div class="w-3 h-3 rounded-sm" style="background:rgba(0,100,250,0.35)"></div>
+                            <div class="w-3 h-3 rounded-sm" style="background:rgba(0,100,250,0.65)"></div>
+                            <div class="w-3 h-3 rounded-sm" style="background:#0064fa"></div>
+                            <span class="text-[10px] text-zinc-600 ml-1">많음</span>
+                        </div>
+                    </div>
+                `;
+            }
+
             // --- 유틸리티 ---
             function toggleSection(id) {
                 const content = document.getElementById('sec-' + id);
