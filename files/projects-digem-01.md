@@ -3,6 +3,7 @@ title: "[DevLog] Digem: 분산 스크래퍼 엔진 설계기 (수정 예정)"
 date: "2026-01-19"
 category: "projects"
 subCategory: "Digem"
+hidden: True
 ---
 
 ## 1. 개요
@@ -25,23 +26,3 @@ subCategory: "Digem"
 | **Redis** | 중복 수집 방지(Filtering) 및 작업 대기열 관리 | In-memory DB |
 | **Worker Nodes** | 실제 스크래핑 로직 수행 (Multi-Instance) | Dockerized App |
 | **MongoDB** | 정형화된 아티클 데이터 저장 | NoSQL |
-
-## 4. 핵심 코드 (Python)
-Redis를 활용하여 작업의 원자성(Atomicity)을 보장하는 로직의 일부입니다.
-
-```python
-import redis
-
-class TaskQueue:
-    def __init__(self):
-        self.r = redis.StrictRedis(host='localhost', port=6379, db=0)
-
-    def push_task(self, url):
-        # 중복 URL 체크 후 큐에 삽입
-        if not self.r.sismember('scraped_urls', url):
-            self.r.lpush('scrape_tasks', url)
-            print(f"Task Pushed: {url}")
-
-    def pop_task(self):
-        return self.r.brpop('scrape_tasks', timeout=5)
-```
