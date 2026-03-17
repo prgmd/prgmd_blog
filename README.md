@@ -142,3 +142,41 @@ subCategory: AWS
 - **수식 지원** — `$...$` 인라인, `$$...$$` 블록 KaTeX 렌더링
 - **코드 하이라이팅** — Prism.js Autoloader로 언어 자동 감지
 - **모바일 반응형** — 768px 이하에서 Explorer 오버레이 전환
+
+---
+
+## 업데이트 내역
+
+### 2026-03-17
+
+**Decap CMS 온라인 에디터 추가**
+
+Git push 없이 브라우저에서 직접 게시글을 작성·수정·삭제할 수 있도록 `/admin` 경로에 Decap CMS를 연동했습니다.
+
+**추가된 파일**
+
+| 파일 | 내용 |
+|---|---|
+| `admin/index.html` | Decap CMS CDN 로드 |
+| `admin/config.yml` | CMS 설정 (레포, 브랜치, 필드 정의) |
+| `api/auth.js` | GitHub OAuth 시작 — Vercel Serverless Function |
+| `api/callback.js` | OAuth 콜백 — code → access_token 교환 후 CMS에 전달 |
+
+**수정된 파일**
+
+| 파일 | 내용 |
+|---|---|
+| `vercel.json` | `/admin` 경로를 SPA rewrite에서 제외 |
+
+**삭제된 파일**
+
+| 파일 | 이유 |
+|---|---|
+| `fix_frontmatter.py` | 일회성 마이그레이션 스크립트, 역할 완료 |
+| `update_subcategories.py` | 일회성 마이그레이션 스크립트, 역할 완료 |
+
+**동작 방식**
+
+- `/admin` 접속 → GitHub OAuth 로그인 → Decap CMS 에디터 진입
+- 게시글 저장(Publish) 시 GitHub API로 `files/*.md` 커밋 → Vercel 자동 재빌드 (~1분)
+- 일반 방문자에게는 `/admin` 경로가 노출되지 않으며, GitHub 계정 인증 없이는 편집 불가
