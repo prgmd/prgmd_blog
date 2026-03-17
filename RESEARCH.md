@@ -206,3 +206,252 @@ Vercel Blob(방법 2) 또는 Supabase(방법 3)를 고려.
 4. `vercel.json` rewrite 규칙에서 `/admin` 경로 제외
 5. Vercel 환경변수에 OAuth Client ID 등록
 6. 배포 후 `/admin` 접속 테스트
+
+---
+
+## 구현 계획 — Decap CMS (채택)
+
+> `/admin` 경로에 Decap CMS를 붙인다. 일반 방문자는 기존 블로그만 보고, 본인만 `/admin`으로 접속해 편집.
+
+---
+
+### 사전 지식: Decap CMS의 OAuth 구조
+
+Decap CMS의 GitHub 백엔드는 내부적으로 GitHub OAuth 인증을 사용한다.
+OAuth의 Authorization Code 방식은 **client_secret을 서버 사이드에서만** 다뤄야 하므로,
+브라우저 단독으로는 처리할 수 없다 → **OAuth 중계 서버가 반드시 필요하다.**
+
+Netlify에 배포하면 Netlify가 이 서버를 대신 제공하지만,
+Vercel은 그렇지 않으므로 **Vercel Serverless Function 2개로 직접 구현**해야 한다.
+
+흐름:
+```
+브라우저(/admin) → [팝업] GET /api/auth
+    → GitHub OAuth 로그인 페이지로 리다이렉트
+    → 로그인 완료 → GET /api/callback?code=xxx
+    → Vercel Function이 code를 GitHub에 전송 → access_token 수령
+    → 팝업이 부모 창에 postMessage로 토큰 전달
+    → Decap CMS가 토큰 수신 → 편집 가능 상태
+```
+
+---
+
+### 변경 파일 목록
+
+| 파일 | 유형 | 내용 |
+|---|---|---|
+| `admin/index.html` | 신규 | Decap CMS CDN 로드 |
+| `admin/config.yml` | 신규 | CMS 설정 (레포, 브랜치, 필드 정의) |
+| `api/auth.js` | 신규 | OAuth 시작 — GitHub 로그인 페이지로 리다이렉트 |
+| `api/callback.js` | 신규 | OAuth 콜백 — code를 token으로 교환 후 CMS에 전달 |
+| `vercel.json` | 수정 | `/admin` 경로를 SPA rewrite에서 제외 |
+
+`index.html`, `generate_posts.py`, `posts.json`은 변경 없음.
+
+---
+
+### 파일별 코드 및 이유
+
+---
+
+#### `admin/index.html`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURORACAMP | Admin</title>
+</head>
+<body>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</body>
+</html>
+```
+
+**이유**: Decap CMS는 CDN 스크립트 하나를 로드하면 `body`를 자체 UI로 완전히 대체한다.
+별도 설정 없이 같은 경로의 `config.yml`을 자동으로 읽는다.
+
+---
+
+#### `admin/config.yml`
+
+```yaml
+backend:
+  name: github
+  repo: prgmd/prgmd_blog
+  branch: main
+  base_url: https://prgmd-blog.vercel.app
+  auth_endpoint: api/auth
+
+media_folder: files
+public_folder: /files
+
+collections:
+  - name: posts
+    label: Posts
+    folder: files
+    create: true
+    slug: "{{fields.id}}"
+    identifier_field: id
+    fields:
+      - { name: id,          label: ID,           widget: string }
+      - { name: title,       label: 제목,          widget: string }
+      - { name: date,        label: 날짜,          widget: date,   format: "YYYY-MM-DD" }
+      - { name: category,    label: 카테고리,       widget: select, options: [projects, learning, algorithm] }
+      - { name: subCategory, label: 서브카테고리,   widget: string }
+      - { name: body,        label: 본문,          widget: markdown }
+```
+
+**이유**:
+- `base_url`: Vercel 배포 도메인. Decap CMS가 OAuth를 시작할 때 `{base_url}/{auth_endpoint}`로 팝업을 연다.
+- `auth_endpoint: api/auth`: Vercel Serverless Function 경로와 맞춘다.
+- `slug: "{{fields.id}}"`: 파일명을 `id` 필드값으로 결정. 기존 파일 네이밍 규칙(`learning-aws-01.md`)을 유지한다.
+- `identifier_field: id`: Decap CMS가 게시글 목록에서 각 항목을 구분할 키 필드.
+- `subCategory`를 `string`으로 정의한 이유: 배열(`["AWS", "Docker"]`)이 필요할 때 직접 입력하는 방식. Decap CMS의 `list` widget을 쓰면 frontmatter 형식이 달라질 수 있으므로 기존 `generate_posts.py` 파싱 로직과의 호환을 위해 string으로 유지.
+
+---
+
+#### `api/auth.js`
+
+```javascript
+export default function handler(req, res) {
+  const params = new URLSearchParams({
+    client_id: process.env.GITHUB_CLIENT_ID,
+    scope: 'repo,user',
+    redirect_uri: `${process.env.BASE_URL}/api/callback`,
+  });
+  res.redirect(`https://github.com/login/oauth/authorize?${params}`);
+}
+```
+
+**이유**:
+- Decap CMS가 `/api/auth`로 팝업을 열면, 이 Function이 GitHub OAuth 페이지로 즉시 리다이렉트한다.
+- `scope: 'repo'`는 파일 쓰기 권한을 포함한다. public 레포라면 `public_repo`로 줄여도 되지만, `repo`로 통일하는 편이 안전하다.
+- `client_secret`은 이 파일에 없다. 브라우저에 노출되는 응답에 secret이 전혀 포함되지 않아 안전하다.
+
+---
+
+#### `api/callback.js`
+
+```javascript
+export default async function handler(req, res) {
+  const { code } = req.query;
+
+  const tokenRes = await fetch('https://github.com/login/oauth/access_token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      client_id: process.env.GITHUB_CLIENT_ID,
+      client_secret: process.env.GITHUB_CLIENT_SECRET,
+      code,
+    }),
+  });
+
+  const { access_token, error } = await tokenRes.json();
+
+  if (error || !access_token) {
+    res.status(400).send(`OAuth 오류: ${error}`);
+    return;
+  }
+
+  const token = JSON.stringify({ token: access_token, provider: 'github' });
+  res.setHeader('Content-Type', 'text/html');
+  res.send(`
+    <script>
+      (function() {
+        function receive(e) {
+          window.opener.postMessage(
+            'authorization:github:success:${token}',
+            e.origin
+          );
+        }
+        window.addEventListener('message', receive, false);
+        window.opener.postMessage('authorizing:github', '*');
+      })();
+    </script>
+  `);
+}
+```
+
+**이유**:
+- code → access_token 교환 시 `client_secret`이 필요하다. Vercel Function(서버)에서 수행하므로 secret이 브라우저에 노출되지 않는다.
+- 토큰을 직접 HTML로 반환하지 않고, `postMessage`로 팝업의 부모 창(Decap CMS)에 전달한다.
+- postMessage 형식 `authorization:github:success:{...}`은 Decap CMS가 내부적으로 기대하는 고정 포맷이다.
+
+---
+
+#### `vercel.json` 수정
+
+현재:
+```json
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
+```
+
+변경 후:
+```json
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/((?!admin).*)", "destination": "/index.html" }
+  ]
+}
+```
+
+**이유**:
+- 현재 규칙은 모든 경로를 `index.html`로 보낸다. `/admin`으로 접속해도 블로그 SPA가 열려 Decap CMS가 보이지 않는다.
+- `(?!admin)`은 negative lookahead — `admin`으로 시작하는 경로만 rewrite에서 제외한다.
+- `/api/...`는 Vercel이 Serverless Function으로 자동 처리하므로 별도 제외 불필요.
+
+---
+
+### 사전 준비 (수동 작업)
+
+#### 1. GitHub OAuth App 등록
+`GitHub → Settings → Developer settings → OAuth Apps → New OAuth App`
+
+| 항목 | 값 |
+|---|---|
+| Application name | AURORACAMP Blog Admin |
+| Homepage URL | `https://prgmd-blog.vercel.app` |
+| Authorization callback URL | `https://prgmd-blog.vercel.app/api/callback` |
+
+등록 후 **Client ID**와 **Client Secret** 발급.
+
+#### 2. Vercel 환경변수 등록
+`Vercel 대시보드 → 프로젝트 → Settings → Environment Variables`
+
+| 키 | 값 |
+|---|---|
+| `GITHUB_CLIENT_ID` | OAuth App의 Client ID |
+| `GITHUB_CLIENT_SECRET` | OAuth App의 Client Secret |
+| `BASE_URL` | `https://prgmd-blog.vercel.app` |
+
+---
+
+### 전체 흐름 요약
+
+```
+/admin 접속
+  → Decap CMS 로드 → "Login with GitHub" 버튼
+  → 클릭 시 팝업으로 /api/auth 열림
+  → GitHub 로그인 페이지로 리다이렉트
+  → 로그인 완료 → /api/callback?code=xxx 도착
+  → Vercel Function: code → access_token 교환
+  → postMessage로 토큰을 Decap CMS에 전달
+  → 인증 완료 → 게시글 목록 표시
+
+[새 게시글 작성 / 편집]
+  → Decap CMS 에디터에서 작성 → Publish 클릭
+  → GitHub API로 files/*.md 커밋
+  → Vercel 자동 감지 → generate_posts.py 실행 → 재배포 (~1분)
+
+[일반 방문자]
+  → 기존 블로그 그대로. /admin 존재 자체를 알 수 없음.
+```

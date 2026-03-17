@@ -1,0 +1,24 @@
+backend:
+  name: github
+  repo: prgmd/prgmd_blog
+  branch: main
+  base_url: https://prgmd-blog.vercel.app
+  auth_endpoint: api/auth
+
+media_folder: files
+public_folder: /files
+
+collections:
+  - name: posts
+    label: Posts
+    folder: files
+    create: true
+    slug: "{{fields.id}}"
+    identifier_field: id
+    fields:
+      - { name: id,          label: ID,          widget: string }
+      - { name: title,       label: 제목,         widget: string }
+      - { name: date,        label: 날짜,         widget: date,   format: "YYYY-MM-DD" }
+      - { name: category,    label: 카테고리,      widget: select, options: [projects, learning, algorithm] }
+      - { name: subCategory, label: 서브카테고리,  widget: string }
+      - { name: body,        label: 본문,         widget: markdown }
