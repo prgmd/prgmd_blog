@@ -365,8 +365,11 @@
 
                         <div id="post-list" class="space-y-2">
                             ${posts.length > 0 ? posts.map(p => `
-                                <a href="#post/${p.id}" data-sub="${Array.isArray(p.subCategory) ? p.subCategory.join(',') : p.subCategory}" class="interactive-card flex items-center gap-4">
-                                    <span class="text-xs text-zinc-500 shrink-0">${p.date}</span>
+                                <a href="#post/${p.id}" data-sub="${Array.isArray(p.subCategory) ? p.subCategory.join(',') : p.subCategory}" class="interactive-card flex items-center gap-6">
+                                    <div class="text-center text-zinc-400 shrink-0 leading-tight">
+                                        <div class="text-xs">${p.date.split('-')[0]}</div>
+                                        <div class="text-[11px] font-medium">${String(p.date.split('-')[1]).padStart(2,'0')}·${String(p.date.split('-')[2]).padStart(2,'0')}</div>
+                                    </div>
                                     <div class="min-w-0">
                                         <h4 class="text-base font-bold text-white">${p.title}</h4>
                                         <p class="text-[11px] text-zinc-500 mt-1">${Array.isArray(p.subCategory) ? p.subCategory.join(' · ') : p.subCategory}</p>
