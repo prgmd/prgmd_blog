@@ -18,7 +18,7 @@ collections:
     fields:
       - { name: id,          label: ID,          widget: string }
       - { name: title,       label: 제목,         widget: string }
-      - { name: date,        label: 날짜,         widget: date,   format: "YYYY-MM-DD" }
+      - { name: date,        label: 날짜,         widget: string }
       - { name: category,    label: 카테고리,      widget: select, options: [projects, learning, algorithm] }
       - { name: subCategory, label: 서브카테고리,  widget: string }
       - { name: body,        label: 본문,         widget: markdown }
