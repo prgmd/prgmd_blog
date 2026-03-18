@@ -1,5 +1,5 @@
 ---
-id: 20250512-MariaDB 제약 조건과 MongoDB 기초
+id: 20250512-learning-database-04
 title: "MariaDB 제약 조건과 MongoDB 기초"
 date: "2025-05-12"
 category: "learning"

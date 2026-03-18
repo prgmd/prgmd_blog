@@ -1,5 +1,5 @@
 ---
-id: 20250710-Volume API와 영구 저장소
+id: 20250710-learning-k8s-09
 title: "Volume API와 영구 저장소"
 date: "2025-07-10"
 category: "learning"

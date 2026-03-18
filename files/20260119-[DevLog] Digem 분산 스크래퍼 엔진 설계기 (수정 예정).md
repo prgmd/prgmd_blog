@@ -1,5 +1,5 @@
 ---
-id: 20260119-[DevLog] Digem 분산 스크래퍼 엔진 설계기 (수정 예정)
+id: 20260119-projects-digem-01
 title: "[DevLog] Digem: 분산 스크래퍼 엔진 설계기 (수정 예정)"
 date: "2026-01-19"
 category: "projects"

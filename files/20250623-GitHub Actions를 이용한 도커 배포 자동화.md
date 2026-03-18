@@ -1,5 +1,5 @@
 ---
-id: 20250623-GitHub Actions를 이용한 도커 배포 자동화
+id: 20250623-learning-docker-09
 title: "GitHub Actions를 이용한 도커 배포 자동화"
 date: "2025-06-23"
 category: "learning"
