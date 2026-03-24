@@ -28,7 +28,7 @@ subCategory: AI
 ### 1-3. Tokenizer Training
 토크나이저 트레이닝에는 대표적으로 2개가 있음.
 
-#### Word Piece 알고리즘
+#### ① Word Piece 알고리즘
 - **핵심 단위**: 글자(Character) 단위 분할
 - **선정 기준**: 빈도 기반으로 **점수 측정 후 점수가 좋은 조합을 찾아냄**
 - **대표 모델**: BERT 등 (이전 세대 표준)
@@ -40,7 +40,7 @@ subCategory: AI
 
 ※ NLP(자연어처리) : 컴퓨터가 인간의 말을 이해하고 분석하는 AI 분야.
 
-#### Byte-Level BPE 알고리즘
+#### ② Byte-Level BPE 알고리즘
 - **핵심 단위**: 바이트(Byte) 단위 분할
 - **선정 기준**: 단순 **빈도(Frequency)가 높은 조합을 찾아냄**
 - **대표 모델**: GPT, Claude, Gemini, Qwen (현대 표준)
