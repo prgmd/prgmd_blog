@@ -1,11 +1,11 @@
 ---
-id: 2026034-learning-ai-07
+id: 20260324-learning-ai-07
 title: 토크나이저 (Tokenizer)
-date: 2026-03-04
+date: 2026-03-24
 category: learning
 subCategory: AI
 ---
-# VII. Tokenizer
+# Chapter 7. Tokenizer
 ## 1. 토크나이저(Tokenizer)
 ### 1-1. 토크나이저의 개념
 > 인간의 언어(문장)를 인공지능 모델이 처리할 수 있는 수치 리스트(Index List)로 변환하는 도구. 문장을 토큰 단위로 자른 다음 수로 변환한다. (토큰 단위는 툴마다 다르다)
