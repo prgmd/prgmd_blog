@@ -3,7 +3,7 @@ id: 20250619-learning-docker-04
 title: 도커파일(Dockerfile)
 date: 2025-06-19
 category: learning
-subCategory: Docker
+subCategory: ["Docker", "Terraform", "Ansible"]
 ---
 # I. Dockerfile
 ## 1. 코드형 인프라 (IaC: Infrastructure as Code)
