@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Final Test Post (Static)</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet"/>
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#0064fa", "background-dark": "#050505" },
+                    fontFamily: { "mono": ["monospace"], "sans": ["Pretendard", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        html { font-size: clamp(13px, 4vw, 16px); }
+        body { font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; background-color: #050505; color: white; }
+        
+        .prose { @apply text-zinc-300 text-base md:text-lg leading-[1.7] md:leading-[1.8]; }
+        .prose p { @apply mb-6; }
+        .prose strong { @apply font-bold text-white; }
+        .prose em { @apply italic text-zinc-400; }
+        .prose a { @apply text-primary hover:underline; }
+        .prose code { @apply bg-zinc-800/80 text-amber-300 font-mono px-1.5 py-1 rounded-md text-sm; }
+        .prose img { @apply block mx-auto my-8 rounded-lg shadow-lg max-w-full; }
+        .prose ul { @apply list-disc list-inside ml-4 mb-6 space-y-2; }
+        .prose ol { @apply list-decimal list-inside ml-4 mb-6 space-y-2; }
+        .prose li { @apply text-zinc-300; }
+        .prose pre { @apply bg-[#121212] p-4 md:p-6 rounded-lg md:rounded-xl border border-white/10 my-6 md:my-10 overflow-x-auto shadow-2xl text-sm md:text-base; }
+        .prose pre code { @apply bg-transparent p-0; }
+        .prose table { @apply w-full my-6 md:my-8 text-sm border-collapse overflow-hidden rounded-lg; }
+        .prose thead { @apply bg-zinc-800/80; }
+        .prose th { @apply px-4 py-2.5 text-left font-bold text-zinc-200 border border-white/10; }
+        .prose td { @apply px-4 py-2.5 text-zinc-300 border border-white/10; }
+        .prose tbody tr:nth-child(even) { @apply bg-zinc-900/40; }
+        .prose tbody tr:hover { @apply bg-white/5; }
+
+        /* --- REFACTORED STYLES --- */
+        .prose blockquote { @apply my-6 p-4 bg-zinc-900/70 border-l-4 border-zinc-600 rounded-r-lg italic text-zinc-400; }
+        .prose h1 { @apply text-2xl md:text-3xl font-black mb-6 mt-10 text-white border-b-2 border-zinc-700 pb-3; }
+        .prose h2 { @apply text-xl md:text-2xl font-bold mb-4 mt-8 text-white border-b border-white/20 pb-2; }
+        .prose h3 { @apply text-lg md:text-xl font-bold mb-3 mt-6 text-zinc-200; }
+        .prose h4 { @apply text-base md:text-lg font-bold mb-3 mt-6 text-zinc-300; }
+    </style>
+</head>
+<body class="p-8 md:p-12">
+
+    <div class="max-w-2xl md:max-w-4xl mx-auto w-full">
+        <div class="prose">
+            <h1>Chapter I. numpy 사용법</h1>
+            <p><img src="https://velog.velcdn.com/images/paramad/post/1367c6c2-8944-4eb4-8f6b-f5050b090e7d/image.png" alt=""></p>
+            <h2>1. ndarray의 기본 구조 파악하기</h2>
+            <p>NumPy 배열(ndarray)은 파이썬의 리스트와 비슷해 보이지만, 훨씬 강력한 기능을 가짐. AI 학습을 위해서는 선형대수학 개념이 나름 필수적인데, 그렇기 때문에 선형대수학을 지원하고 빠른 속도를 제공하는 NumPy 사용은 사실상 불가결. (물론 그 외에도 확통, 미적분, 이산수학 등이 필요하다)</p>
+            <h3>1-1. 주요 함수</h3>
+            <table>
+            <thead>
+            <tr>
+            <th align="left">속성</th>
+            <th align="left">의미</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td align="left"><strong>np.array</strong></td>
+            <td align="left">리스트 등을 활용한 넘파이 배열 생성</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>ndim</strong></td>
+            <td align="left">배열의 차원 수 (1차원, 2차원 등)</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>shape</strong></td>
+            <td align="left">배열의 형태 (행, 열의 개수)</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>size</strong></td>
+            <td align="left">배열 내 전체 요소의 개수</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>dtype</strong></td>
+            <td align="left">요소의 데이터 타입 (int, float 등)</td>
+            </tr>
+            </tbody>
+            </table>
+            <pre><code class="language-python">import numpy as np
+
+arr = np.array([[1, 2], [3, 4]])
+
+print(arr)           # 배열 출력
+print(arr.ndim)      # 차원: 2
+print(arr.shape)     # 모양: (2, 2)
+print(arr.size)      # 개수: 4
+print(arr.dtype)     # 타입: int64
+</code></pre>
+            <h3>1-2. 연산자</h3>
+            <table>
+            <thead>
+            <tr>
+            <th align="left">구분</th>
+            <th align="left">연산자 / 메서드</th>
+            <th align="left">핵심 동작</th>
+            <th align="left">주요 특징</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td align="left"><strong>요소별 곱</strong></td>
+            <td align="left"><code>*</code> (Asterisk)</td>
+            <td align="left">동일 위치 원소끼리 곱</td>
+            <td align="left">두 배열의 <strong>Shape이 동일</strong>해야 함 (또는 브로드캐스팅 가능)</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>행렬 곱</strong></td>
+            <td align="left"><code>@</code> (At symbol)</td>
+            <td align="left">표준 행렬 곱셈 (Dot product)</td>
+            <td align="left">Python 3.5+ 표준. <strong>앞 열 = 뒤 행</strong> 크기가 맞아야 함</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>내적/행렬 곱</strong></td>
+            <td align="left"><code>.dot()</code></td>
+            <td align="left">행렬 곱 및 벡터 내적</td>
+            <td align="left"><code>@</code>와 거의 동일하나, <strong>스칼라 곱</strong> 시 결과가 다를 수 있음</td>
+            </tr>
+            </tbody>
+            </table>
+            <pre><code class="language-python">A = np.array([1, 2])
+B = np.array([3, 4])
+# 결과: [1*3, 2*4] -> [3, 8]
+
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+# 결과: [[(1*5+2*7), (1*6+2*8)], [(3*5+4*7), (3*6+4*8)]] -> [[19, 22], [43, 50]]
+</code></pre>
+            <h2>2. 선형대수</h2>
+            <h3>2-1. 행렬 표현</h3>
+            <p>2차원 좌표계는 (3, 4)를 <code>[3, 4]</code>로 표현. 거리는 유클리드 거리를 통해 구한다.</p>
+            <h4>유클리드 거리 (L2 Norm)</h4>
+            <p>$$||x||_2 = \sqrt{a^2 + b^2}$$
+            두 지점 사이의 최단 거리를 구하는 방식 (피타고라스 정리 기반)</p>
+            <h3>2-1. 선형 변환</h3>
+            <table>
+            <thead>
+            <tr>
+            <th align="left">항목</th>
+            <th align="left">설명</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td align="left"><strong>스칼라 배 (*)</strong></td>
+            <td align="left">배열의 모든 원소에 특정 숫자를 곱하는 연산</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>단위 행렬 (I)</strong></td>
+            <td align="left">곱셈 연산 시 자기 자신을 그대로 유지하는 행렬 (항등원)</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>선형 변환 (@)</strong></td>
+            <td align="left">행렬을 이용해 벡터의 위치나 형태를 변형시키는 연산</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>90도 회전 행렬</strong></td>
+            <td align="left">좌표를 특정 각도(시계 방향 90도)로 회전시키는 특수 행렬</td>
+            </tr>
+            </tbody>
+            </table>
+            <pre><code class="language-python">import numpy as np
+
+# 1. 스칼라 배
+print(3 * np.array([1, 2]))           # [3 6]
+
+# 2. 단위 행렬 및 선형 변환 (@)
+v = np.array([1, 2])
+I = np.eye(2)                         # 단위 행렬 [[1, 0], [0, 1]]
+print(I @ v)                          # [1. 2.] (변화 없음)
+
+# 3. 90도 회전 변환 (시계 방향)
+R = np.array([[0, 1], [-1, 0]])
+print(R @ v)                          # [2 -1]
+</code></pre>
+            <h3>2-2. 배열 생성과 랜덤 함수</h3>
+            <table>
+            <thead>
+            <tr>
+            <th align="left">함수</th>
+            <th align="left">설명</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td align="left"><strong>zeros</strong></td>
+            <td align="left">모든 원소의 값이 0인 지정된 모양의 배열을 생성함</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>random.seed</strong></td>
+            <td align="left">난수 생성기의 시드 값을 고정하여 실행 시마다 동일한 결과를 얻게 함</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>random.rand</strong></td>
+            <td align="left">0 이상 1 미만의 범위에서 지정된 개수만큼 무작위 실수를 생성함</td>
+            </tr>
+            </tbody>
+            </table>
+            <pre><code class="language-python">import numpy as np
+
+# 1. 모든 값이 0인 2행 3열 배열
+print(np.zeros((2, 3)))
+
+# 2. 결과 고정을 위한 시드 설정
+np.random.seed(42)
+
+# 3. 0~1 사이 무작위 실수 3개 생성
+print(np.random.rand(3)) 
+</code></pre>
+            <h3>2-3. 수학 및 지수/로그 함수</h3>
+            <table>
+            <thead>
+            <tr>
+            <th align="left">함수</th>
+            <th align="left">의미</th>
+            <th align="left">특징</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td align="left"><strong>log2</strong></td>
+            <td align="left">밑이 2인 로그</td>
+            <td align="left">컴퓨터 과학의 비트 계산이나 정보량(엔트로피) 계산 시 주로 사용됨</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>log</strong></td>
+            <td align="left">자연 로그 ($\ln$)</td>
+            <td align="left">Numpy에서 기본 <code>log</code>는 밑이 $e$인 자연 로그를 의미함</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>exp</strong></td>
+            <td align="left">지수 함수 ($e^x$)</td>
+            <td align="left">자연상수 $e$의 거듭제곱을 계산하며, 딥러닝 활성화 함수 등에서 필수적임</td>
+            </tr>
+            </tbody>
+            </table>
+            <pre><code class="language-python">import numpy as np
+
+# 1. 밑이 2인 로그 (8은 2의 3제곱)
+print(np.log2(8))     # 3.0
+
+# 2. 자연 로그 (e의 값은 약 2.718)
+print(np.log(np.e))   # 1.0
+
+# 3. 지수 함수 (e의 1제곱)
+print(np.exp(1))      # 2.718281828459045
+</code></pre>
+            <h3>2-4. 행렬 조작</h3>
+            <table>
+            <thead>
+            <tr>
+            <th align="left">기능</th>
+            <th align="left">설명</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td align="left"><strong>triu</strong></td>
+            <td align="left"><strong>Upper Triangle</strong>. 행렬에서 대각선 위쪽 성분만 남기고 나머지는 0으로 채움 (상관계수 행렬 시각화 시 유용)</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>T</strong></td>
+            <td align="left"><strong>Transpose</strong>. 행렬의 행과 열을 맞바꾸는 전치 연산을 수행함</td>
+            </tr>
+            <tr>
+            <td align="left"><strong>linspace</strong></td>
+            <td align="left"><strong>Linear Space</strong>. 시작값부터 끝값까지 지정된 개수만큼 동일한 간격으로 숫자를 생성함 (그래프 x축 생성용)</td>
+            </tr>
+            </tbody>
+            </table>
+            <pre><code class="language-python">import numpy as np
+
+arr = np.array([[1, 2], [3, 4]])
+
+# 1. 상삼각 행렬 (Upper Triangle)
+print(np.triu(arr))      # [[1, 2], [0, 4]]
+
+# 2. 전치 행렬 (Transpose)
+print(arr.T)             # [[1, 3], [2, 4]]
+
+# 3. 선형 간격 데이터 생성 (0~10 사이 5개)
+print(np.linspace(0, 10, 5))  # [ 0.   2.5  5.   7.5 10. ]
+</code></pre>
+            <h3>2-3. 데이터 시각화 라이브러리</h3>
+            <ul>
+            <li><strong>Matplotlib</strong>: 파이썬 시각화의 조상님. 세밀하게 설정 가능하지만 코드가 좀 긴 편.</li>
+            <li><strong>Seaborn</strong>: Matplotlib을 기반으로 만든 고급 라이브러리. 특히 Pandas 데이터프레임과 궁합이 좋다. 디자인이 조금 더 낫고, 통계 차트(히트맵, 분포도 등)를 그리기에 매우 편리하다고.
+            <ul>
+            <li>기본적으로 AI에서는 Matplot을 많이 사용하지만, Pandas를 사용할 경우 Seaborn을 많이 사용하는 편.</li>
+            </ul>
+            </li>
+            </ul>
+            <pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
+# 1. linspace로 x축 만들기 (0~2π 구간을 100개로 쪼개기)
+x = np.linspace(0, 2 * np.pi, 100)
+y = np.sin(x)
+
+# 2. Matplotlib으로 기본 그래프 그리기
+plt.plot(x, y)
+plt.show()
+
+# 3. Seaborn과 Pandas 활용
+data = pd.DataFrame({'x': x, 'y': y})
+sns.lineplot(data=data, x='x', y='y')
+plt.show()
+
+</code></pre>
+            <p><img src="https://velog.velcdn.com/images/paramad/post/3400ec64-df72-4708-a517-ac842b8b8020/image.png" alt=""></p>
+            <h2>3. Pandas</h2>
+            <p>파이썬에서 데이터를 쉽고 효율적으로 다룰 수 있도록 돕는 데이터 분석용 라이브러리. 엑셀처럼 행과 열로 이루어진 <strong>표 형태의 데이터</strong>를 처리하는 데 최적화되어 있다. 가장 큰 특징으로는 데이터를 <strong>DataFrame</strong>이라는 구조로 관리한다는 점.</p>
+            <h3>3-1. 핵심 구조와 특징</h3>
+            <h4>구조</h4>
+            <p><img src="https://velog.velcdn.com/images/paramad/post/d678ba3d-9409-418e-92c8-16f00ab63cf3/image.png" alt=""></p>
+            <ul>
+            <li>시리즈: 데이터의 한 열</li>
+            <li>레코드: 데이터의 한 행</li>
+            <li>DataFrame : 엑셀 시트 전체(2차원 표 형태, 여러 시리즈의 조합)</li>
+            </ul>
+            <h4>특징</h4>
+            <ul>
+            <li>CSV, Excel, SQL, JSON 등 거의 모든 형태의 데이터를 바로 불러올 수 있음.</li>
+            <li>지저분한 데이터(결측치 <code>nan</code>, 중복 데이터)를 지우거나, 특정 조건에 맞는 데이터만 뽑아내는 <strong>데이터 전처리</strong> 작업이 매우 빠르다. (<code>dropna</code>, <code>where</code>)</li>
+            <li>파이썬 기본 리스트나 딕셔너리보다 훨씬 많은 양의 데이터를 메모리 효율적으로 계산 가능.</li>
+            <li>데이터의 통계치(평균, 합계 등)를 구한 뒤 바로 그래프로 시각화하기가 쉽다.</li>
+            </ul>
+            <pre><code class="language-python">import pandas as pd
+
+# 데이터 만들기 (딕셔너리 형태)
+data = {
+    '이름': ['김철수', '이영희', '박민수'],
+    '점수': [85, 92, 78],
+    '합격여부': [True, True, False]
+}
+
+# DataFrame으로 변환
+df = pd.DataFrame(data)
+
+# '점수'가 80점 이상인 사람만 필터링
+high_score = df[df['점수'] >= 80]
+
+print(high_score)
+</code></pre>
+            <p><img src="https://velog.velcdn.com/images/paramad/post/f1f99b3f-4e1b-4080-aa1e-ec6d25e56e41/image.png" alt=""></p>
+            <h3>3-2. 데이터 확인 (Quick Look)</h3>
+            <table>
+            <thead>
+            <tr>
+            <th align="left">함수</th>
+            <th align="left">용도</th>
+            <th align="left">비고</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td align="left"><strong><code>df.head(n)</code></strong></td>
+            <td align="left">상위 $n$개 데이터 확인</td>
+            <td align="left">기본값 5, 데이터 생김새 파악용</td>
+            </tr>
+            <tr>
+            <td align="left"><strong><code>df.info()</code></strong></td>
+            <td align="left">데이터 명세 확인</td>
+            <td align="left">컬럼명, Non-Null 개수, <strong>데이터 타입</strong> 확인</td>
+            </tr>
+            <tr>
+            <td align="left"><strong><code>df.describe()</code></strong></td>
+            <td align="left">요약 통계량 확인</td>
+            <td align="left">평균, 표준편차, 4분위수 등 수치 데이터 분석</td>
+            </tr>
+            <tr>
+            <td align="left"><strong><code>df.shape</code></strong></td>
+            <td align="left">데이터 크기 확인</td>
+            <td align="left">(행, 열) 형태의 튜플 반환</td>
+            </tr>
+            <tr>
+            <td align="left"><strong><code>df.columns</code></strong></td>
+            <td align="left">컬럼명 목록 확인</td>
+            <td align="left">전체 열 이름을 리스트 형태로 반환</td>
+            </tr>
+            </tbody>
+            </table>
+            <h3>3-3. 데이터 선택 (Selection)</h3>
+            <ul>
+            <li><strong>컬럼 선택</strong>
+            <ul>
+            <li><code>df['a']</code>: 시리즈(Series) 형태로 한 개의 열 추출</li>
+            <li><code>df[['a', 'b']]</code>: 데이터프레임(DataFrame) 형태로 여러 열 추출</li>
+            </ul>
+            </li>
+            <li><strong>인덱서 (Loc vs Iloc)</strong>
+            <ul>
+            <li><strong><code>df.loc[]</code></strong>: <strong>이름(Label)</strong> 기반 선택. <code>df.loc[0, 'a']</code></li>
+            <li><strong><code>df.iloc[]</code></strong>: <strong>위치(Index)</strong> 기반 선택. <code>df.iloc[0, 1]</code></li>
+            </ul>
+            </li>
+            </ul>
+            <blockquote>
+            <p><strong>주의:</strong> 여러 조건을 조합할 때는 반드시 각 조건을 <strong>소괄호 <code>()</code></strong>로 감싸야 하며, <code>and</code>/<code>or</code> 대신 <strong><code>&amp;</code> (AND)</strong>, <strong><code>|</code> (OR)</strong> 연산자를 사용.</p>
+            </blockquote>
+            <pre><code class="language-python"># 1. 단일 조건: 팁이 5달러 이상
+df[df['tip'] >= 5]
+
+# 2. 다중 조건: 팁 5달러 이상이면서 남성인 경우
+df[(df['tip'] >= 5) & (df['sex'] == 'Male')]
+</code></pre>
+            <h3>3-4. 기초 집계 (Aggregation)</h3>
+            <ul>
+            <li><strong>주요 함수:</strong> <code>mean()</code>(평균), <code>sum()</code>(합계), <code>count()</code>(개수), <code>std()</code>(표준편차), <code>min()</code>/<code>max()</code></li>
+            <li><strong>활용 예시:</strong>
+            <ul>
+            <li><code>df['tip'].mean()</code> : 전체 팁 평균값</li>
+            <li><code>df[['tip', 'total_bill']].sum()</code> : 여러 컬럼의 합계를 한 번에 계산</li>
+            </ul>
+            </li>
+            </ul>
+            <h3>3-5. 심화 함수</h3>
+            <h4>Groupby</h4>
+            <p>데이터를 특정 기준에 따라 쪼개고(<code>Split</code>), 함수를 적용한 뒤(<code>Apply</code>), 다시 합치는(<code>Combine</code>) 과정.</p>
+            <ul>
+            <li><strong>핵심 패턴:</strong> <code>df.groupby('기준')['대상'].함수()</code></li>
+            <li><strong>다중 그룹화:</strong> <code>df.groupby(['A', 'B'])</code> 처럼 리스트를 전달하면 계층적 분석이 가능합니다.</li>
+            <li><strong>Tip:</strong> 결과를 다시 데이터프레임으로 만들고 싶다면 끝에 <code>.reset_index()</code>를 붙여주는 것이 좋습니다.</li>
+            </ul>
+            <h4>Pivot</h4>
+            <p>중복된 데이터를 요약하여 교차표(Cross-tab) 형태로 만듦. 엑셀의 피벗 테이블과 동일한 기능이다.</p>
+            <ul>
+            <li><strong>Index:</strong> 행으로 갈 컬럼</li>
+            <li><strong>Columns:</strong> 열로 펼쳐질 컬럼</li>
+            <li><strong>Values:</strong> 채워질 값</li>
+            </ul>
+            <h4>Melt (Long-format 변환)</h4>
+            <p>옆으로 넓게 퍼진(Wide) 데이터를 아래로 길게(Long) 늘어뜨린다. <strong>Seaborn이나 Plotly 같은 시각화 라이브러리</strong>를 쓸 때 가장 많이 사용되는 형태.</p>
+            <ul>
+            <li><strong><code>id_vars</code></strong>: 변하지 않고 고정될 컬럼</li>
+            <li><strong><code>value_vars</code></strong>: 행으로 녹여낼 컬럼들</li>
+            <li><strong><code>var_name</code> / <code>value_name</code></strong>: 새로 생성될 컬럼들의 이름 지정</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        // Prism.js 하이라이팅 실행
+        Prism.highlightAll();
+    </script>
+
+</body>
+</html>
