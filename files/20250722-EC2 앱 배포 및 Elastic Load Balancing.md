@@ -1,6 +1,6 @@
 ---
 id: 20250722-learning-aws-02
-title: IAM
+title: IAM (Identity and Access Management)
 date: 2025-07-22
 category: learning
 subCategory: AWS
