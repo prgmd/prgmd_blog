@@ -236,3 +236,25 @@ hidden: true
 | `pre` (코드블럭) | `bg-[#121212]` → `bg-[#1a1a1a]` + `border-zinc-600` (가시성 개선) |
 | 수식 플레이스홀더 | `<MATHBLOCK>` 형식 → `AURORA_BLOCK_N_MATHEND` 형식으로 변경 (marked의 HTML escape 방지, `$$` 블록 수식 미적용 버그 수정) |
 | blockquote 내 bold 미렌더링 | `marked.parse()` 전 `> ` 라인 대상으로 `**...**` → `<strong>` 직접 치환 처리 추가 |
+
+---
+
+### 2026-04-03 (2)
+
+**게시글 본문 디자인 추가 조정**
+
+| 대상 | 변경 내용 |
+|---|---|
+| `h1` | 배경색 제거, `3xl/4xl`로 사이즈 확대 |
+| `h2` | `2xl/3xl`로 사이즈 확대 |
+| `h3` | `xl/2xl`로 사이즈 확대 |
+| `h4` | `lg/xl`로 사이즈 확대 |
+| `blockquote` | 배경 `bg-amber-950/30`, border `border-amber-700/50`, 텍스트 `text-amber-200/70` (따뜻한 노트 톤) |
+| `blockquote strong` | `not-italic` 제거 — 인용구 내 볼드도 이탤릭 유지 |
+
+---
+
+**Decap CMS 서브카테고리 복수 저장 버그 수정**
+
+`admin/config.yml`의 `subCategory` 위젯을 `string` → `list`로 변경했습니다.
+기존 단일 문자열 게시글은 `index.html`의 `Array.isArray()` 분기로 호환성 유지.
