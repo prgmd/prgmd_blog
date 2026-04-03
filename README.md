@@ -214,3 +214,25 @@ hidden: true
 - 숨김 설정 시 카테고리 목록, 서브카테고리 목록에서 제외
 - 직접 URL(`#post/{id}`) 접근은 가능
 - `generate_posts.py`에 불리언 파싱 추가 (`true`/`false` 문자열 → Python bool)
+
+---
+
+### 2026-04-03
+
+**게시글 본문 디자인 개선**
+
+`.prose` 스타일 전반을 개선했습니다.
+
+| 대상 | 변경 내용 |
+|---|---|
+| `h1` | border-b 제거 → `bg-zinc-800/60` 배경 + 라운드 처리 |
+| `h2` | `border-b border-white/20` 하단 구분선 유지 |
+| `h3` | 좌측 border 제거, `text-zinc-200` 색상으로만 계층 표현 |
+| `h4` | `text-zinc-300` |
+| `strong` | `text-white` → `text-amber-200` (강조 색상) |
+| `blockquote` | 좌측 선만 → 배경색 + 좌측 바 + 우측 라운드 조합 |
+| `blockquote` 내 `p` | 하단 마진 제거 (공백 이중 삽입 방지) |
+| `blockquote` 내 `strong` | not-italic 명시 + `text-amber-200` 적용 |
+| `pre` (코드블럭) | `bg-[#121212]` → `bg-[#1a1a1a]` + `border-zinc-600` (가시성 개선) |
+| 수식 플레이스홀더 | `<MATHBLOCK>` 형식 → `AURORA_BLOCK_N_MATHEND` 형식으로 변경 (marked의 HTML escape 방지, `$$` 블록 수식 미적용 버그 수정) |
+| blockquote 내 bold 미렌더링 | `marked.parse()` 전 `> ` 라인 대상으로 `**...**` → `<strong>` 직접 치환 처리 추가 |
