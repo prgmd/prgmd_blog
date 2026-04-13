@@ -20,10 +20,37 @@ A \times (A^{(B-1)/2})^2 & \text{if } B \text{ is odd}
 지수를 짝수와 홀수로 나눠 생각. 만약 2로 나눠진다면 `half`를 곱(`multi` 함수)하고, 아니라면 원래 값을 한 번 더 곱해줌.
 
 ## 대표 문제
-### [행렬 제곱](https://www.acmicpc.net/problem/10830)
+### [1629번 - 곱셈](https://www.acmicpc.net/problem/1629)
+> 자연수 A를 B번 곱한 수를 알고 싶다. 단 구하려는 수가 매우 커질 수 있으므로 이를 C로 나눈 나머지를 구하는 프로그램을 작성하시오. 첫째 줄에 A, B, C가 빈 칸을 사이에 두고 순서대로 주어진다. A, B, C는 모두 2,147,483,647 이하의 자연수이다.
+
+이 유형을 정의하는 문제. 이를 응용해서 푸는 식이다.
+
+``` python
+a, b, c = map(int, input().split())
+
+def mul(n1, n2):
+    return (n1*n2)%c
+
+def square(exp):
+    if exp == 1:
+        return a
+    
+    half = square(exp//2)
+    
+    if exp % 2 == 0:
+        return mul(half, half)
+    else:
+        return mul(mul(half, half), a)
+        
+print(square(b)%c)
+```
+
+### [10830번 - 행렬 제곱](https://www.acmicpc.net/problem/10830)
 
 > 크기가 N*N인 행렬 A가 주어진다. 이때, A의 B제곱을 구하는 프로그램을 작성하시오. A^B의 각 원소를 1,000으로 나눈 나머지를 출력하라.
  조건: (2 ≤ N ≤ 5, 1 ≤ B ≤ 100,000,000,000)
+
+이 문제의 경우 1629번에서 구한 식에 '행렬 제곱'을 응용.
 
 ``` python
 import sys
