@@ -83,23 +83,26 @@ NoSQL의 여러 종류 중 하나로, 데이터를 문서로 관리하는 방식
 
 * `writeConcern`: 메모리에 먼저 작업한 후 나중에 저장 장치에 반영하는 옵션. 갑작스러운 서버 장애 시 발생 가능한 데이터 손실을 방지한다.
 
-  * 
+  *
 
 ## 2.2 READ
 
 * 원하는 데이터를 정교하게 걸러내기 위해 커서와 연산자를 활용.
 
   * 커서란? 질의 결과에 하나씩 접근할 수 있게 해주는 포인터. `toArray()`를 호출해 전체 결과를 배열로 바꿀 수도 있다.
+
     * `toArray`는 다만 데이터가 10,000건만 넘어가도 메모리 과부하로 앱이 뻗음. `limit()`과 `skip()`을 활용한 페이징 처리를 꼭 해주자.
   * `.` 연산자를 통해 객체 내부 속성이나 배열의 특정 순서를 지정해 조회할 수도 있다.
+
     * 혹여나 `db.col.find({ address.city: "Seoul" })`으로 쓰지 말자. `db.col.find({ "address.city": "Seoul" })`가 맞는 표현. 따옴표를 놓치지 말 것.
 
 ### 페이징 처리란?
+
 데이터를 책 페이지처럼 나눠 보여주는 기술. 구글 검색 시 수억 건의 문서를 페이지 별로 보여주는 개념과 같다. MongoDB에서는 `limit`(이것만 가져와라)과 `skip`(이것까지는 넘겨라)이 그 역할을 해줌. 다만 `skip`은 뒤로 갈수록 느려진다. 앞 데이터를 다 읽어서 버린 다음에 그 다음 데이터를 가져오기 때문. 이 경우에는 **커서 기반 페이징** 기법을 사용한다. 지난번으로 본 마지막 데이터의 ID(인덱스)를 기억한 뒤 `_id`가 n 이상인 것부터 10개 달라고 하는 식.
 
 ### 기본 문법
 
-```sql
+``` javascript
 // 기본 문법
 find(query, projection)
 ```
@@ -109,7 +112,7 @@ find(query, projection)
 
 ### 예시
 
-```sql
+``` javascript
 db.users.find({ age: 25 }, { name: 1, _id: 0 })
 // 25살인 유저를 찾는 쿼리. 이 때 필요한 필드만 1로 켜주면 메모리를 아낄 수 있다.
 // 참고로 find는 데이터를 다 가져오는 게 아니라 데이터로 가는 길을 열 때 사용한다고 알아두자. toArray는 꼭 필요한 상황에서만 쓸 것. 데이터가 적으면 괜춘.
@@ -119,9 +122,11 @@ db.orders.find({ "address.city": "Seoul" })
 ```
 
 ## 2.3 UPDATE
+
 * `replaceOne`: Document 전체를 새 내용으로 교체 (`_id`는 유지됨)
 
 ### 수정 연산자
+
 * `$set`: 특정 필드 값만 변경
 * `$inc`, `$mul`: 값을 증가시키거나 곱함
 
@@ -134,5 +139,50 @@ db.orders.find({ "address.city": "Seoul" })
 * `$addToSet`: 중복 없이 추가 (Python의 Set라 보면 됨)
 
 ## 2.4 DELETE
+
 * `updateMany`: 조건에 맞는 모든 데이터를 수정
 * `deleteMany`: 조건에 부합하는 모든 Document 삭제
+
+## 2.5 예시
+
+``` javascript
+// 1. 단일 도서 등록
+db.books.insertOne({
+  "title": "혼자 공부하는 MongoDB",
+  "author": "김철수",
+  "tags": ["DB", "NoSQL"],
+  "stock": 5,
+  "info": { "publisher": "한빛", "year": 2024 }
+});
+
+// 2. 여러 권 동시 등록 (ordered: false 옵션으로 안전하게!)
+db.books.insertMany([
+  { "title": "파이썬 마스터", "author": "이영희", "tags": ["Python"], "stock": 3 },
+  { "title": "데이터 분석의 기초", "author": "박민수", "tags": ["Data", "Analysis"], "stock": 10 }
+], { "ordered": false });
+
+// 조건: tags 배열에 "DB"가 포함된 것
+// 결과 제어(Projection): 제목(1)과 저자(1)만 표시, ID는 숨김(0)
+db.books.find(
+  { "tags": "DB" }, 
+  { "title": 1, "author": 1, "_id": 0 }
+);
+
+// 조건에 맞는 데이터의 stock은 2 감소시키고(-2), tags 배열에는 "Hot" 추가
+db.books.updateOne(
+  { "title": "데이터 분석의 기초" },
+  { 
+    "$inc": { "stock": -2 },
+    "$addToSet": { "tags": "Hot" }
+  }
+);
+
+db.books.find()
+  .sort({ "title": 1 }) // 제목순 정렬
+  .skip(2)              // 1페이지(2권) 건너뛰기
+  .limit(2);            // 2페이지에 해당되는 2권 가져오기
+
+// 제목이 정확히 일치하는 도큐먼트 삭제
+db.books.deleteMany({ "title": "혼자 공부하는 MongoDB" });
+
+```
