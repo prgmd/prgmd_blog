@@ -10,28 +10,59 @@ def parse_frontmatter(content):
 
     yaml_block = match.group(1)
     metadata = {}
+    current_list_key = None
+
     for line in yaml_block.split('\n'):
-        if ':' in line:
-            key, value = line.split(':', 1)
-            key = key.strip()
-            value = value.strip()
-            # 배열 형식 처리: ["A", "B"] or ['A', 'B']
-            if value.startswith('['):
-                try:
-                    parsed = json.loads(value)
-                    metadata[key] = parsed
-                    continue
-                except json.JSONDecodeError:
-                    pass
-            # 불리언 처리
-            if value.lower() == 'true':
-                metadata[key] = True
+        stripped = line.strip()
+
+        # YAML 블록 리스트 항목 수집 (Decap CMS list 위젯 저장 형식)
+        if current_list_key is not None:
+            if stripped.startswith('- '):
+                item = stripped[2:].strip().strip('"').strip("'")
+                metadata[current_list_key].append(item)
                 continue
-            if value.lower() == 'false':
-                metadata[key] = False
+            # 리스트 항목이 아닌 줄이 나오면 리스트 종료
+            if not metadata[current_list_key]:
+                metadata[current_list_key] = ''
+            current_list_key = None
+
+        if ':' not in line:
+            continue
+
+        key, value = line.split(':', 1)
+        key = key.strip()
+        value = value.strip()
+
+        # 값이 없으면 블록 리스트 시작 가능성
+        if not value:
+            current_list_key = key
+            metadata[key] = []
+            continue
+
+        # 인라인 배열 형식 처리: ["A", "B"] or ['A', 'B']
+        if value.startswith('['):
+            try:
+                parsed = json.loads(value)
+                metadata[key] = parsed
                 continue
-            # 일반 문자열
-            metadata[key] = value.strip('"').strip("'")
+            except json.JSONDecodeError:
+                pass
+
+        # 불리언 처리
+        if value.lower() == 'true':
+            metadata[key] = True
+            continue
+        if value.lower() == 'false':
+            metadata[key] = False
+            continue
+
+        # 일반 문자열
+        metadata[key] = value.strip('"').strip("'")
+
+    # 마지막 키가 빈 블록 리스트인 경우 처리
+    if current_list_key is not None and not metadata[current_list_key]:
+        metadata[current_list_key] = ''
+
     return metadata
 
 def build_posts_json():

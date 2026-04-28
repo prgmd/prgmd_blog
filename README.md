@@ -108,32 +108,6 @@ subCategory: AWS
 
 ---
 
-## 카테고리 현황
-
-### Projects
-| 서브카테고리 | 게시글 수 |
-|---|---|
-| Blog | 3 |
-| Digem | 1 |
-| Blackbox | 1 |
-
-### Learning
-| 서브카테고리 | 게시글 수 |
-|---|---|
-| Python | 2 |
-| Database | 6 |
-| Linux | 9 |
-| Network | 4 |
-| Docker | 11 |
-| Kubernetes | 9 |
-| CI/CD | 9 |
-| AWS | 11 |
-| Ansible | 2 |
-| Monitoring | 5 |
-| Cloud | 4 |
-
----
-
 ## 주요 기능
 
 - **다크 모드** 고정 (`#050505` 배경)
@@ -258,3 +232,44 @@ hidden: true
 
 `admin/config.yml`의 `subCategory` 위젯을 `string` → `list`로 변경했습니다.
 기존 단일 문자열 게시글은 `index.html`의 `Array.isArray()` 분기로 호환성 유지.
+
+---
+
+### 2026-04-28
+
+**Decap CMS 제목 변경 오류 수정 및 다중 태그 파싱 수정**
+
+**추가된 파일**
+
+| 파일 | 내용 |
+|---|---|
+| `rename_to_ids.py` | `files/` 내 파일명을 각 게시글의 `id` 필드값으로 일괄 rename하는 일회성 마이그레이션 스크립트 |
+
+**수정된 파일**
+
+| 파일 | 내용 |
+|---|---|
+| `generate_posts.py` | YAML 블록 리스트 형식(`- item`) 파싱 지원 추가 |
+
+**버그 1 — Decap CMS 제목 변경 시 오류**
+
+`admin/config.yml`의 `slug: "{{fields.id}}"` 설정으로 인해 Decap CMS는 저장 시 파일명이 `id` 필드값과 일치해야 한다고 간주합니다. 기존 파일 대부분이 한국어 제목으로 생성되어 `id` 값과 불일치한 상태였기 때문에, 저장할 때마다 파일 rename을 시도하고 GitHub API 오류가 발생했습니다.
+
+`rename_to_ids.py`를 1회 실행해 모든 파일명을 `{id}.md` 형식으로 정렬하면 해소됩니다.
+
+```bash
+python3 rename_to_ids.py
+python3 generate_posts.py
+```
+
+**버그 2 — 다중 서브카테고리 저장 후 인덱스 누락**
+
+Decap CMS `list` 위젯은 다중 항목을 YAML 블록 리스트 형식으로 저장합니다.
+
+```yaml
+subCategory:
+  - Docker
+  - Kubernetes
+```
+
+기존 `generate_posts.py`의 파서는 `key: value` 한 줄 형식만 처리해 블록 리스트 항목(`- item`)을 무시했고, `subCategory`가 빈 값으로 `posts.json`에 기록되었습니다. 파서를 수정해 블록 리스트 수집 모드를 추가했으며, 기존 인라인 배열(`["A", "B"]`) 형식도 그대로 지원합니다.
