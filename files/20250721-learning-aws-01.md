@@ -3,7 +3,7 @@ id: 20250721-learning-aws-01
 title: AWS 개요 및 기초
 date: 2025-07-21
 category: learning
-subCategory: List ['AWS', 'Cloud']
+subCategory: ["AWS", "Cloud"]
 ---
 # I. 클라우드
 

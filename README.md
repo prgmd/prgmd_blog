@@ -34,6 +34,13 @@ prgmd_blog/
 ├── vercel.json             # Vercel SPA 리라이트 설정
 ├── package.json            # 빌드 스크립트 정의
 ├── generate_posts.py       # files/ 탐색 → posts.json 생성
+├── assets/                 # 정적 에셋 (이미지, SVG 등)
+├── admin/                  # Decap CMS 온라인 에디터
+│   ├── index.html          # Decap CMS CDN 로드
+│   └── config.yml          # CMS 설정 (레포, 브랜치, 필드 정의)
+├── api/                    # Vercel Serverless Functions
+│   ├── auth.js             # GitHub OAuth 시작
+│   └── callback.js         # OAuth 콜백 — code → access_token 교환
 └── files/                  # 마크다운 게시글 원본
 ```
 
