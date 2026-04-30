@@ -1,6 +1,6 @@
 ---
-id: 20250624-learning-docker-10
-title: Docker Compose
+id: 20250624-learning-docker-05
+title: 도커 컴포즈(Docker Compose)
 date: 2025-06-24
 category: learning
 subCategory: Docker

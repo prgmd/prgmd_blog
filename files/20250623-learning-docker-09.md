@@ -4,6 +4,7 @@ title: "GitHub Actions를 이용한 도커 배포 자동화"
 date: "2025-06-23"
 category: "learning"
 subCategory: ["Docker", "CI/CD", "GitHub Actions"]
+hidden: True
 ---
 
 ## 1. Go 애플리케이션 작성 및 이미지 빌드

@@ -1,6 +1,6 @@
 ---
-id: 20250626-learning-docker-11
-title: Docker Swarm
+id: 20250626-learning-docker-06
+title: 도커 스웜(Docker Swarm)
 date: 2025-06-26
 category: learning
 subCategory: Docker
