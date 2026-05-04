@@ -1,6 +1,6 @@
 ---
 id: 20250507-learning-database-01
-title: SQL 기초 및 응용
+title: SQL 기초 및 함수 응용
 date: 2025-05-07
 category: learning
 subCategory: Database
@@ -149,13 +149,3 @@ subCategory: Database
   * **EXISTS**: 결과가 존재하는지만 확인하여 참/거짓을 리턴한다.
 * **다중 열 서브쿼리**
  * 서브쿼리가 여러 개의 컬럼을 리턴하는 경우다. `WHERE (컬럼1, 컬럼2) = (SELECT 컬럼1, 컬럼2 ...)` 형식으로 한꺼번에 비교 가능하다.
-
-- - -
-
-## 4. 조인 (JOIN)
-
-두 개 이상의 테이블을 가로 방향으로 합쳐서 여러 컬럼을 한 번에 추출하는 연산.
-
-* **CROSS JOIN**: 두 테이블의 모든 가능한 조합을 만든다. (카테시안 곱)
-* **EQUI JOIN**: 동일한 의미를 가진 컬럼의 값이 일치할 때 데이터를 합친다. (가장 많이 사용)
-* **NON EQUI JOIN**: `=` 이외의 연산자(BETWEEN 등)를 사용하여 데이터를 합친다.
