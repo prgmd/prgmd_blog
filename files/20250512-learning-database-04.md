@@ -19,11 +19,12 @@ subCategory:
 
 > 일명 **스키마가 없는(Schema-less) 도큐먼트 지향(Document-Oriented) NoSQL 데이터베이스**.
 
-- 고정된 스키마가 없다. 데이터 구조 변경 시 `ALTER TABLE` 같이 무거운 작업을 할 필요가 없음.
-- C++ 기반 엔진을 사용하기 때문에 조회가 상당히 빠름.
-  - BSON(Binary JSON) 형식을 채택해 기계가 읽는 속도와 데이터 압축 효율을 극대화했다.
-- Double, String, Object, Array, Binary, Boolean, Date, Null 등 프로그래밍 언어에서 사용하는 대부분의 타입을 그대로 호환.
-- ObjectID를 통한 고유 식별자 제공. 생성 시간과 프로세스 ID, 카운터를 조합해 분산 환경에서도 중복 없는 ID를 보장함.
+* 고정된 스키마가 없다. 데이터 구조 변경 시 `ALTER TABLE` 같이 무거운 작업을 할 필요가 없음.
+* C++ 기반 엔진을 사용하기 때문에 조회가 상당히 빠름.
+
+  * BSON(Binary JSON) 형식을 채택해 기계가 읽는 속도와 데이터 압축 효율을 극대화했다.
+* Double, String, Object, Array, Binary, Boolean, Date, Null 등 프로그래밍 언어에서 사용하는 대부분의 타입을 그대로 호환.
+* ObjectID를 통한 고유 식별자 제공. 생성 시간과 프로세스 ID, 카운터를 조합해 분산 환경에서도 중복 없는 ID를 보장함.
 
 ### NoSQL이란?
 
@@ -37,11 +38,11 @@ NoSQL의 여러 종류 중 하나로, 데이터를 문서로 관리하는 방식
 
 ## 1.3 물리적/논리적 구조
 
-계층 구조는 다음과 같다.
+계층 구조는 다음과 같다. 이렇게만 보면 RDBMS와 상당히 흡사.
 
-1. Database: 물리적 저장 단위
-2. Collection: RDBMS의 Table
-3. Document: RDBMS의 Row
+1. **Database**: 물리적 저장 단위
+2. **Collection**: RDBMS의 Table
+3. **Document**: RDBMS의 Row
 
 다만 RDBMS와의 차이점도 분명히 존재.
 
@@ -74,6 +75,7 @@ NoSQL의 여러 종류 중 하나로, 데이터를 문서로 관리하는 방식
 ### 멀티 스레드 옵션
 
 * 여러 데이터 삽입시 `ordered` 옵션으로 처리 방식 정할 수 있음.
+
   * `true`: 하나라도 에러 나면 멈춤 → 데이터 무결성이 중요할 때 체크
   * `false`: 에러 나도 일단 나머지 다 집어넣음 → 로그처럼 누락보다 수집이 더 중요할 때
 
@@ -84,9 +86,12 @@ NoSQL의 여러 종류 중 하나로, 데이터를 문서로 관리하는 방식
 ## 2.2 READ
 
 * 원하는 데이터를 정교하게 걸러내기 위해 커서와 연산자를 활용.
+
   * 커서란? 질의 결과에 하나씩 접근할 수 있게 해주는 포인터. `toArray()`를 호출해 전체 결과를 배열로 바꿀 수도 있다.
+
     * `toArray`는 다만 데이터가 10,000건만 넘어가도 메모리 과부하로 앱이 뻗음. `limit()`과 `skip()`을 활용한 페이징 처리를 꼭 해주자.
   * `.` 연산자를 통해 객체 내부 속성이나 배열의 특정 순서를 지정해 조회할 수도 있다.
+
     * 혹여나 `db.col.find({ address.city: "Seoul" })`으로 쓰지 말자. `db.col.find({ "address.city": "Seoul" })`가 맞는 표현. 따옴표를 놓치지 말 것.
 
 ### 페이징 처리란?
@@ -95,7 +100,7 @@ NoSQL의 여러 종류 중 하나로, 데이터를 문서로 관리하는 방식
 
 ### 기본 문법
 
-``` javascript
+```javascript
 // 기본 문법
 find(query, projection)
 ```
@@ -105,7 +110,7 @@ find(query, projection)
 
 ### 예시
 
-``` javascript
+```javascript
 db.users.find({ age: 25 }, { name: 1, _id: 0 })
 // 25살인 유저를 찾는 쿼리. 이 때 필요한 필드만 1로 켜주면 메모리를 아낄 수 있다.
 // 참고로 find는 데이터를 다 가져오는 게 아니라 데이터로 가는 길을 열 때 사용한다고 알아두자. toArray는 꼭 필요한 상황에서만 쓸 것. 데이터가 적으면 괜춘.
@@ -122,6 +127,7 @@ db.orders.find({ "address.city": "Seoul" })
 
 * `$set`: 특정 필드 값만 변경
 * `$inc`, `$mul`: 값을 증가시키거나 곱함
+
   * 조회 후 더하는 게 아니라 DB 단에서 바로 숫자를 올리기 때문에 조회-수정 사이 오차를 방지할 수 있다.
 
 ### 배열 연산자
@@ -137,7 +143,7 @@ db.orders.find({ "address.city": "Seoul" })
 
 ## 2.5 예시
 
-``` javascript
+```javascript
 // 1. 단일 도서 등록
 db.books.insertOne({
   "title": "혼자 공부하는 MongoDB",
@@ -176,5 +182,4 @@ db.books.find()
 
 // 제목이 정확히 일치하는 도큐먼트 삭제
 db.books.deleteMany({ "title": "혼자 공부하는 MongoDB" });
-
 ```
