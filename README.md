@@ -242,6 +242,30 @@ hidden: true
 
 ---
 
+### 2026-05-04
+
+**마크다운 중첩 목록 들여쓰기 정렬 버그 수정**
+
+`.prose ul / ol`에 적용된 `list-inside`로 인해 중첩 목록과 줄바꿈 텍스트의 들여쓰기가 어긋나는 문제를 수정했습니다.
+
+| 대상 | 변경 전 | 변경 후 |
+|---|---|---|
+| `.prose ul` | `list-disc list-inside ml-4 mb-6 space-y-2` | `list-disc list-outside pl-6 mb-6 space-y-2` |
+| `.prose ol` | `list-decimal list-inside ml-4 mb-6 space-y-2` | `list-decimal list-outside pl-6 mb-6 space-y-2` |
+| `.prose ul ul`, `.prose ol ul` | (없음) | `mt-2 mb-0 pl-6` |
+| `.prose ul ol`, `.prose ol ol` | (없음) | `mt-2 mb-0 pl-6` |
+| `.prose li` | `text-zinc-300` | `text-zinc-300 pl-1` |
+
+**원인**
+
+`list-inside`는 불릿 마커를 텍스트 흐름 안에 배치하므로, 항목 텍스트가 줄바꿈될 때 두 번째 줄이 불릿 아래가 아닌 좌측 끝으로 붙는 hanging indent 미처리 문제가 발생합니다. 중첩 목록에서 특히 두드러집니다.
+
+**해결**
+
+`list-outside` + `pl-6`으로 변경해 불릿이 padding 영역에 걸리도록 하고, 줄바꿈 시 텍스트 시작점이 항상 일정하게 유지되도록 했습니다. 중첩 목록에는 별도 `pl-6`을 부여해 단계별 들여쓰기가 명확히 구분됩니다.
+
+---
+
 ### 2026-04-28
 
 **Decap CMS 제목 변경 오류 수정 및 다중 태그 파싱 수정**
