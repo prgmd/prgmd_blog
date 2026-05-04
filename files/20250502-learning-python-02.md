@@ -22,7 +22,7 @@ subCategory: Python
 중복 제거와 빠른 검색(Hash Table)이 핵심.
 
 ### frozenset
-데이터 변경이 불가능한 집합. 일반 `set`은 딕셔너리의 **키(Key)**로 쓸 수 없지만, `frozenset`은 불변이기 때문에 키로 사용이 가능하다.
+데이터 변경이 불가능한 집합. 일반 `set`은 딕셔너리의 키(Key)로 쓸 수 없지만, `frozenset`은 불변이기 때문에 키로 사용이 가능하다.
 
 ### 안전한 조회(`get`)
 `my_dict['key']`는 키가 없으면 에러(KeyError)를 내지만, `get('key', 0)`은 에러 대신 기본값(0)을 주어 프로그램 중단을 막음.
