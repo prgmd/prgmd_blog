@@ -1,9 +1,9 @@
 ---
 id: 20250516-learning-linux-02
-title: "셸 활용과 파일 시스템 구조"
-date: "2025-05-16"
-category: "learning"
-subCategory: "Linux"
+title: 셸 활용과 파일 시스템 구조
+date: 2025-05-16
+category: learning
+subCategory: Linux
 ---
 
 ## 1. Vim(VI) 편집기 고급 활용
@@ -52,6 +52,8 @@ subCategory: "Linux"
 
 ## 3. 리눅스 파일 시스템(File System) 구조
 리눅스는 물리적인 디스크가 여러 개라도 시스템 전체에서 단 하나의 트리 구조(루트 디렉토리 `/`)만 가진다.
+
+![](https://velog.velcdn.com/images/paramad/post/39dcd095-37b6-4a65-9d25-4be638d78691/image.png)
 
 ### 1) 파일의 종류
 * **일반 파일**: 텍스트, 이미지, 실행 파일 등 데이터를 저장하는 파일이다.
